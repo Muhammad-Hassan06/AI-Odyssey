@@ -1,0 +1,290 @@
+# ==============================================================================
+# Pakistani-Context NER Corpus: Source Configuration
+# TechFest NER Challenge — Dory's Data Dive (Round 2)
+# ==============================================================================
+
+settings:
+  user_agent: "PakNERDataEngineerBot/1.0 (+https://github.com/Muhammad-Hassan06/AI-Odyssey; academic-nlp-research)"
+  min_request_delay_seconds: 2.0
+  max_request_delay_seconds: 3.5
+  max_retries: 3
+  timeout_seconds: 15
+  global_concurrency: 5
+  min_article_words: 80
+  min_sentence_tokens: 6
+  max_sentence_tokens: 60
+
+sources:
+  # ============================================================================
+  # Priority 1: High-Yield English News (General, Politics, Business, Economy)
+  # Target Labels: PERSON, CITY, PROVINCE_REGION, COUNTRY, ORG, GOV_BODY, MONEY, DATE
+  # ============================================================================
+  - domain: "dawn.com"
+    name: "Dawn News"
+    category: "News/National"
+    language: "en"
+    robots_url: "https://www.dawn.com/robots.txt"
+    rss_feeds:
+      - "https://www.dawn.com/feeds/home"
+      - "https://www.dawn.com/feeds/national"
+      - "https://www.dawn.com/feeds/business"
+      - "https://www.dawn.com/feeds/sport"
+    max_pages: 500
+
+  - domain: "tribune.com.pk"
+    name: "The Express Tribune"
+    category: "News/National"
+    language: "en"
+    robots_url: "https://tribune.com.pk/robots.txt"
+    rss_feeds:
+      - "https://tribune.com.pk/feed/pakistan"
+      - "https://tribune.com.pk/feed/business"
+      - "https://tribune.com.pk/feed/sports"
+    max_pages: 500
+
+  - domain: "thenews.com.pk"
+    name: "The News International"
+    category: "News/National"
+    language: "en"
+    robots_url: "https://www.thenews.com.pk/robots.txt"
+    rss_feeds:
+      - "https://www.thenews.com.pk/rss/1/1"
+      - "https://www.thenews.com.pk/rss/1/2"
+      - "https://www.thenews.com.pk/rss/1/4"
+    max_pages: 500
+
+  - domain: "brecorder.com"
+    name: "Business Recorder"
+    category: "Business/Finance"
+    language: "en"
+    robots_url: "https://www.brecorder.com/robots.txt"
+    rss_feeds:
+      - "https://www.brecorder.com/feeds/latest-news"
+      - "https://www.brecorder.com/feeds/pakistan"
+      - "https://www.brecorder.com/feeds/markets"
+    max_pages: 400
+
+  - domain: "pakistantoday.com.pk"
+    name: "Pakistan Today"
+    category: "News/Politics"
+    language: "en"
+    robots_url: "https://www.pakistantoday.com.pk/robots.txt"
+    rss_feeds:
+      - "https://www.pakistantoday.com.pk/feed/"
+      - "https://www.pakistantoday.com.pk/category/national/feed/"
+    max_pages: 350
+
+  - domain: "nation.com.pk"
+    name: "The Nation"
+    category: "News/National"
+    language: "en"
+    robots_url: "https://www.nation.com.pk/robots.txt"
+    rss_feeds:
+      - "https://www.nation.com.pk/feed/national"
+      - "https://www.nation.com.pk/feed/business"
+    max_pages: 300
+
+  - domain: "dailytimes.com.pk"
+    name: "Daily Times"
+    category: "News/National"
+    language: "en"
+    robots_url: "https://dailytimes.com.pk/robots.txt"
+    rss_feeds:
+      - "https://dailytimes.com.pk/feed/"
+    max_pages: 300
+
+  - domain: "geo.tv"
+    name: "Geo News English"
+    category: "News/Broadcast"
+    language: "en"
+    robots_url: "https://www.geo.tv/robots.txt"
+    rss_feeds:
+      - "https://www.geo.tv/rss/1/1"
+      - "https://www.geo.tv/rss/1/2"
+    max_pages: 400
+
+  - domain: "arynews.tv"
+    name: "ARY News English"
+    category: "News/Broadcast"
+    language: "en"
+    robots_url: "https://arynews.tv/robots.txt"
+    rss_feeds:
+      - "https://arynews.tv/feed/"
+      - "https://arynews.tv/category/pakistan/feed/"
+    max_pages: 350
+
+  - domain: "app.com.pk"
+    name: "Associated Press of Pakistan"
+    category: "News/StateWire"
+    language: "en"
+    robots_url: "https://www.app.com.pk/robots.txt"
+    rss_feeds:
+      - "https://www.app.com.pk/national/feed/"
+      - "https://www.app.com.pk/domestic/feed/"
+    max_pages: 350
+
+  - domain: "propakistani.pk"
+    name: "ProPakistani"
+    category: "Tech/Business"
+    language: "en"
+    robots_url: "https://propakistani.pk/robots.txt"
+    rss_feeds:
+      - "https://propakistani.pk/feed/"
+    max_pages: 300
+
+  # ============================================================================
+  # Priority 2: Sports & Events
+  # Target Labels: SPORTS_TEAM, EVENT, LANDMARK_FACILITY, PERSON
+  # ============================================================================
+  - domain: "pcb.com.pk"
+    name: "Pakistan Cricket Board"
+    category: "Sports"
+    language: "en"
+    robots_url: "https://www.pcb.com.pk/robots.txt"
+    start_urls:
+      - "https://www.pcb.com.pk/press-releases.html"
+      - "https://www.pcb.com.pk/news.html"
+    max_pages: 150
+
+  - domain: "geosuper.tv"
+    name: "Geo Super"
+    category: "Sports"
+    language: "en"
+    robots_url: "https://www.geosuper.tv/robots.txt"
+    rss_feeds:
+      - "https://www.geosuper.tv/rss/1/1"
+    max_pages: 200
+
+  # ============================================================================
+  # Priority 3: Courts & Legal
+  # Target Labels: COURT_LEGAL_BODY, LAW_ACT, PERSON, GOVERNMENT_BODY
+  # ============================================================================
+  - domain: "supremecourt.gov.pk"
+    name: "Supreme Court of Pakistan"
+    category: "Legal/Judiciary"
+    language: "en"
+    robots_url: "https://www.supremecourt.gov.pk/robots.txt"
+    start_urls:
+      - "https://www.supremecourt.gov.pk/press-releases/"
+      - "https://www.supremecourt.gov.pk/judgments-orders/"
+    max_pages: 100
+
+  - domain: "pakistancode.gov.pk"
+    name: "Pakistan Code"
+    category: "Legal/Legislation"
+    language: "en"
+    robots_url: "https://pakistancode.gov.pk/robots.txt"
+    start_urls:
+      - "https://pakistancode.gov.pk/english/laws"
+    max_pages: 150
+
+  # ============================================================================
+  # Priority 4: Government, Economy & Regulators
+  # Target Labels: GOVERNMENT_BODY, MONEY, PERCENT, DATE, TIME
+  # ============================================================================
+  - domain: "sbp.org.pk"
+    name: "State Bank of Pakistan"
+    category: "Economy/CentralBank"
+    language: "en"
+    robots_url: "https://www.sbp.org.pk/robots.txt"
+    start_urls:
+      - "https://www.sbp.org.pk/press/index.asp"
+      - "https://www.sbp.org.pk/monetary/index.asp"
+    max_pages: 150
+
+  - domain: "na.gov.pk"
+    name: "National Assembly of Pakistan"
+    category: "Legislation/Parliament"
+    language: "en"
+    robots_url: "https://na.gov.pk/robots.txt"
+    start_urls:
+      - "https://na.gov.pk/en/pressreleases.php"
+    max_pages: 150
+
+  - domain: "pbs.gov.pk"
+    name: "Pakistan Bureau of Statistics"
+    category: "Economy/Statistics"
+    language: "en"
+    robots_url: "https://www.pbs.gov.pk/robots.txt"
+    start_urls:
+      - "https://www.pbs.gov.pk/press-releases"
+    max_pages: 100
+
+  # ============================================================================
+  # Priority 5: Higher Education Institutions
+  # Target Labels: EDUCATIONAL_INSTITUTION, LANDMARK_FACILITY, CITY
+  # ============================================================================
+  - domain: "lums.edu.pk"
+    name: "LUMS"
+    category: "Education"
+    language: "en"
+    robots_url: "https://lums.edu.pk/robots.txt"
+    start_urls:
+      - "https://lums.edu.pk/news"
+    max_pages: 100
+
+  - domain: "nust.edu.pk"
+    name: "NUST"
+    category: "Education"
+    language: "en"
+    robots_url: "https://nust.edu.pk/robots.txt"
+    start_urls:
+      - "https://nust.edu.pk/news-and-updates/"
+    max_pages: 100
+
+  # ============================================================================
+  # Priority 6: Open Knowledge / Wikipedia API
+  # Target Labels: Balanced coverage across all 20 classes
+  # ============================================================================
+  - domain: "en.wikipedia.org"
+    name: "English Wikipedia (Pakistan Topics)"
+    category: "Knowledge"
+    language: "en"
+    api_endpoint: "https://en.wikipedia.org/w/api.php"
+    categories:
+      - "Category:Cities and towns in Pakistan"
+      - "Category:Provinces and territories of Pakistan"
+      - "Category:Politics of Pakistan"
+      - "Category:Political parties in Pakistan"
+      - "Category:Judiciary of Pakistan"
+      - "Category:Universities and colleges in Pakistan"
+      - "Category:Pakistani media"
+      - "Category:Cricket in Pakistan"
+      - "Category:Pakistani legislation"
+      - "Category:Events in Pakistan"
+    max_pages: 400
+
+  # ============================================================================
+  # Priority 7: Urdu Bonus Corpus (language: ur)
+  # Target Labels: Urdu script named entities
+  # ============================================================================
+  - domain: "ur.wikipedia.org"
+    name: "Urdu Wikipedia"
+    category: "Knowledge/Urdu"
+    language: "ur"
+    api_endpoint: "https://ur.wikipedia.org/w/api.php"
+    categories:
+      - "زمرہ:پاکستان"
+      - "زمرہ:پاکستانی سیاست"
+      - "زمرہ:پاکستان کے شہر"
+      - "زمرہ:پاکستان کی معیشت"
+      - "زمرہ:پاکستان میں کھیل"
+    max_pages: 300
+
+  - domain: "bbc.com"
+    name: "BBC Urdu"
+    category: "News/Urdu"
+    language: "ur"
+    robots_url: "https://www.bbc.com/robots.txt"
+    rss_feeds:
+      - "https://feeds.bbci.co.uk/urdu/rss.xml"
+    max_pages: 300
+
+  - domain: "express.pk"
+    name: "Express News Urdu"
+    category: "News/Urdu"
+    language: "ur"
+    robots_url: "https://www.express.pk/robots.txt"
+    rss_feeds:
+      - "https://www.express.pk/feed/"
+    max_pages: 300
