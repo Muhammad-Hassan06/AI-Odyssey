@@ -1,0 +1,24 @@
+# Core NLP & Deep Learning
+transformers>=4.40.0
+datasets>=2.19.0
+accelerate>=0.30.0
+seqeval>=1.2.2
+torch>=2.2.0
+scikit-learn>=1.4.0
+
+# Data Extraction & Cleaning
+pandas>=2.2.0
+beautifulsoup4>=4.12.0
+trafilatura>=1.8.0
+requests>=2.31.0
+urllib3>=2.2.0
+
+# Utilities & Visualization
+pyyaml>=6.0.1
+tqdm>=4.66.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+
+# Interactive Demo & Tooling
+gradio>=4.31.0
+python-dotenv>=1.0.1

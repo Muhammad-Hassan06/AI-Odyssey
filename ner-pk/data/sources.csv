@@ -1,0 +1,59 @@
+source_name,url,domain_category,date_accessed,robots_allowed,terms_note,num_articles_extracted,license
+Associated Press of Pakistan (APP),https://www.app.com.pk/,Government/News,2026-10-19,Yes,Public domain / news release,0,Open Press
+State Bank of Pakistan (SBP),https://www.sbp.org.pk/,Economy/Gov,2026-10-19,Yes,Official public notices & monetary releases,0,Public Information
+Pakistan Bureau of Statistics (PBS),https://www.pbs.gov.pk/,Economy/Statistics,2026-10-19,Yes,Open statistical bulletins,0,Public Data
+Pakistan Today,https://www.pakistantoday.com.pk/,News/Politics,2026-10-19,Yes,Public news archive,0,Fair Use / Academic
+Business Recorder,https://www.brecorder.com/,Business/Finance,2026-10-19,Yes,Public financial reporting,0,Fair Use / Academic
+The Express Tribune,https://tribune.com.pk/,General News,2026-10-19,Yes,Public articles,0,Fair Use / Academic
+National Assembly of Pakistan,https://na.gov.pk/,Legislation/Gov,2026-10-19,Yes,Official public gazette & bills,0,Public Records
+Wikipedia (Pakistan Portal),https://en.wikipedia.org/wiki/Portal:Pakistan,Knowledge,2026-10-19,Yes,Open encyclopedia,0,CC-BY-SA 4.0
+Wikipedia,https://en.wikipedia.org/wiki/Politics_of_Pakistan,Politics,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Government_of_Pakistan,Politics,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Parliament_of_Pakistan,Politics,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/List_of_political_parties_in_Pakistan,Politics,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Prime_Minister_of_Pakistan,Politics,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Cabinet_of_Pakistan,Politics,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Economy_of_Pakistan,Economy,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/State_Bank_of_Pakistan,Economy,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Pakistan_Stock_Exchange,Economy,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Federal_Board_of_Revenue,Economy,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Pakistani_rupee,Economy,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Supreme_Court_of_Pakistan,Legal,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Constitution_of_Pakistan,Legal,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Pakistan_Penal_Code,Legal,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Lahore_High_Court,Legal,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Sindh_High_Court,Legal,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Islamabad_High_Court,Legal,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Administrative_units_of_Pakistan,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Karachi,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Lahore,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Islamabad,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Peshawar,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Quetta,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Gilgit-Baltistan,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Azad_Kashmir,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Minar-e-Pakistan,Landmarks,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Badshahi_Mosque,Landmarks,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Jinnah_International_Airport,Landmarks,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Allama_Iqbal_International_Airport,Landmarks,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,"https://en.wikipedia.org/wiki/National_Stadium,_Karachi",Landmarks,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Gaddafi_Stadium,Landmarks,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Pakistan_national_cricket_team,Sports,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Pakistan_Super_League,Sports,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Karachi_Kings,Sports,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Lahore_Qalandars,Sports,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Islamabad_United,Sports,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Higher_Education_Commission_(Pakistan),Education,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Lahore_University_of_Management_Sciences,Education,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Quaid-i-Azam_University,Education,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/NED_University_of_Engineering_and_Technology,Education,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,"https://en.wikipedia.org/wiki/Institute_of_Business_Administration,_Karachi",Education,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Media_of_Pakistan,Media,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Dawn_(newspaper),Media,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/The_Express_Tribune,Media,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Geo_News,Media,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Wikipedia,https://en.wikipedia.org/wiki/Pakistan_Television_Corporation,Media,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Urdu Wikipedia,https://ur.wikipedia.org/wiki/%D9%BE%D8%A7%DA%A9%D8%B3%D8%AA%D8%A7%D9%86,General,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Urdu Wikipedia,https://ur.wikipedia.org/wiki/%D8%AD%DA%A9%D9%88%D9%85%D8%AA_%D9%BE%D8%A7%DA%A9%D8%B3%D8%AA%D8%A7%D9%86,Politics,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Urdu Wikipedia,https://ur.wikipedia.org/wiki/%DA%A9%D8%B1%D8%A7%DA%86%DB%8C,Geography,2026-10-19,Yes,Scraped successfully,1,Fair Use
+Urdu Wikipedia,https://ur.wikipedia.org/wiki/%D9%BE%D8%A7%DA%A9%D8%B3%D8%AA%D8%A7%D9%86_%D8%B3%D9%BE%D8%B1_%D9%84%DB%8C%DA%AF,Sports,2026-10-19,Yes,Scraped successfully,1,Fair Use

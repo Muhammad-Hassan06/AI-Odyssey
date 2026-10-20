@@ -1,0 +1,36 @@
+<View>
+  <Header value="Pakistani-Context NER Annotation (TechFest NER Challenge)"/>
+  <Text name="text" value="$text"/>
+
+  <Labels name="label" toName="text">
+    <!-- People and Locations -->
+    <Label value="PERSON" background="#E53935"/>
+    <Label value="CITY" background="#1E88E5"/>
+    <Label value="PROVINCE_REGION" background="#43A047"/>
+    <Label value="COUNTRY" background="#00897B"/>
+    <Label value="LANDMARK_FACILITY" background="#8E24AA"/>
+
+    <!-- Institutions & Governance -->
+    <Label value="GOVERNMENT_BODY" background="#FB8C00"/>
+    <Label value="POLITICAL_PARTY" background="#D81B60"/>
+    <Label value="ORGANIZATION" background="#3949AB"/>
+    <Label value="EDUCATIONAL_INSTITUTION" background="#00ACC1"/>
+    <Label value="COURT_LEGAL_BODY" background="#6D4C41"/>
+
+    <!-- Legal, Media, Sports, Events -->
+    <Label value="LAW_ACT" background="#7CB342"/>
+    <Label value="EVENT" background="#F4511E"/>
+    <Label value="MEDIA_OUTLET" background="#5E35B1"/>
+    <Label value="SPORTS_TEAM" background="#039BE5"/>
+
+    <!-- Temporal & Numerical Spans -->
+    <Label value="DATE" background="#FDD835"/>
+    <Label value="TIME" background="#FFF176"/>
+    <Label value="MONEY" background="#2E7D32"/>
+    <Label value="PERCENT" background="#00B0FF"/>
+
+    <!-- Sensitive Synthetic Patterns (Zero Real Data) -->
+    <Label value="PHONE_NUMBER" background="#FF6F00"/>
+    <Label value="ID_NUMBER" background="#C2185B"/>
+  </Labels>
+</View>

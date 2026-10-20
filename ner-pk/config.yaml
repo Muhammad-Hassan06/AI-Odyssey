@@ -1,0 +1,74 @@
+project:
+  name: "ner-pk"
+  seed: 42
+  description: "Pakistani-Context NER System (TechFest NER Challenge: Dory's Data Dive, Round 2)"
+
+paths:
+  raw_data_dir: "data/raw"
+  interim_data_dir: "data/interim"
+  processed_data_dir: "data/processed"
+  benchmark_data_dir: "data/benchmark"
+  sources_log: "data/sources.csv"
+  gazetteers_dir: "src/gazetteers"
+  models_dir: "models"
+  reports_dir: "reports"
+  figures_dir: "reports/figures"
+  tables_dir: "reports/tables"
+
+labels:
+  entities:
+    - PERSON
+    - CITY
+    - PROVINCE_REGION
+    - COUNTRY
+    - LANDMARK_FACILITY
+    - GOVERNMENT_BODY
+    - POLITICAL_PARTY
+    - ORGANIZATION
+    - EDUCATIONAL_INSTITUTION
+    - COURT_LEGAL_BODY
+    - LAW_ACT
+    - EVENT
+    - MEDIA_OUTLET
+    - SPORTS_TEAM
+    - DATE
+    - TIME
+    - MONEY
+    - PERCENT
+    - PHONE_NUMBER
+    - ID_NUMBER
+
+models:
+  primary: "xlm-roberta-large"
+  fallback: "xlm-roberta-base"
+  baseline_deberta: "microsoft/mdeberta-v3-base"
+
+training:
+  max_length: 256
+  batch_size: 16
+  learning_rate: 2.5e-5
+  weight_decay: 0.01
+  num_train_epochs: 6
+  warmup_ratio: 0.10
+  fp16: true
+  gradient_accumulation_steps: 2
+  logging_steps: 50
+  save_total_limit: 2
+  evaluation_strategy: "epoch"
+  save_strategy: "epoch"
+  metric_for_best_model: "overall_f1"
+  load_best_model_at_end: true
+
+scraping:
+  user_agent: "PakNERResearchBot/1.0 (+academic-contest-fairuse; mailto:student-nlp@techfest.pk)"
+  request_delay_seconds: 1.5
+  timeout_seconds: 12
+  max_retries: 3
+  respect_robots_txt: true
+  disallow_login_walls: true
+
+synthesis:
+  num_phone_samples: 500
+  num_id_samples: 500
+  num_rare_templates: 400
+  synthetic_ratio_cap: 0.25
