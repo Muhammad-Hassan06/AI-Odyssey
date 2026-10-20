@@ -26,3 +26,15 @@ ENV/
 .DS_Store
 Thumbs.db
 *.log
+
+# Model checkpoints and weights (>100MB)
+models/
+*/models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Temporary / Scratch
+scratch/
+*/scratch/

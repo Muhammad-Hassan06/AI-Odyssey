@@ -1,9 +1,12 @@
 # Error Analysis & Diagnostic Log (DEV Split)
 
-## Boundary Mismatches (22 occurrences)
+## Boundary Mismatches (13 occurrences)
 
 - **Issue:** Boundary offset mismatch: gold (12:19) vs pred (12:24)
   - *Sentence:* "انگریزوں نے 3 فروری 1839ء کو کراچی شہر پر حملہ کیا اور اس پر قبضہ کر لیا۔"
+
+- **Issue:** Boundary offset mismatch: gold (155:160) vs pred (148:160)
+  - *Sentence:* "This renaming by the Pakistan Cricket Board (PCB) is part of an effort to modernise the stadium and honour national leaders Muhammad Ali Jinnah and Allama Iqbal."
 
 - **Issue:** Boundary offset mismatch: gold (9:14) vs pred (9:23)
   - *Sentence:* "The 2004 India-Pakistan series was a historic bilateral cricket series as it marked return of first full India-Pakistan series since 1989 known "Friendship Series", marking the resumption of cricketing ties between the two arch-rivals after nearly 15 years of limited interactions due to political tensions."
@@ -23,10 +26,7 @@
 - **Issue:** Boundary offset mismatch: gold (13:18) vs pred (4:18)
   - *Sentence:* "The Pakistan-India War of 1965 led to reduced foreign economic assistance, impacting the growth rate of large-scale manufacturing."
 
-- **Issue:** Boundary offset mismatch: gold (89:95) vs pred (89:92)
-  - *Sentence:* "Delegates from across the region gathered in Quetta on Monday to participate actively in PSL 10."
-
-## Type Confusions (10 occurrences)
+## Type Confusions (6 occurrences)
 
 - **Issue:** Type confusion: gold 'COUNTRY' predicted as 'GOVERNMENT_BODY'
   - *Sentence:* "سن 2000ء میں حکومت پاکستان نے سیاسی، انتظامی اور مالی وسائل اور ذمہ داریوں کو نچلی سطح تک منتقل کرنے کا منصوبہ بنایا۔"
@@ -40,24 +40,18 @@
 - **Issue:** Type confusion: gold 'EVENT' predicted as 'COUNTRY'
   - *Sentence:* "پاکستان سپر لیگ کے پرامن انعقاد کے لیے فیصل آباد میں سیکیورٹی کے فول پروف انتظامات کیے گئے۔"
 
-- **Issue:** Type confusion: gold 'CITY' predicted as 'COURT_LEGAL_BODY'
-  - *Sentence:* "A division bench of the Islamabad High Court heard arguments regarding the validity of Code of Criminal Procedure in Islamabad."
-
-- **Issue:** Type confusion: gold 'CITY' predicted as 'COURT_LEGAL_BODY'
-  - *Sentence:* "The petitioner filed constitutional petition 499 before the Islamabad High Court under Income Tax Ordinance 2001."
-
-- **Issue:** Type confusion: gold 'CITY' predicted as 'COURT_LEGAL_BODY'
-  - *Sentence:* "A division bench of the Peshawar High Court heard arguments regarding the validity of Constitution of Pakistan in Peshawar."
-
 - **Issue:** Type confusion: gold 'EVENT' predicted as 'COUNTRY'
   - *Sentence:* "پاکستان سپر لیگ کے پرامن انعقاد کے لیے سیالکوٹ میں سیکیورٹی کے فول پروف انتظامات کیے گئے۔"
+
+- **Issue:** Type confusion: gold 'POLITICAL_PARTY' predicted as 'COUNTRY'
+  - *Sentence:* "پاکستان مسلم لیگ (ن) کے مرکزی وفد نے راولپنڈی میں پریس کانفرنس سے خطاب کیا۔"
 
 ## False Negatives (23 occurrences)
 
 - **Issue:** Missed entity: '26ویں آئینی ترمیم' [LAW_ACT]
   - *Sentence:* "انسداد دہشت گردی عدالت نے 26ویں آئینی ترمیم کے تحت دائر آئینی درخواست کی سماعت اتوار تک ملتوی کر دی۔"
 
-- **Issue:** Missed entity: 'Karachi' [CITY]
+- **Issue:** Missed entity: '' [CITY]
   - *Sentence:* "The tender quotation reference was TND/939/2021 issued in 2021."
 
 - **Issue:** Missed entity: '۶۸۱۶۲۶۱۹۲۱۰۰۱' [ID_NUMBER]
@@ -69,16 +63,16 @@
 - **Issue:** Missed entity: 'عام انتخابات 2024' [EVENT]
   - *Sentence:* "عام انتخابات 2024 کے پرامن انعقاد کے لیے کوئٹہ میں سیکیورٹی کے فول پروف انتظامات کیے گئے۔"
 
-- **Issue:** Missed entity: 'Quetta' [CITY]
+- **Issue:** Missed entity: '' [CITY]
   - *Sentence:* "The case reference was registered under file number WP-6309/2023 in 2023."
 
 - **Issue:** Missed entity: '26ویں آئینی ترمیم' [LAW_ACT]
   - *Sentence:* "سپریم کورٹ آف پاکستان کے دو رکنی بینچ نے فیصل آباد میں 26ویں آئینی ترمیم کے نفاذ کا اہم حکم جاری کیا۔"
 
-- **Issue:** Missed entity: 'Quetta' [CITY]
+- **Issue:** Missed entity: '' [CITY]
   - *Sentence:* "The tender quotation reference was TND/326/2026 issued in 2026."
 
-## False Positives (119 occurrences)
+## False Positives (145 occurrences)
 
 - **Issue:** Spurious entity: 'Hazara' [PROVINCE_REGION]
   - *Sentence:* "The city has a number of government and private colleges, including the following:

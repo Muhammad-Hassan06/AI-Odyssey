@@ -68,7 +68,8 @@ KNOWN_EVENTS = [
     "Pakistan Super League", "PSL", "Independence Day", "Pakistan Day", "Defense Day",
     "Defence Day", "Youm-e-Takbir", "Kashmir Solidarity Day", "Eid-ul-Fitr", "Eid-ul-Adha",
     "Federal Budget", "Budget 2025-26", "Budget 2024-25", "General Elections 2024",
-    "General Elections 2018", "SCO Summit", "COP29", "COP28", "2022 Pakistan floods"
+    "General Elections 2018", "SCO Summit", "COP29", "COP28", "2022 Pakistan floods",
+    "پاکستان سپر لیگ", "پی ایس ایل", "یوم آزادی", "یوم پاکستان", "یوم دفاع", "یوم تکبیر", "وفاقی بجٹ"
 ]
 
 def load_gazetteers() -> List[Tuple[re.Pattern, str, int]]:
@@ -125,7 +126,7 @@ def load_gazetteers() -> List[Tuple[re.Pattern, str, int]]:
         compiled_patterns.append((pat, "EVENT", 7))
 
     # Add Roman Urdu Legal & Government Terms
-    ROMAN_URDU_COURTS = ["Adalat-e-Uzma", "Adalat-e-Aalia", "Adalat-e-Insaaf", "Supreme Court", "High Court"]
+    ROMAN_URDU_COURTS = ["Adalat-e-Uzma", "Adalat-e-Aalia", "Adalat-e-Insaaf", "Supreme Court"]
     for c in ROMAN_URDU_COURTS:
         pat = re.compile(rf"\b{re.escape(c)}\b", re.IGNORECASE)
         compiled_patterns.append((pat, "COURT_LEGAL_BODY", 8))

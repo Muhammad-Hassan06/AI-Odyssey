@@ -84,6 +84,17 @@ def evaluate_rule_baseline(data_path: str, output_report_path: str = None) -> Di
     return results
 
 if __name__ == "__main__":
-    dev_file = os.path.join(os.path.dirname(__file__), "..", "data", "processed", "dev.jsonl")
-    report_file = os.path.join(os.path.dirname(__file__), "..", "reports", "tables", "baseline_rules_report.md")
-    evaluate_rule_baseline(dev_file, report_file)
+    import argparse
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(base_dir, "v2_frozen") if os.path.exists(os.path.join(base_dir, "v2_frozen", "train.jsonl")) else os.path.join(base_dir, "v2")
+
+    parser = argparse.ArgumentParser(description="Evaluate Rule Baseline on specified split")
+    parser.add_argument("--data_path", type=str, default=None, help="Path to evaluation JSONL (defaults to DATA_DIR/dev.jsonl)")
+    parser.add_argument("--output_report_path", type=str, default="reports/tables/baseline_rules_dev_report.md")
+    args = parser.parse_args()
+
+    target_data_rel = args.data_path or os.path.join(data_dir, "dev.jsonl")
+    target_data = os.path.join(base_dir, target_data_rel) if not os.path.isabs(target_data_rel) else target_data_rel
+    target_out = os.path.join(base_dir, args.output_report_path) if not os.path.isabs(args.output_report_path) else args.output_report_path
+
+    evaluate_rule_baseline(target_data, target_out)

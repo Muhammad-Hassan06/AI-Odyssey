@@ -209,22 +209,25 @@ def run_stress_test(predictor: PakistaniNERPredictor) -> Dict[str, Any]:
 def evaluate_full_pipeline(
     data_path: str,
     model_dir: str = None,
-    output_prefix: str = "dev"
+    output_prefix: str = "dev",
+    mode: str = "hybrid"
 ) -> Dict[str, Any]:
     """Run full evaluation, error analysis, confusion matrix, and export reports."""
     from seqeval.metrics import classification_report, f1_score, precision_score, recall_score
 
     print(f"\n=======================================================")
-    print(f"RUNNING COMPREHENSIVE EVALUATION ON: {data_path}")
+    print(f"RUNNING COMPREHENSIVE EVALUATION ON: {data_path} (MODE: {mode.upper()})")
     print(f"=======================================================\n")
 
-    predictor = PakistaniNERPredictor(model_dir=model_dir, mode="hybrid")
+    predictor = PakistaniNERPredictor(model_dir=model_dir, mode=mode)
 
     records = []
     with open(data_path, "r", encoding="utf-8") as f:
         for line in f:
             if line.strip():
                 records.append(json.loads(line))
+
+    print(f"Loaded {len(records)} sentences from {data_path} (evaluating in '{mode}' mode)...")
 
     gold_spans_list = [r.get("entities", []) for r in records]
     pred_spans_list = [predictor.predict(r["text"]) for r in records]
@@ -336,12 +339,24 @@ def evaluate_full_pipeline(
     }
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_dir = os.path.join(base_dir, "v2_frozen") if os.path.exists(os.path.join(base_dir, "v2_frozen", "train.jsonl")) else os.path.join(base_dir, "v2")
+
+    parser = argparse.ArgumentParser(description="Evaluate Pakistani NER Pipeline")
+    parser.add_argument("--data_path", type=str, default=None, help="Path to jsonl dataset (defaults to DATA_DIR/{split}.jsonl)")
     parser.add_argument("--split", type=str, default="dev", choices=["dev", "benchmark"])
-    parser.add_argument("--model_dir", type=str, default=None)
+    parser.add_argument("--mode", type=str, default="hybrid", choices=["rules", "model", "hybrid"])
+    parser.add_argument("--model_path", type=str, default=None, help="Path to checkpoint directory (default: models/final)")
+    parser.add_argument("--model_dir", type=str, default=None, help="Alias for --model_path")
     args = parser.parse_args()
 
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    target_data = os.path.join(base_dir, "data", "processed", f"{args.split}.jsonl") if args.split == "dev" else os.path.join(base_dir, "data", "benchmark", "benchmark.jsonl")
+    chosen_model = args.model_path or args.model_dir or os.path.join(base_dir, "models", "final")
+    if not os.path.exists(chosen_model):
+        chosen_model = None
 
-    evaluate_full_pipeline(target_data, model_dir=args.model_dir, output_prefix=args.split)
+    if args.data_path:
+        target_data = args.data_path if os.path.isabs(args.data_path) else os.path.join(base_dir, args.data_path)
+    else:
+        target_data = os.path.join(data_dir, f"{args.split}.jsonl")
+
+    evaluate_full_pipeline(target_data, model_dir=chosen_model, output_prefix=args.split, mode=args.mode)

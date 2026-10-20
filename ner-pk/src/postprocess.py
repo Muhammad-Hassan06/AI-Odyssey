@@ -88,28 +88,44 @@ def hybrid_merge_predictions(
     text_len: int
 ) -> List[Dict[str, Any]]:
     """
-    Merge neural model predictions with deterministic rules using strict priority:
-    1. Pattern entities (PHONE_NUMBER, ID_NUMBER, MONEY, PERCENT, TIME) strictly override model predictions.
-    2. Longest span / most specific label takes precedence for overlapping spans.
+    Merge neural model predictions with deterministic rules using conservative priority:
+    1. Deterministic pattern entities (PHONE_NUMBER, ID_NUMBER, MONEY, PERCENT, TIME, DATE)
+       from rules have absolute highest priority (100).
+    2. Curated high-precision gazetteer matches have priority (80).
+    3. Neural model spans for contextual classes (PERSON, ORGANIZATION, EVENT, LANDMARK_FACILITY)
+       are retained unless they conflict with higher-priority rule/gazetteer spans.
     """
-    # Deterministic pattern entities override
-    RULE_PRIORITY_LABELS = {"PHONE_NUMBER", "ID_NUMBER", "MONEY", "PERCENT", "TIME"}
+    DETERMINISTIC_RULE_LABELS = {"PHONE_NUMBER", "ID_NUMBER", "MONEY", "PERCENT", "TIME", "DATE"}
+    GAZETTEER_LABELS = {
+        "COURT_LEGAL_BODY", "GOVERNMENT_BODY", "LAW_ACT", "POLITICAL_PARTY",
+        "EDUCATIONAL_INSTITUTION", "MEDIA_OUTLET", "SPORTS_TEAM", "CITY",
+        "PROVINCE_REGION", "COUNTRY"
+    }
 
     final_candidates = []
     for r in rule_entities:
-        priority = 10 if r["label"] in RULE_PRIORITY_LABELS else 7
-        final_candidates.append({**r, "priority": priority})
+        lbl = r["label"]
+        if lbl in DETERMINISTIC_RULE_LABELS:
+            priority = 100
+        elif lbl in GAZETTEER_LABELS:
+            priority = 80
+        else:
+            priority = 60
+        final_candidates.append({**r, "priority": priority, "source": "rule"})
 
     for m in model_entities:
-        # Lower priority if overlapping with a rule priority label
-        priority = 5 if m["label"] in RULE_PRIORITY_LABELS else 8
-        final_candidates.append({**m, "priority": priority})
+        lbl = m["label"]
+        # Model predictions on deterministic or closed-set classes get lower priority
+        if lbl in DETERMINISTIC_RULE_LABELS:
+            priority = 30
+        elif lbl in GAZETTEER_LABELS:
+            priority = 50
+        else:
+            priority = 70
+        final_candidates.append({**m, "priority": priority, "source": "model"})
 
-    # Sort candidates by:
-    # 1. Start offset ascending
-    # 2. Length descending (longest span first)
-    # 3. Priority descending
-    final_candidates.sort(key=lambda x: (x["start"], -(x["end"] - x["start"]), -x["priority"]))
+    # Sort strictly by priority DESCENDING first, then span length DESCENDING
+    final_candidates.sort(key=lambda x: (-x["priority"], -(x["end"] - x["start"]), x["start"]))
 
     resolved = []
     occupied = [False] * (text_len + 1)

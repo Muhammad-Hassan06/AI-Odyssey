@@ -1,0 +1,139 @@
+split,mode,entity_class,precision,recall,f1,ci_95_lower,ci_95_upper,support,reliability_flag
+dev,model-only (smoke-test checkpoint),OVERALL_MICRO,0.00,0.00,0.00,0.00,0.00,1400,RELIABLE
+dev,model-only (smoke-test checkpoint),OVERALL_MACRO,-,-,0.00,0.00,0.00,1400,RELIABLE
+dev,model-only (smoke-test checkpoint),MICRO_EXCLUDING_PHONE_AND_ID,-,-,0.00,0.00,0.00,-,RELIABLE
+dev,model-only (smoke-test checkpoint),PERSON,0.00,0.00,0.00,0.00,0.00,7,UNRELIABLE (support < 30)
+dev,model-only (smoke-test checkpoint),CITY,0.00,0.00,0.00,0.00,0.00,448,RELIABLE
+dev,model-only (smoke-test checkpoint),PROVINCE_REGION,0.00,0.00,0.00,0.00,0.00,48,RELIABLE
+dev,model-only (smoke-test checkpoint),COUNTRY,0.00,0.00,0.00,0.00,0.00,226,RELIABLE
+dev,model-only (smoke-test checkpoint),LANDMARK_FACILITY,0.00,0.00,0.00,0.00,0.00,13,UNRELIABLE (support < 30)
+dev,model-only (smoke-test checkpoint),GOVERNMENT_BODY,0.00,0.00,0.00,0.00,0.00,14,UNRELIABLE (support < 30)
+dev,model-only (smoke-test checkpoint),POLITICAL_PARTY,0.00,0.00,0.00,0.00,0.00,11,UNRELIABLE (support < 30)
+dev,model-only (smoke-test checkpoint),ORGANIZATION,0.00,0.00,0.00,0.00,0.00,15,UNRELIABLE (support < 30)
+dev,model-only (smoke-test checkpoint),EDUCATIONAL_INSTITUTION,0.00,0.00,0.00,0.00,0.00,34,RELIABLE
+dev,model-only (smoke-test checkpoint),COURT_LEGAL_BODY,0.00,0.00,0.00,0.00,0.00,43,RELIABLE
+dev,model-only (smoke-test checkpoint),LAW_ACT,0.00,0.00,0.00,0.00,0.00,48,RELIABLE
+dev,model-only (smoke-test checkpoint),EVENT,0.00,0.00,0.00,0.00,0.00,28,UNRELIABLE (support < 30)
+dev,model-only (smoke-test checkpoint),MEDIA_OUTLET,0.00,0.00,0.00,0.00,0.00,52,RELIABLE
+dev,model-only (smoke-test checkpoint),SPORTS_TEAM,0.00,0.00,0.00,0.00,0.00,23,UNRELIABLE (support < 30)
+dev,model-only (smoke-test checkpoint),DATE,0.00,0.00,0.00,0.00,0.00,34,RELIABLE
+dev,model-only (smoke-test checkpoint),TIME,0.00,0.00,0.00,0.00,0.00,44,RELIABLE
+dev,model-only (smoke-test checkpoint),MONEY,0.00,0.00,0.00,0.00,0.00,45,RELIABLE
+dev,model-only (smoke-test checkpoint),PERCENT,0.00,0.00,0.00,0.00,0.00,85,RELIABLE
+dev,model-only (smoke-test checkpoint),PHONE_NUMBER,0.00,0.00,0.00,0.00,0.00,86,RELIABLE
+dev,model-only (smoke-test checkpoint),ID_NUMBER,0.00,0.00,0.00,0.00,0.00,96,RELIABLE
+dev,rules-only,OVERALL_MICRO,89.58,97.64,93.44,90.14,97.78,1400,RELIABLE
+dev,rules-only,OVERALL_MACRO,-,-,91.96,51.81,93.76,1400,RELIABLE
+dev,rules-only,MICRO_EXCLUDING_PHONE_AND_ID,-,-,92.55,87.62,97.78,-,RELIABLE
+dev,rules-only,PERSON,75.00,85.71,80.00,40.00,100.00,7,UNRELIABLE (support < 30)
+dev,rules-only,CITY,99.09,96.88,97.97,96.79,100.00,448,RELIABLE
+dev,rules-only,PROVINCE_REGION,85.71,100.00,92.31,65.29,100.00,48,RELIABLE
+dev,rules-only,COUNTRY,89.02,96.90,92.80,73.46,96.37,226,RELIABLE
+dev,rules-only,LANDMARK_FACILITY,81.25,100.00,89.66,0.00,100.00,13,UNRELIABLE (support < 30)
+dev,rules-only,GOVERNMENT_BODY,70.00,100.00,82.35,0.00,100.00,14,UNRELIABLE (support < 30)
+dev,rules-only,POLITICAL_PARTY,90.91,90.91,90.91,0.00,100.00,11,UNRELIABLE (support < 30)
+dev,rules-only,ORGANIZATION,100.00,100.00,100.00,0.00,100.00,15,UNRELIABLE (support < 30)
+dev,rules-only,EDUCATIONAL_INSTITUTION,100.00,97.06,98.51,0.00,100.00,34,RELIABLE
+dev,rules-only,COURT_LEGAL_BODY,100.00,100.00,100.00,0.00,100.00,43,RELIABLE
+dev,rules-only,LAW_ACT,100.00,100.00,100.00,0.00,100.00,48,RELIABLE
+dev,rules-only,EVENT,80.77,75.00,77.78,0.00,100.00,28,UNRELIABLE (support < 30)
+dev,rules-only,MEDIA_OUTLET,96.30,100.00,98.11,75.00,100.00,52,RELIABLE
+dev,rules-only,SPORTS_TEAM,100.00,100.00,100.00,0.00,100.00,23,UNRELIABLE (support < 30)
+dev,rules-only,DATE,24.63,97.06,39.29,10.00,97.87,34,RELIABLE
+dev,rules-only,TIME,100.00,100.00,100.00,0.00,100.00,44,RELIABLE
+dev,rules-only,MONEY,100.00,100.00,100.00,0.00,100.00,45,RELIABLE
+dev,rules-only,PERCENT,100.00,100.00,100.00,0.00,100.00,85,RELIABLE
+dev,rules-only,PHONE_NUMBER,100.00,100.00,100.00,0.00,100.00,86,RELIABLE
+dev,rules-only,ID_NUMBER,100.00,98.96,99.48,0.00,99.48,96,RELIABLE
+dev,hybrid,OVERALL_MICRO,0.80,0.57,0.67,0.00,1.75,1400,RELIABLE
+dev,hybrid,OVERALL_MACRO,-,-,1.31,0.00,2.02,1400,RELIABLE
+dev,hybrid,MICRO_EXCLUDING_PHONE_AND_ID,-,-,0.72,0.00,1.75,-,RELIABLE
+dev,hybrid,PERSON,0.00,0.00,0.00,0.00,0.00,7,UNRELIABLE (support < 30)
+dev,hybrid,CITY,100.00,0.45,0.89,0.00,3.28,448,RELIABLE
+dev,hybrid,PROVINCE_REGION,0.00,0.00,0.00,0.00,0.00,48,RELIABLE
+dev,hybrid,COUNTRY,100.00,0.44,0.88,0.00,1.71,226,RELIABLE
+dev,hybrid,LANDMARK_FACILITY,0.00,0.00,0.00,0.00,0.00,13,UNRELIABLE (support < 30)
+dev,hybrid,GOVERNMENT_BODY,0.00,0.00,0.00,0.00,0.00,14,UNRELIABLE (support < 30)
+dev,hybrid,POLITICAL_PARTY,0.00,0.00,0.00,0.00,0.00,11,UNRELIABLE (support < 30)
+dev,hybrid,ORGANIZATION,0.00,0.00,0.00,0.00,0.00,15,UNRELIABLE (support < 30)
+dev,hybrid,EDUCATIONAL_INSTITUTION,0.00,0.00,0.00,0.00,0.00,34,RELIABLE
+dev,hybrid,COURT_LEGAL_BODY,0.00,0.00,0.00,0.00,0.00,43,RELIABLE
+dev,hybrid,LAW_ACT,0.00,0.00,0.00,0.00,0.00,48,RELIABLE
+dev,hybrid,EVENT,0.00,0.00,0.00,0.00,0.00,28,UNRELIABLE (support < 30)
+dev,hybrid,MEDIA_OUTLET,0.00,0.00,0.00,0.00,0.00,52,RELIABLE
+dev,hybrid,SPORTS_TEAM,100.00,4.35,8.33,0.00,10.00,23,UNRELIABLE (support < 30)
+dev,hybrid,DATE,0.00,0.00,0.00,0.00,0.00,34,RELIABLE
+dev,hybrid,TIME,0.00,0.00,0.00,0.00,0.00,44,RELIABLE
+dev,hybrid,MONEY,80.00,8.89,16.00,0.00,36.36,45,RELIABLE
+dev,hybrid,PERCENT,0.00,0.00,0.00,0.00,0.00,85,RELIABLE
+dev,hybrid,PHONE_NUMBER,0.00,0.00,0.00,0.00,0.00,86,RELIABLE
+dev,hybrid,ID_NUMBER,0.00,0.00,0.00,0.00,0.00,96,RELIABLE
+benchmark,model-only (smoke-test checkpoint),OVERALL_MICRO,0.00,0.00,0.00,0.00,0.00,1823,RELIABLE
+benchmark,model-only (smoke-test checkpoint),OVERALL_MACRO,-,-,0.00,0.00,0.00,1823,RELIABLE
+benchmark,model-only (smoke-test checkpoint),MICRO_EXCLUDING_PHONE_AND_ID,-,-,0.00,0.00,0.00,-,RELIABLE
+benchmark,model-only (smoke-test checkpoint),PERSON,0.00,0.00,0.00,0.00,0.00,15,UNRELIABLE (support < 30)
+benchmark,model-only (smoke-test checkpoint),CITY,0.00,0.00,0.00,0.00,0.00,744,RELIABLE
+benchmark,model-only (smoke-test checkpoint),PROVINCE_REGION,0.00,0.00,0.00,0.00,0.00,128,RELIABLE
+benchmark,model-only (smoke-test checkpoint),COUNTRY,0.00,0.00,0.00,0.00,0.00,286,RELIABLE
+benchmark,model-only (smoke-test checkpoint),LANDMARK_FACILITY,0.00,0.00,0.00,0.00,0.00,42,RELIABLE
+benchmark,model-only (smoke-test checkpoint),GOVERNMENT_BODY,0.00,0.00,0.00,0.00,0.00,9,UNRELIABLE (support < 30)
+benchmark,model-only (smoke-test checkpoint),POLITICAL_PARTY,0.00,0.00,0.00,0.00,0.00,8,UNRELIABLE (support < 30)
+benchmark,model-only (smoke-test checkpoint),ORGANIZATION,0.00,0.00,0.00,0.00,0.00,9,UNRELIABLE (support < 30)
+benchmark,model-only (smoke-test checkpoint),EDUCATIONAL_INSTITUTION,0.00,0.00,0.00,0.00,0.00,51,RELIABLE
+benchmark,model-only (smoke-test checkpoint),COURT_LEGAL_BODY,0.00,0.00,0.00,0.00,0.00,49,RELIABLE
+benchmark,model-only (smoke-test checkpoint),LAW_ACT,0.00,0.00,0.00,0.00,0.00,38,RELIABLE
+benchmark,model-only (smoke-test checkpoint),EVENT,0.00,0.00,0.00,0.00,0.00,32,RELIABLE
+benchmark,model-only (smoke-test checkpoint),MEDIA_OUTLET,0.00,0.00,0.00,0.00,0.00,56,RELIABLE
+benchmark,model-only (smoke-test checkpoint),SPORTS_TEAM,0.00,0.00,0.00,0.00,0.00,24,UNRELIABLE (support < 30)
+benchmark,model-only (smoke-test checkpoint),DATE,0.00,0.00,0.00,0.00,0.00,41,RELIABLE
+benchmark,model-only (smoke-test checkpoint),TIME,0.00,0.00,0.00,0.00,0.00,41,RELIABLE
+benchmark,model-only (smoke-test checkpoint),MONEY,0.00,0.00,0.00,0.00,0.00,38,RELIABLE
+benchmark,model-only (smoke-test checkpoint),PERCENT,0.00,0.00,0.00,0.00,0.00,52,RELIABLE
+benchmark,model-only (smoke-test checkpoint),PHONE_NUMBER,0.00,0.00,0.00,0.00,0.00,80,RELIABLE
+benchmark,model-only (smoke-test checkpoint),ID_NUMBER,0.00,0.00,0.00,0.00,0.00,80,RELIABLE
+benchmark,rules-only,OVERALL_MICRO,91.02,98.46,94.60,90.63,97.37,1823,RELIABLE
+benchmark,rules-only,OVERALL_MACRO,-,-,94.13,60.85,95.17,1823,RELIABLE
+benchmark,rules-only,MICRO_EXCLUDING_PHONE_AND_ID,-,-,94.10,88.99,97.37,-,RELIABLE
+benchmark,rules-only,PERSON,100.00,100.00,100.00,100.00,100.00,15,UNRELIABLE (support < 30)
+benchmark,rules-only,CITY,95.29,97.98,96.62,86.62,100.00,744,RELIABLE
+benchmark,rules-only,PROVINCE_REGION,88.89,100.00,94.12,74.42,97.50,128,RELIABLE
+benchmark,rules-only,COUNTRY,90.88,97.55,94.10,81.85,97.05,286,RELIABLE
+benchmark,rules-only,LANDMARK_FACILITY,100.00,100.00,100.00,100.00,100.00,42,RELIABLE
+benchmark,rules-only,GOVERNMENT_BODY,60.00,100.00,75.00,0.00,87.81,9,UNRELIABLE (support < 30)
+benchmark,rules-only,POLITICAL_PARTY,100.00,100.00,100.00,0.00,100.00,8,UNRELIABLE (support < 30)
+benchmark,rules-only,ORGANIZATION,81.82,100.00,90.00,0.00,100.00,9,UNRELIABLE (support < 30)
+benchmark,rules-only,EDUCATIONAL_INSTITUTION,100.00,98.04,99.01,98.27,100.00,51,RELIABLE
+benchmark,rules-only,COURT_LEGAL_BODY,100.00,100.00,100.00,100.00,100.00,49,RELIABLE
+benchmark,rules-only,LAW_ACT,100.00,100.00,100.00,0.00,100.00,38,RELIABLE
+benchmark,rules-only,EVENT,84.38,84.38,84.38,0.00,100.00,32,RELIABLE
+benchmark,rules-only,MEDIA_OUTLET,100.00,100.00,100.00,100.00,100.00,56,RELIABLE
+benchmark,rules-only,SPORTS_TEAM,100.00,100.00,100.00,0.00,100.00,24,UNRELIABLE (support < 30)
+benchmark,rules-only,DATE,32.80,100.00,49.40,19.04,90.32,41,RELIABLE
+benchmark,rules-only,TIME,100.00,100.00,100.00,0.00,100.00,41,RELIABLE
+benchmark,rules-only,MONEY,100.00,100.00,100.00,100.00,100.00,38,RELIABLE
+benchmark,rules-only,PERCENT,100.00,100.00,100.00,100.00,100.00,52,RELIABLE
+benchmark,rules-only,PHONE_NUMBER,100.00,100.00,100.00,0.00,100.00,80,RELIABLE
+benchmark,rules-only,ID_NUMBER,100.00,100.00,100.00,0.00,100.00,80,RELIABLE
+benchmark,hybrid,OVERALL_MICRO,2.04,1.37,1.64,0.18,5.70,1823,RELIABLE
+benchmark,hybrid,OVERALL_MACRO,-,-,2.39,0.28,5.76,1823,RELIABLE
+benchmark,hybrid,MICRO_EXCLUDING_PHONE_AND_ID,-,-,1.73,0.20,5.70,-,RELIABLE
+benchmark,hybrid,PERSON,0.00,0.00,0.00,0.00,0.00,15,UNRELIABLE (support < 30)
+benchmark,hybrid,CITY,50.00,0.54,1.06,0.00,3.64,744,RELIABLE
+benchmark,hybrid,PROVINCE_REGION,100.00,7.81,14.49,0.00,23.75,128,RELIABLE
+benchmark,hybrid,COUNTRY,100.00,1.40,2.76,0.00,8.25,286,RELIABLE
+benchmark,hybrid,LANDMARK_FACILITY,0.00,0.00,0.00,0.00,0.00,42,RELIABLE
+benchmark,hybrid,GOVERNMENT_BODY,0.00,0.00,0.00,0.00,0.00,9,UNRELIABLE (support < 30)
+benchmark,hybrid,POLITICAL_PARTY,0.00,0.00,0.00,0.00,0.00,8,UNRELIABLE (support < 30)
+benchmark,hybrid,ORGANIZATION,0.00,0.00,0.00,0.00,0.00,9,UNRELIABLE (support < 30)
+benchmark,hybrid,EDUCATIONAL_INSTITUTION,100.00,1.96,3.85,0.00,19.06,51,RELIABLE
+benchmark,hybrid,COURT_LEGAL_BODY,0.00,0.00,0.00,0.00,0.00,49,RELIABLE
+benchmark,hybrid,LAW_ACT,0.00,0.00,0.00,0.00,0.00,38,RELIABLE
+benchmark,hybrid,EVENT,0.00,0.00,0.00,0.00,0.00,32,RELIABLE
+benchmark,hybrid,MEDIA_OUTLET,0.00,0.00,0.00,0.00,0.00,56,RELIABLE
+benchmark,hybrid,SPORTS_TEAM,100.00,4.17,8.00,0.00,8.33,24,UNRELIABLE (support < 30)
+benchmark,hybrid,DATE,0.00,0.00,0.00,0.00,0.00,41,RELIABLE
+benchmark,hybrid,TIME,0.00,0.00,0.00,0.00,0.00,41,RELIABLE
+benchmark,hybrid,MONEY,0.00,0.00,0.00,0.00,0.00,38,RELIABLE
+benchmark,hybrid,PERCENT,100.00,9.62,17.54,0.00,71.47,52,RELIABLE
+benchmark,hybrid,PHONE_NUMBER,0.00,0.00,0.00,0.00,0.00,80,RELIABLE
+benchmark,hybrid,ID_NUMBER,0.00,0.00,0.00,0.00,0.00,80,RELIABLE

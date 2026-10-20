@@ -6,8 +6,8 @@ project:
 paths:
   raw_data_dir: "data/raw"
   interim_data_dir: "data/interim"
-  processed_data_dir: "data/processed"
-  benchmark_data_dir: "data/benchmark"
+  processed_data_dir: "v2"
+  benchmark_data_dir: "v2"
   sources_log: "data/sources.csv"
   gazetteers_dir: "src/gazetteers"
   models_dir: "models"

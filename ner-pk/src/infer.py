@@ -55,28 +55,135 @@ class PakistaniNERPredictor:
         if not text or not text.strip():
             return []
 
-        # 1. Rule & Gazetteer entities
+        # 1. Pure Model mode (no rules, no gazetteers, no post-processing)
+        if self.mode == "model":
+            if self.model is None or self.tokenizer is None:
+                return []
+            model_entities = []
+            import torch
+            from src.constants import ID2LABEL
+            encoding = self.tokenizer(
+                text,
+                return_offsets_mapping=True,
+                return_tensors="pt",
+                truncation=True,
+                max_length=256
+            )
+            offset_mapping = encoding["offset_mapping"][0].cpu().numpy()
+            input_ids = encoding["input_ids"].to(self.device)
+            attention_mask = encoding["attention_mask"].to(self.device)
+
+            with torch.no_grad():
+                logits = self.model(input_ids=input_ids, attention_mask=attention_mask).logits
+                preds = torch.argmax(logits, dim=2)[0].cpu().numpy()
+
+            curr_ent = None
+            for p_id, (start_char, end_char) in zip(preds, offset_mapping):
+                if start_char == end_char:
+                    continue
+                tag = ID2LABEL.get(int(p_id), "O")
+                if tag.startswith("B-"):
+                    if curr_ent:
+                        model_entities.append(curr_ent)
+                    lbl = tag[2:]
+                    curr_ent = {
+                        "text": text[start_char:end_char],
+                        "start": int(start_char),
+                        "end": int(end_char),
+                        "label": lbl
+                    }
+                elif tag.startswith("I-"):
+                    lbl = tag[2:]
+                    if curr_ent and curr_ent["label"] == lbl:
+                        curr_ent["end"] = int(end_char)
+                        curr_ent["text"] = text[curr_ent["start"]:int(end_char)]
+                    else:
+                        if curr_ent:
+                            model_entities.append(curr_ent)
+                        curr_ent = {
+                            "text": text[start_char:end_char],
+                            "start": int(start_char),
+                            "end": int(end_char),
+                            "label": lbl
+                        }
+                else:
+                    if curr_ent:
+                        model_entities.append(curr_ent)
+                        curr_ent = None
+            if curr_ent:
+                model_entities.append(curr_ent)
+
+            valid_entities = []
+            for e in model_entities:
+                if validate_entity_type(e["label"]) and e["start"] < e["end"]:
+                    if text[e["start"]:e["end"]] == e["text"]:
+                        valid_entities.append(e)
+            return valid_entities
+
+        # 2. Rule & Gazetteer entities
         rule_entities = preannotate_sentence(text)
 
-        # 2. If pure rule mode, postprocess and return
+        # 3. Pure rule mode
         if self.mode == "rules" or self.model is None:
             final_entities = postprocess_entities(text, rule_entities)
             # Validate strict 20 labels
             return [e for e in final_entities if validate_entity_type(e["label"])]
 
         # 3. Model prediction (if loaded)
-        import torch
         model_entities = []
-        tokens = text.split()
-        if tokens:
-            inputs = self.tokenizer(tokens, is_split_into_words=True, return_tensors="pt", truncation=True, max_length=256).to(self.device)
-            with torch.no_grad():
-                outputs = self.model(**inputs)
-                predictions = torch.argmax(outputs.logits, dim=2)[0].cpu().numpy()
-                word_ids = inputs.word_ids(batch_index=0)
+        if self.model is not None and self.tokenizer is not None:
+            import torch
+            from src.constants import ID2LABEL
+            encoding = self.tokenizer(
+                text,
+                return_offsets_mapping=True,
+                return_tensors="pt",
+                truncation=True,
+                max_length=256
+            )
+            offset_mapping = encoding["offset_mapping"][0].cpu().numpy()
+            input_ids = encoding["input_ids"].to(self.device)
+            attention_mask = encoding["attention_mask"].to(self.device)
 
-            # Reconstruct spans from token predictions
-            pass # (Hybrid merger seamlessly incorporates rule layer)
+            with torch.no_grad():
+                logits = self.model(input_ids=input_ids, attention_mask=attention_mask).logits
+                preds = torch.argmax(logits, dim=2)[0].cpu().numpy()
+
+            curr_ent = None
+            for p_id, (start_char, end_char) in zip(preds, offset_mapping):
+                if start_char == end_char:
+                    continue
+                tag = ID2LABEL.get(int(p_id), "O")
+                if tag.startswith("B-"):
+                    if curr_ent:
+                        model_entities.append(curr_ent)
+                    lbl = tag[2:]
+                    curr_ent = {
+                        "text": text[start_char:end_char],
+                        "start": int(start_char),
+                        "end": int(end_char),
+                        "label": lbl
+                    }
+                elif tag.startswith("I-"):
+                    lbl = tag[2:]
+                    if curr_ent and curr_ent["label"] == lbl:
+                        curr_ent["end"] = int(end_char)
+                        curr_ent["text"] = text[curr_ent["start"]:int(end_char)]
+                    else:
+                        if curr_ent:
+                            model_entities.append(curr_ent)
+                        curr_ent = {
+                            "text": text[start_char:end_char],
+                            "start": int(start_char),
+                            "end": int(end_char),
+                            "label": lbl
+                        }
+                else:
+                    if curr_ent:
+                        model_entities.append(curr_ent)
+                        curr_ent = None
+            if curr_ent:
+                model_entities.append(curr_ent)
 
         # 4. Hybrid Merge & Postprocess
         merged = hybrid_merge_predictions(model_entities, rule_entities, len(text))

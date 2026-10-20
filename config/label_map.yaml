@@ -1,0 +1,146 @@
+# Label Mapping & Semantic Schema Configuration
+# Pakistani Context NER - TechFest NER Challenge (Round 2)
+# Strictly 20 Predefined Categories with flat IOB2 tag mappings
+
+version: "2.0"
+
+entities:
+  - id: 0
+    name: "PERSON"
+    iob_b: "B-PERSON"
+    iob_i: "I-PERSON"
+    description: "Named individual human beings (titles and honorifics excluded)."
+    exemplars: ["Muhammad Ali Jinnah", "Maryam Nawaz", "Qazi Faez Isa", "Babar Azam"]
+
+  - id: 1
+    name: "CITY"
+    iob_b: "B-CITY"
+    iob_i: "I-CITY"
+    description: "Named settlements, urban centers, tehsils, and municipalities."
+    exemplars: ["Karachi", "Lahore", "Islamabad", "Faisalabad", "Peshawar", "Quetta"]
+
+  - id: 2
+    name: "PROVINCE_REGION"
+    iob_b: "B-PROVINCE_REGION"
+    iob_i: "I-PROVINCE_REGION"
+    description: "Sub-national constitutional territories, divisions, and geographic regions."
+    exemplars: ["Punjab", "Sindh", "Khyber Pakhtunkhwa", "Balochistan", "Gilgit-Baltistan", "Azad Kashmir"]
+
+  - id: 3
+    name: "COUNTRY"
+    iob_b: "B-COUNTRY"
+    iob_i: "I-COUNTRY"
+    description: "Sovereign nation-states (when not competing as a sports squad)."
+    exemplars: ["Pakistan", "Saudi Arabia", "China", "United Kingdom", "Turkey"]
+
+  - id: 4
+    name: "LANDMARK_FACILITY"
+    iob_b: "B-LANDMARK_FACILITY"
+    iob_i: "I-LANDMARK_FACILITY"
+    description: "Infrastructure, transit facilities, airports, ports, stadiums, hospitals, dams, motorways."
+    exemplars: ["Jinnah International Airport", "Minar-e-Pakistan", "Gaddafi Stadium", "Port Qasim", "M-2 Motorway"]
+
+  - id: 5
+    name: "GOVERNMENT_BODY"
+    iob_b: "B-GOVERNMENT_BODY"
+    iob_i: "I-GOVERNMENT_BODY"
+    description: "Executive ministries, state regulators, military branches, municipal departments."
+    exemplars: ["Federal Board of Revenue", "State Bank of Pakistan", "Ministry of Finance", "NADRA", "PTA"]
+
+  - id: 6
+    name: "POLITICAL_PARTY"
+    iob_b: "B-POLITICAL_PARTY"
+    iob_i: "I-POLITICAL_PARTY"
+    description: "Registered political parties, parliamentary alliances, and coalitions."
+    exemplars: ["PML-N", "PTI", "PPP", "MQM-Pakistan", "Jamaat-e-Islami", "JUI-F"]
+
+  - id: 7
+    name: "ORGANIZATION"
+    iob_b: "B-ORGANIZATION"
+    iob_i: "I-ORGANIZATION"
+    description: "Commercial enterprises, state-owned corporations, international NGOs, charities."
+    exemplars: ["PIA", "Pakistan Railways", "Engro Corporation", "HBL", "Edhi Foundation", "World Bank"]
+
+  - id: 8
+    name: "EDUCATIONAL_INSTITUTION"
+    iob_b: "B-EDUCATIONAL_INSTITUTION"
+    iob_i: "I-EDUCATIONAL_INSTITUTION"
+    description: "Colleges, degree-granting universities, educational boards, and institutes."
+    exemplars: ["LUMS", "NED University", "IBA Karachi", "Punjab University", "Quaid-i-Azam University"]
+
+  - id: 9
+    name: "COURT_LEGAL_BODY"
+    iob_b: "B-COURT_LEGAL_BODY"
+    iob_i: "I-COURT_LEGAL_BODY"
+    description: "Constitutional courts, high courts, judicial tribunals, commissions of inquiry."
+    exemplars: ["Supreme Court of Pakistan", "Lahore High Court", "Sindh High Court", "Federal Shariat Court"]
+
+  - id: 10
+    name: "LAW_ACT"
+    iob_b: "B-LAW_ACT"
+    iob_i: "I-LAW_ACT"
+    description: "Formal statutory codes, constitutional amendments/articles, legislative acts."
+    exemplars: ["Constitution of Pakistan", "Pakistan Penal Code", "PECA 2016", "26th Amendment", "Article 63-A"]
+
+  - id: 11
+    name: "EVENT"
+    iob_b: "B-EVENT"
+    iob_i: "I-EVENT"
+    description: "National tournaments, annual budgets, summits, elections, major historical occurrences."
+    exemplars: ["PSL 10", "ICC Champions Trophy 2025", "General Elections 2024", "Independence Day"]
+
+  - id: 12
+    name: "MEDIA_OUTLET"
+    iob_b: "B-MEDIA_OUTLET"
+    iob_i: "I-MEDIA_OUTLET"
+    description: "Broadcasters, newspapers, periodicals, press agencies, television channels."
+    exemplars: ["Dawn", "The News International", "Geo News", "ARY News", "Daily Jang", "Express Tribune"]
+
+  - id: 13
+    name: "SPORTS_TEAM"
+    iob_b: "B-SPORTS_TEAM"
+    iob_i: "I-SPORTS_TEAM"
+    description: "National squads, PSL franchise clubs, domestic and international sporting teams."
+    exemplars: ["Karachi Kings", "Lahore Qalandars", "Pakistan Cricket Team", "Shaheens", "Multan Sultans"]
+
+  - id: 14
+    name: "DATE"
+    iob_b: "B-DATE"
+    iob_i: "I-DATE"
+    description: "Calendar dates, days of the week, months, Gregorian and Urdu/Hijri dates."
+    exemplars: ["14 August 1947", "March 23, 1940", "Monday", "last Friday", "یکم ستمبر"]
+
+  - id: 15
+    name: "TIME"
+    iob_b: "B-TIME"
+    iob_i: "I-TIME"
+    description: "Exact clock timestamps, hours, intervals, time zone markers."
+    exemplars: ["11:30 AM", "02:00 PST", "5 o'clock", "noon", "ساڑھے تین بجے"]
+
+  - id: 16
+    name: "MONEY"
+    iob_b: "B-MONEY"
+    iob_i: "I-MONEY"
+    description: "Monetary sums with currency symbols, amounts, and denomination units."
+    exemplars: ["Rs 500", "PKR 4.5 billion", "USD 20 million", "15 کروڑ روپے", "12 لاکھ روپے"]
+
+  - id: 17
+    name: "PERCENT"
+    iob_b: "B-PERCENT"
+    iob_i: "I-PERCENT"
+    description: "Ratios, percentages, and fractional indicators."
+    exemplars: ["17.5%", "5.2 percent", "12 per cent", "8.4 فیصد"]
+
+  - id: 18
+    name: "PHONE_NUMBER"
+    iob_b: "B-PHONE_NUMBER"
+    iob_i: "I-PHONE_NUMBER"
+    description: "100% Synthetic Pakistani phone and mobile numbers (Rule 3 compliant)."
+    exemplars: ["+92 300 1234567", "0321-7654321", "021-34567890", "00923331234567"]
+
+  - id: 19
+    name: "ID_NUMBER"
+    iob_b: "B-ID_NUMBER"
+    iob_i: "I-ID_NUMBER"
+    description: "100% Synthetic 13-digit Pakistani CNIC identification numbers (Rule 3 compliant)."
+    exemplars: ["42101-1234567-1", "35201-7654321-9", "6110198765432"]
