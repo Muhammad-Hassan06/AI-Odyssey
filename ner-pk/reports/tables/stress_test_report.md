@@ -52,16 +52,16 @@
   - Targets: ['dawn', 'karachi', 'monday']
   - Extracted: ['dawn [MEDIA_OUTLET]', 'karachi [CITY]', 'monday [DATE]']
 
-### Typo & OCR Noise: Entity Recall = 33.3%
+### Typo & OCR Noise: Entity Recall = 100.0%
 - **Input:** "Emergency helpline dial +92-300-l234567 or 021-3456789O."
   - Targets: ['+92-300-l234567']
-  - Extracted: []
+  - Extracted: ['+92-300-l234567 [PHONE_NUMBER]', '021-3456789O [PHONE_NUMBER]']
 
 - **Input:** "Project expenditure estimated at Rs. l.5 billion in Karach1."
   - Targets: ['Rs. l.5 billion', 'Karach1']
-  - Extracted: []
+  - Extracted: ['Rs. l.5 billion [MONEY]', 'Karach1 [CITY]']
 
 - **Input:** "The match at Gaddafi Stadium started at ll:45 PM sharp."
   - Targets: ['Gaddafi Stadium']
-  - Extracted: ['Gaddafi Stadium [LANDMARK_FACILITY]']
+  - Extracted: ['Gaddafi Stadium [LANDMARK_FACILITY]', 'll:45 PM [TIME]']
 

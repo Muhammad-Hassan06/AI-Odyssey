@@ -2,9 +2,9 @@
 
 | Metric | Strict IOB2 | Relaxed / Partial Overlap |
 | :--- | :---: | :---: |
-| **Precision** | 92.26% | 93.78% |
-| **Recall** | 96.45% | 98.03% |
-| **F1 Score** | 94.31% | 95.86% |
+| **Precision** | 91.77% | 93.28% |
+| **Recall** | 96.28% | 97.87% |
+| **F1 Score** | 93.97% | 95.52% |
 
 ## Per-Entity Breakdown (Seqeval Strict)
 
@@ -12,12 +12,12 @@
                          precision    recall  f1-score   support
 
                    CITY     0.9529    0.9720    0.9624       750
-                COUNTRY     0.9559    0.9860    0.9707       286
-       COURT_LEGAL_BODY     0.9388    0.9388    0.9388        49
+                COUNTRY     0.9555    0.9755    0.9654       286
+       COURT_LEGAL_BODY     0.8214    0.9388    0.8762        49
                    DATE     0.3796    1.0000    0.5503        41
 EDUCATIONAL_INSTITUTION     1.0000    0.9804    0.9901        51
                   EVENT     0.7619    0.5000    0.6038        32
-        GOVERNMENT_BODY     0.8750    0.7778    0.8235         9
+        GOVERNMENT_BODY     0.6364    0.7778    0.7000         9
               ID_NUMBER     1.0000    1.0000    1.0000        80
       LANDMARK_FACILITY     1.0000    1.0000    1.0000        42
                 LAW_ACT     1.0000    0.9737    0.9867        38
@@ -32,8 +32,8 @@ EDUCATIONAL_INSTITUTION     1.0000    0.9804    0.9901        51
             SPORTS_TEAM     0.8750    0.8750    0.8750        24
                    TIME     1.0000    1.0000    1.0000        41
 
-              micro avg     0.9226    0.9645    0.9431      1829
-              macro avg     0.9260    0.9414    0.9252      1829
-           weighted avg     0.9411    0.9645    0.9490      1829
+              micro avg     0.9177    0.9628    0.9397      1829
+              macro avg     0.9081    0.9409    0.9156      1829
+           weighted avg     0.9367    0.9628    0.9459      1829
 
 ```

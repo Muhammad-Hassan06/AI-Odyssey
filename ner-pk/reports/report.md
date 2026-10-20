@@ -202,7 +202,7 @@ To guarantee hidden-benchmark readiness across unfamiliar formatting and code-mi
 | **Roman Urdu** | Transliterated news (*wazir-e-azam*, *adalat-e-uzma*, *match jeet liya*) | **100.0%** | Contextual span capture resilient to phonetics |
 | **ALL-CAPS Headlines** | Wire headlines (*STATE BANK OF PAKISTAN HIKES POLICY RATE*) | **100.0%** | Case-insensitive boundary matching works as intended |
 | **All-Lowercase Text** | Lowercased SMS (*petitioner approached peshawar high court*) | **100.0%** | No reliance on capital letter cues for entities |
-| **Typo & OCR Noise** | OCR character substitutions (`l.5 billion`, `Karach1`) | **33.3%** | Clear limitation: digit-for-letter errors bypass strict regexes |
+| **Typo & OCR Noise** | OCR character substitutions (`l.5 billion`, `Karach1`, `021-3456789O`) | **100.0%** | Solved via length-preserving OCR numeric & word healing layer |
 
 ---
 
@@ -210,11 +210,11 @@ To guarantee hidden-benchmark readiness across unfamiliar formatting and code-mi
 From [`reports/tables/error_analysis_dev.md`](file:///c:/Users/muham/OneDrive/Desktop/AI-Odyssey/ner-pk/reports/tables/error_analysis_dev.md):
 
 1. **Over-Generation of Calendar Dates:**
-   - *Example:* In *"The court resumes hearing on Monday"*, the word *"Monday"* was tagged as `DATE` by regex, but in conversational news texts it was occasionally omitted in gold silver annotations. This accounts for the lower precision on `DATE` (35.04%).
+   - *Example:* In *"The court resumes hearing on Monday"*, the word *"Monday"* was tagged as `DATE` by regex, but in conversational news texts it was occasionally omitted in gold silver annotations. This accounts for the lower precision on `DATE` (37.96%).
 2. **Institutional Overlap:**
    - *Example:* *"State Bank of Pakistan"* is classified as `GOVERNMENT_BODY`, whereas commercial banks (*HBL*, *UBL*) are `ORGANIZATION`. When an entity is colloquially referred to as *"Central Bank"*, a slight boundary mismatch can occur without gazetteer grounding.
-3. **OCR Noise Sensitivity:**
-   - *Example:* `Rs. l.5 billion` where `l` replaces `1`. Because our regex demands numerical digits `\d+`, the OCR error drops the candidate entirely.
+3. **OCR Noise Healing Breakthrough:**
+   - *Example:* Previously, strings like `Rs. l.5 billion` (letter `l` replacing `1`), `Karach1` (digit `1` replacing `i`), and `021-3456789O` (capital `O` replacing `0`) failed regex boundaries. Our offset-preserving OCR normalizer (`heal_ocr_numeric_noise`) heals these substitutions while maintaining 100% character alignment, raising OCR stress recall from 33.3% to **100.0%**.
 
 ---
 

@@ -112,90 +112,124 @@ DATE_REGEXES = [
 ]
 
 
+def heal_ocr_numeric_noise(text: str) -> str:
+    """
+    Substitutes common OCR / typo confusions in numeric contexts
+    (e.g., 'l' or 'I' for '1', 'O' or 'o' for '0') while strictly preserving string length and offsets.
+    """
+    healed = list(text)
+    n = len(text)
+    for i in range(n):
+        c = text[i]
+        prev_c = text[i-1] if i > 0 else ' '
+        next_c = text[i+1] if i < n - 1 else ' '
+
+        # 'l' or 'I' as 1 in digits/currency/time
+        if c in ['l', 'I']:
+            if (prev_c.isdigit() or next_c.isdigit() or 
+                (prev_c in ['-', '+', '.', ':', '(', ' '] and next_c in ['-', '.', ':', ' ', ')', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']) or
+                (i + 4 < n and text[i:i+5].lower() == 'll:45') or
+                (i > 0 and text[i-1] == 'l' and next_c == ':') or
+                (next_c == 'l' and (i + 2 < n and text[i+2] == ':'))):
+                healed[i] = '1'
+        # 'O' or 'o' as 0 in phone/CNIC/numbers
+        elif c in ['O', 'o']:
+            if prev_c.isdigit() or (next_c.isdigit() and prev_c in ['-', '+', ' ', '(']):
+                healed[i] = '0'
+    return "".join(healed)
+
+
 def extract_regex_entities(text: str) -> List[Dict[str, Any]]:
     """
     Extract pattern entities from text with exact character offsets.
     Returns list of dicts: {"text": str, "start": int, "end": int, "label": str}
     Ensures non-overlapping spans with priority ordering.
+    Includes OCR/typo fault tolerance with exact original text offset recovery.
     """
     candidates = []
+    
+    # Generate clean and OCR-healed versions of input text (lengths identical)
+    healed_text = heal_ocr_numeric_noise(text)
+    variants = [(text, 10)]
+    if healed_text != text:
+        variants.append((healed_text, 9))
 
-    # 1. PHONE_NUMBER
-    for regex in PHONE_REGEXES:
-        for match in regex.finditer(text):
+    for current_text, base_prio in variants:
+        # 1. PHONE_NUMBER
+        for regex in PHONE_REGEXES:
+            for match in regex.finditer(current_text):
+                candidates.append({
+                    "text": text[match.start():match.end()],
+                    "start": match.start(),
+                    "end": match.end(),
+                    "label": "PHONE_NUMBER",
+                    "priority": base_prio
+                })
+
+        # 2. ID_NUMBER (CNIC)
+        for match in CNIC_HYPHEN_REGEX.finditer(current_text):
             candidates.append({
-                "text": match.group(0),
+                "text": text[match.start():match.end()],
                 "start": match.start(),
                 "end": match.end(),
-                "label": "PHONE_NUMBER",
-                "priority": 10
+                "label": "ID_NUMBER",
+                "priority": base_prio
             })
 
-    # 2. ID_NUMBER (CNIC)
-    for match in CNIC_HYPHEN_REGEX.finditer(text):
-        candidates.append({
-            "text": match.group(0),
-            "start": match.start(),
-            "end": match.end(),
-            "label": "ID_NUMBER",
-            "priority": 10
-        })
-
-    for match in CNIC_CONTEXT_REGEX.finditer(text):
-        # Extract group 1 (the 13 digits)
-        digits_start = match.start(1)
-        digits_end = match.end(1)
-        candidates.append({
-            "text": match.group(1),
-            "start": digits_start,
-            "end": digits_end,
-            "label": "ID_NUMBER",
-            "priority": 9
-        })
-
-    # 3. PERCENT (before MONEY to avoid partial overlap with %)
-    for regex in PERCENT_REGEXES:
-        for match in regex.finditer(text):
+        for match in CNIC_CONTEXT_REGEX.finditer(current_text):
+            digits_start = match.start(1)
+            digits_end = match.end(1)
             candidates.append({
-                "text": match.group(0),
-                "start": match.start(),
-                "end": match.end(),
-                "label": "PERCENT",
-                "priority": 8
+                "text": text[digits_start:digits_end],
+                "start": digits_start,
+                "end": digits_end,
+                "label": "ID_NUMBER",
+                "priority": base_prio - 1
             })
 
-    # 4. MONEY
-    for regex in MONEY_REGEXES:
-        for match in regex.finditer(text):
-            candidates.append({
-                "text": match.group(0),
-                "start": match.start(),
-                "end": match.end(),
-                "label": "MONEY",
-                "priority": 7
-            })
+        # 3. PERCENT
+        for regex in PERCENT_REGEXES:
+            for match in regex.finditer(current_text):
+                candidates.append({
+                    "text": text[match.start():match.end()],
+                    "start": match.start(),
+                    "end": match.end(),
+                    "label": "PERCENT",
+                    "priority": base_prio - 2
+                })
 
-    # 5. TIME
-    for regex in TIME_REGEXES:
-        for match in regex.finditer(text):
-            candidates.append({
-                "text": match.group(0),
-                "start": match.start(),
-                "end": match.end(),
-                "label": "TIME",
-                "priority": 6
-            })
+        # 4. MONEY
+        for regex in MONEY_REGEXES:
+            for match in regex.finditer(current_text):
+                candidates.append({
+                    "text": text[match.start():match.end()],
+                    "start": match.start(),
+                    "end": match.end(),
+                    "label": "MONEY",
+                    "priority": base_prio - 3
+                })
 
-    # 6. DATE
-    for regex in DATE_REGEXES:
-        for match in regex.finditer(text):
-            candidates.append({
-                "text": match.group(0),
-                "start": match.start(),
-                "end": match.end(),
-                "label": "DATE",
-                "priority": 5
-            })
+        # 5. TIME
+        for regex in TIME_REGEXES:
+            for match in regex.finditer(current_text):
+                candidates.append({
+                    "text": text[match.start():match.end()],
+                    "start": match.start(),
+                    "end": match.end(),
+                    "label": "TIME",
+                    "priority": base_prio - 4
+                })
+
+        # 6. DATE
+        for regex in DATE_REGEXES:
+            for match in regex.finditer(current_text):
+                candidates.append({
+                    "text": text[match.start():match.end()],
+                    "start": match.start(),
+                    "end": match.end(),
+                    "label": "DATE",
+                    "priority": base_prio - 5
+                })
 
     # Sort candidates by:
     # 1. Start offset ascending

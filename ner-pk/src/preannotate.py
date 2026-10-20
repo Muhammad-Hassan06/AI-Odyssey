@@ -124,6 +124,21 @@ def load_gazetteers() -> List[Tuple[re.Pattern, str, int]]:
         pat = re.compile(rf"\b{re.escape(ev)}\b", re.IGNORECASE)
         compiled_patterns.append((pat, "EVENT", 7))
 
+    # Add Roman Urdu Legal & Government Terms
+    ROMAN_URDU_COURTS = ["Adalat-e-Uzma", "Adalat-e-Aalia", "Adalat-e-Insaaf", "Supreme Court", "High Court"]
+    for c in ROMAN_URDU_COURTS:
+        pat = re.compile(rf"\b{re.escape(c)}\b", re.IGNORECASE)
+        compiled_patterns.append((pat, "COURT_LEGAL_BODY", 8))
+
+    ROMAN_URDU_GOV = [
+        "Qaumi Assembly", "Subaee Assembly", "Hukoomat-e-Pakistan", "Hukumat-e-Pakistan",
+        "Wazarat-e-Khazana", "Wazarat-e-Dakhla", "Wazarat-e-Kharija", "NAB",
+        "National Accountability Bureau", "Pak Fauj", "Pakistan Armed Forces", "Pakistan Army"
+    ]
+    for g in ROMAN_URDU_GOV:
+        pat = re.compile(rf"\b{re.escape(g)}\b", re.IGNORECASE)
+        compiled_patterns.append((pat, "GOVERNMENT_BODY", 8))
+
     return compiled_patterns
 
 _COMPILED_GAZETTEERS = None
@@ -138,6 +153,7 @@ def preannotate_sentence(text: str) -> List[Dict[str, Any]]:
     """
     Produce non-overlapping, high-confidence entity annotations for a sentence.
     Applies regex rules first, then gazetteer matchers, then resolves conflicts.
+    Features OCR/typo word healing for robust boundary alignment.
     """
     candidates = []
 
@@ -152,17 +168,24 @@ def preannotate_sentence(text: str) -> List[Dict[str, Any]]:
             "priority": 10
         })
 
-    # 2. Gazetteer entities
+    # 2. Gazetteer entities with OCR/typo word healing (e.g. Karach1 -> Karachi)
+    healed_word_text = re.sub(r'(?<=[a-zA-Z])1(?=[a-zA-Z]|\b)', 'i', text)
+    healed_word_text = re.sub(r'(?<=[a-zA-Z])0(?=[a-zA-Z]|\b)', 'o', healed_word_text)
+    text_variants = [(text, 8)]
+    if healed_word_text != text:
+        text_variants.append((healed_word_text, 7))
+
     gazetteers = get_compiled_gazetteers()
-    for pat, label, priority in gazetteers:
-        for match in pat.finditer(text):
-            candidates.append({
-                "text": text[match.start():match.end()],
-                "start": match.start(),
-                "end": match.end(),
-                "label": label,
-                "priority": priority
-            })
+    for cur_txt, prio_adj in text_variants:
+        for pat, label, priority in gazetteers:
+            for match in pat.finditer(cur_txt):
+                candidates.append({
+                    "text": text[match.start():match.end()],
+                    "start": match.start(),
+                    "end": match.end(),
+                    "label": label,
+                    "priority": min(priority, prio_adj)
+                })
 
     # Sort candidates by:
     # 1. Start offset ascending

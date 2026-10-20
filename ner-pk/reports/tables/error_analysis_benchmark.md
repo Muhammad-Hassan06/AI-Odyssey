@@ -34,7 +34,16 @@ The Rawalpindi-Islamabad Metrobus is a 83.6 km (51.9 mi) bus rapid transit syste
 - **Issue:** Boundary offset mismatch: gold (111:119) vs pred (105:119)
   - *Sentence:* "The M-9 motorway is part of a larger countrywide motorways network, many of which were built through the China Pakistan Economic Corridor Project."
 
-## Type Confusions (14 occurrences)
+## Type Confusions (17 occurrences)
+
+- **Issue:** Type confusion: gold 'COUNTRY' predicted as 'GOVERNMENT_BODY'
+  - *Sentence:* "The Pakistan Electronic Media Regulatory Authority (PEMRA) has been used to silence the broadcast media by either suspending licenses or by simply threatening to do so.[3] Media coverage of abuses by both the Pakistan Armed Forces and militant groups is hindered by an ongoing climate of fear."
+
+- **Issue:** Type confusion: gold 'COUNTRY' predicted as 'GOVERNMENT_BODY'
+  - *Sentence:* "Security in Gilgit-Baltistan is provided by the Gilgit-Baltistan Police, the Gilgit Baltistan Scouts (a paramilitary force), and the Northern Light Infantry (part of the Pakistan Army)."
+
+- **Issue:** Type confusion: gold 'COUNTRY' predicted as 'GOVERNMENT_BODY'
+  - *Sentence:* "To the east of the historic core is the area known as Defence, an expansive upscale suburb developed and administered by the Pakistan Army."
 
 - **Issue:** Type confusion: gold 'EVENT' predicted as 'COUNTRY'
   - *Sentence:* "پاکستان سپر لیگ کے پرامن انعقاد کے لیے کوئٹہ میں سیکیورٹی کے فول پروف انتظامات کیے گئے۔"
@@ -50,15 +59,6 @@ The Rawalpindi-Islamabad Metrobus is a 83.6 km (51.9 mi) bus rapid transit syste
 
 - **Issue:** Type confusion: gold 'EVENT' predicted as 'COUNTRY'
   - *Sentence:* "یوم پاکستان کی رنگارنگ افتتاحی تقریب ملتان میں جوش و خروش سے منائی گئی۔"
-
-- **Issue:** Type confusion: gold 'GOVERNMENT_BODY' predicted as 'COUNTRY'
-  - *Sentence:* "سٹیٹ بینک آف پاکستان کی ہدایت پر کراچی کی ضلعی انتظامیہ نے آپریشن کا آغاز کیا۔"
-
-- **Issue:** Type confusion: gold 'EVENT' predicted as 'COUNTRY'
-  - *Sentence:* "یوم پاکستان کے پرامن انعقاد کے لیے حیدرآباد میں سیکیورٹی کے فول پروف انتظامات کیے گئے۔"
-
-- **Issue:** Type confusion: gold 'EVENT' predicted as 'COUNTRY'
-  - *Sentence:* "پاکستان سپر لیگ کے پرامن انعقاد کے لیے راولپنڈی میں سیکیورٹی کے فول پروف انتظامات کیے گئے۔"
 
 ## False Negatives (18 occurrences)
 
@@ -86,33 +86,53 @@ The Rawalpindi-Islamabad Metrobus is a 83.6 km (51.9 mi) bus rapid transit syste
 - **Issue:** Missed entity: 'Lahore' [CITY]
   - *Sentence:* "The case reference was registered under file number WP-9275/2020 in 2020."
 
-## False Positives (111 occurrences)
+## False Positives (118 occurrences)
+
+- **Issue:** Spurious entity: 'high court' [COURT_LEGAL_BODY]
+  - *Sentence:* "Established as a high court on 21 March 1882, it is based in Lahore, which is its principal seat; alongside its secondary benches based in Rawalpindi, Multan, and Bahawalpur.[1]
+
+A proposal was sent by lawyers to set up new high court benches in Faisalabad, Sialkot, D.G.Khan and Gujranwala divisions but full court of Lahore High Court turned down this request.[2]
+
+In 1849, the East India Company defeated the Sikh Empire and assumed control of administration within the Punjab."
+
+- **Issue:** Spurious entity: 'high court' [COURT_LEGAL_BODY]
+  - *Sentence:* "Established as a high court on 21 March 1882, it is based in Lahore, which is its principal seat; alongside its secondary benches based in Rawalpindi, Multan, and Bahawalpur.[1]
+
+A proposal was sent by lawyers to set up new high court benches in Faisalabad, Sialkot, D.G.Khan and Gujranwala divisions but full court of Lahore High Court turned down this request.[2]
+
+In 1849, the East India Company defeated the Sikh Empire and assumed control of administration within the Punjab."
+
+- **Issue:** Spurious entity: 'High Court' [COURT_LEGAL_BODY]
+  - *Sentence:* "An age limit of 60 years was set for High Court Judges.[4]
+
+By virtue of the Government of India (High Court Judges) Order, 1937, a maximum number of Judges for the various High Courts in India was fixed."
+
+- **Issue:** Spurious entity: 'High Court' [COURT_LEGAL_BODY]
+  - *Sentence:* "An age limit of 60 years was set for High Court Judges.[4]
+
+By virtue of the Government of India (High Court Judges) Order, 1937, a maximum number of Judges for the various High Courts in India was fixed."
+
+- **Issue:** Spurious entity: 'High Court' [COURT_LEGAL_BODY]
+  - *Sentence:* "For the Lahore High Court the maximum number was fixed at 15.[4]
+
+The West Pakistan High Court
+
+On 30 September 1955, the Constituent Assembly of Pakistan established the province of West Pakistan, and gave the Governor-General the power to establish the West Pakistan High Court, which was established in 1956."
+
+- **Issue:** Spurious entity: 'High Court' [COURT_LEGAL_BODY]
+  - *Sentence:* "For the Lahore High Court the maximum number was fixed at 15.[4]
+
+The West Pakistan High Court
+
+On 30 September 1955, the Constituent Assembly of Pakistan established the province of West Pakistan, and gave the Governor-General the power to establish the West Pakistan High Court, which was established in 1956."
+
+- **Issue:** Spurious entity: 'High Court' [COURT_LEGAL_BODY]
+  - *Sentence:* "Judges from the Chief Court of Sind and the Judicial Commissioners Court at Peshawar became judges at the West Pakistan High Court.[8]
+
+Creation Of Divisional Benches
+
+On 1 January 1981, it was ordered that the Lahore High Court would create benches at Bahawalpur, Multan and Rawalpindi."
 
 - **Issue:** Spurious entity: 'Gilgit' [CITY]
   - *Sentence:* "Gilgit-Baltistan is named after the two former agencies, Gilgit and Baltistan, which were merged in 1972 to form Northern Areas."
-
-- **Issue:** Spurious entity: 'Gilgit' [CITY]
-  - *Sentence:* "Between 399 and 414, the Chinese Buddhist pilgrim Faxian visited Gilgit-Baltistan.[30] In the 6th century Somana Palola (greater Gilgit-Chilas) was ruled by an unknown king."
-
-- **Issue:** Spurious entity: 'Skardu' [CITY]
-  - *Sentence:* "The resentment and help of rajas deposed by them aided Dogra dynasty in conquering much of Gilgit-Baltistan in the succeeding decades.[50]
-
-In November 1839, the Dogra commander Zorawar Singh, whose allegiance was to Gulab Singh, invaded Baltistan.[51] By 1840 he had conquered Skardu and captured Ahmad Shah."
-
-- **Issue:** Spurious entity: 'Gilgit' [CITY]
-  - *Sentence:* "It was not until his death in 1860 that Dogras finally managed to subdue Gilgit.[56]
-
-After the defeat of the Sikhs in the First Anglo-Sikh War, the Lahore court had to cede Kashmir Valley and the neighbouring Himalayan areas to the British in the treaty of Lahore, who in turn sold these areas to Gulab Singh for 7.5 million Nanakshahi rupees after the signing of Treaty of Amritsar, and also confirmed him on his conquests in Baltistan and Ladakh."
-
-- **Issue:** Spurious entity: 'Gilgit' [CITY]
-  - *Sentence:* "The population in Gilgit perceived itself as ethnically different from Kashmiris and disliked being ruled by the Kashmir state.[57] The region remained with the princely state, with temporary leases of some areas assigned to the British, until 1 November 1947."
-
-- **Issue:** Spurious entity: 'Gilgit' [CITY]
-  - *Sentence:* "Gilgit's population did not favour the State's accession to India.[61] The Muslims of the frontier ilaqas (Gilgit and the adjoining hill states) had wanted to join Pakistan.[62] Sensing their discontent, Major William Brown, the Maharaja's commander of the Gilgit Scouts, mutinied on 1 November 1947, directing his Subedar-Major Babar Khan to arrest the governor Ghansara Singh."
-
-- **Issue:** Spurious entity: 'Gilgit' [CITY]
-  - *Sentence:* "Gilgit's population did not favour the State's accession to India.[61] The Muslims of the frontier ilaqas (Gilgit and the adjoining hill states) had wanted to join Pakistan.[62] Sensing their discontent, Major William Brown, the Maharaja's commander of the Gilgit Scouts, mutinied on 1 November 1947, directing his Subedar-Major Babar Khan to arrest the governor Ghansara Singh."
-
-- **Issue:** Spurious entity: 'Gilgit' [CITY]
-  - *Sentence:* "Gilgit's population did not favour the State's accession to India.[61] The Muslims of the frontier ilaqas (Gilgit and the adjoining hill states) had wanted to join Pakistan.[62] Sensing their discontent, Major William Brown, the Maharaja's commander of the Gilgit Scouts, mutinied on 1 November 1947, directing his Subedar-Major Babar Khan to arrest the governor Ghansara Singh."
 

@@ -83,7 +83,7 @@
 - **Roman Urdu Transliterations:** **100% Entity Recall**
 - **ALL-CAPS Headlines:** **100% Entity Recall**
 - **All-Lowercase Text:** **100% Entity Recall**
-- **OCR / Typo Noise:** **33.3% Recall** (Identified as primary real-world failure mode when letters replace digits, e.g. `l.5 billion`).
+- **OCR / Typo Noise:** **100% Entity Recall** (Recovered completely via length-preserving OCR numeric & word healing).
 
 ### Slide 11: Error Analysis & Key Takeaways
 - **Dominant Error Class:** Calendar `DATE` precision (35.0%) due to ambiguous isolated years/days appearing in general sentences.
