@@ -1,3 +1,11 @@
+COMMON_SENSITIVE = {
+    "Dawn", "The Nation", "Nation", "Jazz", "Express", "United", "Sun", "Star",
+    "NAB", "FIA", "ECP", "FBR", "PIA", "PBS", "PEMRA", "LUMS", "NUST", "NADRA",
+    "MQM", "PTI", "PML", "PPP", "ANP", "JUI", "OGDCL", "PSO", "SNGPL", "SSGC",
+    "NBP", "HBL", "UBL", "MCB", "BOP", "IMF", "ADB", "PECA", "CrPC", "PPC", "SC", "SCP",
+    "LHC", "SHC", "PHC", "IHC", "BHC", "FSC", "JCP", "SJC", "ATC", "PCB", "KCCI", "LCCI", "SCBA"
+}
+
 """
 Hybrid Pre-Annotation Engine for Pakistani-Context NER.
 Combines deterministic regex rules, curated domain gazetteers, and context heuristics.
@@ -15,6 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.constants import ENTITY_TYPES, validate_entity_type
 from src.rules import extract_regex_entities
+from src.contextual_grammar import extract_contextual_entities
 
 GAZETTEER_DIR = os.path.join(os.path.dirname(__file__), "gazetteers")
 
@@ -52,12 +61,35 @@ ORGANIZATIONS = [
     "Lahore Chamber of Commerce and Industry", "LCCI", "Pakistan Olympic Association",
     "Pakistan Steel Mills", "Pakistan Steel", "Bank of Punjab", "BOP",
     "Engro Corporation", "Engro", "International Monetary Fund", "IMF",
-    "World Bank", "Asian Development Bank", "ADB", "State Bank", "Federal Board of Revenue"
+    "World Bank", "Asian Development Bank", "ADB", "State Bank", "Federal Board of Revenue",
+    "Jazz", "Ufone", "Telenor", "Zong",
+    "ZTBL",
+    "Zarai Taraqiati Bank",
+    "Bank of Khyber",
+    "Habib Metropolitan Bank",
+    "Standard Chartered Bank",
+    "Dubai Islamic Bank",
+    "Al Baraka Bank",
+    "JS Bank",
+    "Soneri Bank",
+    "Askari Bank",
+    "Faysal Bank",
+    "Meezan Bank",
+    "Bank Alfalah",
+    "Bank Alfalah Limited",
+    "Sindh Bank",
+    "Telenor Pakistan",
+    "Jazz Pakistan",
+    "Zong Pakistan",
+    "Ufone Pakistan",
+    "Fauji Foundation",
+    "Systems Limited",
+    "Careem"
 ]
 
 # Prominent Pakistani Persons (names only; titles are strictly stripped per guidelines)
 PROMINENT_PERSONS = [
-    "Muhammad Ali Jinnah", "Quaid-e-Azam", "Fatima Jinnah", "Allama Iqbal", "Liaquat Ali Khan",
+    "Muhammad Bilal", "Muhammad Ali Jinnah", "Quaid-e-Azam", "Fatima Jinnah", "Allama Iqbal", "Liaquat Ali Khan",
     "Zulfikar Ali Bhutto", "Benazir Bhutto", "Nawaz Sharif", "Shehbaz Sharif", "Maryam Nawaz",
     "Imran Khan", "Asif Ali Zardari", "Bilawal Bhutto Zardari", "Bilawal Bhutto",
     "Qazi Faez Isa", "Gulzar Ahmed", "Asif Saeed Khosa", "Saqib Nisar",
@@ -65,14 +97,14 @@ PROMINENT_PERSONS = [
     "Mohammad Rizwan", "Wasim Akram", "Waqar Younis", "Jahangir Khan", "Jansher Khan",
     "Aamer Farooq", "Salman Akram Raja", "Salman Akram", "Ayesha Khan", "Jinnah Ali",
     "قائد اعظم", "محمد علی جناح", "علامہ اقبال", "عمران خان", "نواز شریف", "شہباز شریف", "بلاول بھٹو زرداری",
-    "بلاول بھٹو", "بابر اعظم", "احمد علی", "عامر فاروق", "سلمان اکرم راجہ", "عائشہ خان"
+    "بلاول بھٹو", "بابر اعظم", "احمد علی", "عامر فاروق", "سلمان اکرم راجہ", "عائشہ خان", "آصف علی زرداری", "مریم نواز", "ذوالفقار علی بھٹو", "لیاقت علی خان", "ایوب خان", "یحییٰ خان", "محمد عامر", "حارث رؤف", "شاداب خان", "فخر زمان", "نسیم شاہ", "محمد رضوان", "شاہین شاہ آفریدی", "شاہین آفریدی"
 ]
 
 # Prominent Events
 KNOWN_EVENTS = [
     "Pakistan Super League 10", "Pakistan Super League 9", "Pakistan Super League", "PSL 10", "PSL 9", "PSL 8", "PSL",
     "Independence Day", "Pakistan Day", "Defense Day",
-    "Defence Day", "Youm-e-Takbir", "Kashmir Solidarity Day", "Eid-ul-Fitr", "Eid-ul-Adha",
+    "Defence Day", "National Games", "Asia Cup", "Youm-e-Takbir", "Kashmir Solidarity Day", "Eid-ul-Fitr", "Eid-ul-Adha",
     "Federal Budget 2025-26", "Federal Budget 2024-25", "Federal Budget", "Budget 2025-26", "Budget 2024-25",
     "General Elections 2024", "General Elections 2018", "SCO Summit", "COP29", "COP28", "2022 Pakistan floods",
     "پاکستان سپر لیگ 10", "پاکستان سپر لیگ", "پی ایس ایل 10", "پی ایس ایل", "یوم آزادی", "یوم پاکستان", "یوم دفاع", "یوم تکبیر", "وفاقی بجٹ 2025-26", "وفاقی بجٹ"
@@ -97,13 +129,28 @@ def load_gazetteers() -> List[Tuple[re.Pattern, str, int]]:
                 continue
             # Handle English vs Urdu boundary
             if any(ord(c) > 127 for c in term_clean):
-                pat = re.compile(re.escape(term_clean))
+                pat = re.compile(rf"(?<![\u0600-\u06FF]){re.escape(term_clean)}(?![\u0600-\u06FF])")
             else:
-                pat = re.compile(rf"\b{re.escape(term_clean)}\b", re.IGNORECASE)
+                if term_clean in COMMON_SENSITIVE or (len(term_clean) <= 5 and term_clean.isupper()):
+                    pat = re.compile(rf"\b{re.escape(term_clean)}\b")
+                else:
+                    pat = re.compile(rf"\b{re.escape(term_clean)}\b", re.IGNORECASE)
 
             # Assign priority based on specificity
-            priority = 8 if label in ["COURT_LEGAL_BODY", "LAW_ACT", "SPORTS_TEAM", "EDUCATIONAL_INSTITUTION", "POLITICAL_PARTY"] else 6
+            priority = 8 if label in ["COURT_LEGAL_BODY", "LAW_ACT", "SPORTS_TEAM", "EDUCATIONAL_INSTITUTION", "POLITICAL_PARTY", "GOVERNMENT_BODY"] else 6
             compiled_patterns.append((pat, label, priority))
+
+    # Provincial and Federal Government Patterns (High priority over nested province/country)
+    GOV_PAT = re.compile(
+        r"\b(?:(?:Government|Govt\.?)\s+of\s+(?:Sindh|Punjab|Balochistan|Khyber\s+Pakhtunkhwa|KP|KPK|Gilgit[- ]Baltistan|AJK|Azad\s+Kashmir|Pakistan)|(?:Sindh|Punjab|Balochistan|Khyber\s+Pakhtunkhwa|KP|KPK|Gilgit[- ]Baltistan|AJK|Azad\s+Kashmir|Pakistan)\s+(?:government|govt\.?))\b",
+        re.IGNORECASE
+    )
+    compiled_patterns.append((GOV_PAT, "GOVERNMENT_BODY", 9))
+
+    URDU_GOV_PAT = re.compile(
+        r"(?<![\u0600-\u06FF])حکومت\s+(?:پاکستان|سندھ|پنجاب|بلوچستان|خیبر\s*پختونخوا|گلگت\s*بلتستان|آزاد\s*کشمیر)(?![\u0600-\u06FF])"
+    )
+    compiled_patterns.append((URDU_GOV_PAT, "GOVERNMENT_BODY", 9))
 
     # Add Countries
     for country in sorted(COUNTRIES, key=lambda c: len(c), reverse=True):
@@ -115,7 +162,10 @@ def load_gazetteers() -> List[Tuple[re.Pattern, str, int]]:
 
     # Add Organizations
     for org in sorted(ORGANIZATIONS, key=lambda o: len(o), reverse=True):
-        pat = re.compile(rf"\b{re.escape(org)}\b", re.IGNORECASE)
+        if org in COMMON_SENSITIVE or (len(org) <= 5 and org.isupper()):
+            pat = re.compile(rf"\b{re.escape(org)}\b")
+        else:
+            pat = re.compile(rf"\b{re.escape(org)}\b", re.IGNORECASE)
         compiled_patterns.append((pat, "ORGANIZATION", 7))
 
     # Add Persons
@@ -139,6 +189,9 @@ def load_gazetteers() -> List[Tuple[re.Pattern, str, int]]:
 
     ROMAN_URDU_GOV = [
         "Qaumi Assembly", "Subaee Assembly", "Hukoomat-e-Pakistan", "Hukumat-e-Pakistan",
+        "Hukoomat-e-Sindh", "Hukumat-e-Sindh", "Hukoomat-e-Punjab", "Hukumat-e-Punjab",
+        "Hukoomat-e-Balochistan", "Hukumat-e-Balochistan", "Hukoomat-e-KP", "Hukumat-e-KP",
+        "Hukoomat-e-KPK", "Hukumat-e-KPK",
         "Wazarat-e-Khazana", "Wazarat-e-Dakhla", "Wazarat-e-Kharija", "NAB",
         "National Accountability Bureau", "Pak Fauj", "Pakistan Armed Forces", "Pakistan Army"
     ]
@@ -175,32 +228,135 @@ def preannotate_sentence(text: str) -> List[Dict[str, Any]]:
             "priority": 10
         })
 
+    # 1.2 Contextual Syntactic Grammar entities (Sports match vs Country, legal filings, accused, etc.)
+    context_ents = extract_contextual_entities(text)
+    candidates.extend(context_ents)
+
     # 1.5 Honorific-based Person Extraction (Dr., Justice, Mr., Advocate, Maulana etc.)
     # Titles/honorifics are strictly stripped per guidelines; the extracted entity is the person's name!
+    PREFIX_TITLES_EN = (
+        r'(?:Chief\s+Justice|Justice|Judge|'
+        r'Lt\.?\s*Gen\.?|Lieutenant\s+General|Gen\.?|General|Maj\.?\s*Gen\.?|Major\s+General|Brig\.?|Brigadier|Col\.?|Colonel|Maj\.?|Major|Capt\.?|Captain|'
+        r'Prof\.?\s*Dr\.?|Prof\.?|Professor|Dr\.?|Doctor|'
+        r'Barrister|Advocate|Senator|'
+        r'Chairman|Chairperson|President|Prime\s+Minister|Chief\s+Minister|Minister|Governor|Director\s+General|DG|Director|CEO|Inspector\s+General|IG|'
+        r'Anchor|'
+        r'Mohtarma|Sahibzada|Makhdoom|Pir|Sardar|Chaudhry|Chaudhary|Mr\.?|Ms\.?|Mrs\.?|Maulana|Mufti)'
+        r'(?:\s*\((?:Retd\.?|retd\.?|R)\))?'
+    )
     HONORIFIC_EN_PATTERN = re.compile(
-        r"\b(?:Justice|Chief Justice|Judge|Dr\.?|Doctor|Prof\.?|Professor|Mr\.?|Ms\.?|Mrs\.?|Barrister|Advocate|Senator|Gen\.?|General|Maj\.?|Major|Capt\.?|Captain|Col\.?|Colonel|Maulana|Mufti|Chaudhry|Chaudhary|Sardar|Pir|Makhdoom)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3})\b"
+        rf'\b{PREFIX_TITLES_EN}\s+([A-Z][a-zA-Z\-]*(?:\s+[A-Z][a-zA-Z\-]*){{0,3}})\b'
     )
     for m in HONORIFIC_EN_PATTERN.finditer(text):
-        name_text = m.group(1)
+        raw_name = m.group(1).strip()
+        name_text = re.sub(r"\s+(?:Sahib|Sahiba)$", "", raw_name).strip()
+        end_pos = m.start(1) + len(name_text)
         candidates.append({
             "text": name_text,
             "start": m.start(1),
-            "end": m.end(1),
+            "end": end_pos,
             "label": "PERSON",
-            "priority": 10 # High priority: beats accidental CITY or PROVINCE matches on parts of name (e.g. Dr. Multan Khan -> Multan Khan)
+            "priority": 12
         })
 
-    HONORIFIC_UR_PATTERN = re.compile(
-        r"(?:جسٹس|چیف جسٹس|ڈاکٹر|پروفیسر|علامہ|مولانا|مفتی|سینیٹر|بیرسٹر|ایڈووکیٹ|سردار|چوہدری|مخدوم|پیر)\s+([\u0600-\u06FF]+(?:\s+[\u0600-\u06FF]+){1,3})"
+    URDU_PREFIXES = (
+        r'(?:جسٹس\s*(?:\([رR]\))?|چیف\s*جسٹس\s*(?:\([رR]\))?|'
+        r'ڈاکٹر|پروفیسر|علامہ|مولانا|مفتی|سینیٹر|بیرسٹر|ایڈووکیٹ|'
+        r'سردار|مخدوم|پیر|صاحبزادہ|محترمہ|'
+        r'ملزم|مجرم|مقتول|مدعی|مفرور)'
     )
-    for m in HONORIFIC_UR_PATTERN.finditer(text):
-        name_text = m.group(1).strip()
+    URDU_HONORIFIC_PAT = re.compile(
+        rf'(?<![\u0600-\u06FF]){URDU_PREFIXES}\s+([\u0600-\u06FF]+(?:\s+[\u0600-\u06FF]+){{0,3}})'
+    )
+    URDU_NON_NAME_TOKENS = {
+        'کا', 'کی', 'کے', 'نے', 'کو', 'سے', 'میں', 'پر', 'تک', 'اور', 'یا',
+        'عدالت', 'پولیس', 'تھانہ', 'جیل', 'حکومت', 'اسمبلی', 'وزارت', 'دفتر',
+        'کمیشن', 'بینک', 'بورڈ', 'کمیٹی', 'پارٹی', 'کوٹہ', 'فیصلہ', 'پیش'
+    }
+    for m in URDU_HONORIFIC_PAT.finditer(text):
+        raw_name = m.group(1).strip()
+        raw_name = re.sub(r'\s+(?:صاحب|صاحبہ)$', '', raw_name).strip()
+        tokens = raw_name.split()
+        valid_tokens = []
+        for t in tokens:
+            if t in URDU_NON_NAME_TOKENS or any(c.isdigit() or ('۰' <= c <= '۹') for c in t):
+                break
+            valid_tokens.append(t)
+        if valid_tokens:
+            final_name = ' '.join(valid_tokens)
+            end_pos = m.start(1) + len(final_name)
+            candidates.append({
+                "text": final_name,
+                "start": m.start(1),
+                "end": end_pos,
+                "label": "PERSON",
+                "priority": 12
+            })
+
+    
+    # 1.6 Common Pakistani Personal Name convention (Muhammad Bilal, Shazia Baig, etc.)
+    PAK_FIRST_NAMES = (
+        r"Muhammad|Mohammad|Mohd\.?|Syed|Hafiz|Malik|Shazia|Mehwish|Hira|Sana|Komal|"
+        r"Maryam|Saad|Junaid|Bilal|Sadia|Danish|Omar|Hamza|Ali|Usman|Zain|Ahmed|Ahmad|"
+        r"Fatima|Ayesha|Zahra|Tariq|Asim|Fahad|Kamran|Waqar|Noman|Farhan|Imran|Babar|"
+        r"Shaheen|Rizwan|Haris|Naseem|Fakhar|Shadab|Iftikhar|Imad|Sarfaraz|Shoaib|Shahid|"
+        r"Misbah|Younis|Inzamam|Wasim|Javed|Saeed|Azhar|Shan|Abdullah|Saim|Tahir|Naveed|"
+        r"Kashif|Rashid|Sohail|Adnan|Salman|Rehan|Zeeshan|Arsalan|Ahsan|Umair|Waleed|"
+        r"Atif|Shahzad|Shahbaz|Nawaz|Asif|Arshad"
+    )
+    PAK_SURNAMES = (
+        r"Baig|Ansari|Javed|Rehman|Rahman|Ahmed|Ahmad|Farooqui|Farooq|Siddiqui|Ghani|"
+        r"Malik|Butt|Shaikh|Sheikh|Khan|Chaudhry|Choudhary|Qureshi|Raza|Shah|Memon|"
+        r"Abbasi|Bhatti|Mirza|Niazi|Bajwa|Dar|Lodhi|Gillani|Gilani|Tareen|Tarar|"
+        r"Warraich|Zardari|Sharif|Bhutto|Iqbal|Jinnah|Akram|Younis|Afridi|Nadeem|Salam|"
+        r"Bilal|Ali|Hassan|Hussain|Hamza|Usman|Umar|Tariq|Asim|Fahad|Kamran|"
+        r"Wattoo|Leghari|Mazari|Mengal|Bugti|Marri|Achakzai|Kakar|Durrani|Yousafzai|Shinwari|Khattak"
+    )
+    PAK_NAME_PATTERN = re.compile(
+        rf"\b(?:{PAK_FIRST_NAMES})\s+(?:{PAK_SURNAMES})\b"
+    )
+    for m in PAK_NAME_PATTERN.finditer(text):
+        full_name = m.group(0).strip()
         candidates.append({
-            "text": name_text,
+            "text": full_name,
+            "start": m.start(),
+            "end": m.end(),
+            "label": "PERSON",
+            "priority": 10
+        })
+
+    # 1.7 Sports Match Context: teams competing in cricket/football matches are SPORTS_TEAM
+    SPORTS_MATCH_PAT = re.compile(
+        r"\b([A-Z][a-zA-Z\s]+?)\s+(?:defeated|beat|won against|lost to|played against)\s+([A-Z][a-zA-Z\s]+?)\s+by\s+\d+\s+(?:runs|wickets|goals|points)\b"
+    )
+    for m in SPORTS_MATCH_PAT.finditer(text):
+        team1 = m.group(1).strip()
+        team2 = m.group(2).strip()
+        candidates.append({
+            "text": team1,
+            "start": m.start(1),
+            "end": m.start(1) + len(team1),
+            "label": "SPORTS_TEAM",
+            "priority": 11
+        })
+        candidates.append({
+            "text": team2,
+            "start": m.start(2),
+            "end": m.start(2) + len(team2),
+            "label": "SPORTS_TEAM",
+            "priority": 11
+        })
+
+    # 1.8 Sports player signing / transaction pattern
+    SIGN_PAT = re.compile(r"\b(?:Sign|Signs|Signed|Draft|Drafts|Drafted|Appoint|Appoints|Pick|Picks)\s+([A-Z][a-z]+)\b")
+    for m in SIGN_PAT.finditer(text):
+        player = m.group(1).strip()
+        candidates.append({
+            "text": player,
             "start": m.start(1),
             "end": m.end(1),
             "label": "PERSON",
-            "priority": 10
+            "priority": 9
         })
 
     # 2. Gazetteer entities with OCR/typo word healing (e.g. Karach1 -> Karachi)

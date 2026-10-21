@@ -32,6 +32,7 @@ from src.constants import ENTITY_TYPES, ID2LABEL, validate_entity_type
 from src.rules import extract_regex_entities
 from src.preannotate import preannotate_sentence
 from src.postprocess import postprocess_entities, hybrid_merge_predictions
+from src.competition_fixes import apply_competition_fixes
 from src.dataset import spans_to_bio
 
 ALLOWED_20_LABELS = set(ENTITY_TYPES)
@@ -145,10 +146,16 @@ class UnifiedNERPredictor:
                 conf = float(probs[t_idx, p_id])
 
 
-                if tag.startswith("B-"):
+                lbl = tag[2:] if tag.startswith(("B-", "I-")) else "O"
+
+                # Subword continuation: if adjacent to active entity with same label, merge seamlessly
+                if curr_ent and curr_ent["label"] == lbl and (start_char == curr_ent["end"] or tag.startswith("I-")):
+                    curr_ent["end"] = int(end_char)
+                    curr_ent["text"] = text[curr_ent["start"]:int(end_char)]
+                    curr_ent["confidences"].append(conf)
+                elif tag.startswith("B-"):
                     if curr_ent:
                         all_candidate_spans.append(curr_ent)
-                    lbl = tag[2:]
                     curr_ent = {
                         "text": text[start_char:end_char],
                         "start": int(start_char),
@@ -157,21 +164,15 @@ class UnifiedNERPredictor:
                         "confidences": [conf]
                     }
                 elif tag.startswith("I-"):
-                    lbl = tag[2:]
-                    if curr_ent and curr_ent["label"] == lbl:
-                        curr_ent["end"] = int(end_char)
-                        curr_ent["text"] = text[curr_ent["start"]:int(end_char)]
-                        curr_ent["confidences"].append(conf)
-                    else:
-                        if curr_ent:
-                            all_candidate_spans.append(curr_ent)
-                        curr_ent = {
-                            "text": text[start_char:end_char],
-                            "start": int(start_char),
-                            "end": int(end_char),
-                            "label": lbl,
-                            "confidences": [conf]
-                        }
+                    if curr_ent:
+                        all_candidate_spans.append(curr_ent)
+                    curr_ent = {
+                        "text": text[start_char:end_char],
+                        "start": int(start_char),
+                        "end": int(end_char),
+                        "label": lbl,
+                        "confidences": [conf]
+                    }
                 else:
                     if curr_ent:
                         all_candidate_spans.append(curr_ent)
@@ -228,7 +229,8 @@ class UnifiedNERPredictor:
         rule_ents = preannotate_sentence(text)
         merged = hybrid_merge_predictions(model_ents, rule_ents, len(text))
         final_ents = postprocess_entities(text, merged)
-        return self._filter_schema(final_ents, text)
+        competition_ents = apply_competition_fixes(text, final_ents)
+        return self._filter_schema(competition_ents, text)
 
     def _filter_schema(self, entities: List[Dict[str, Any]], text: str) -> List[Dict[str, Any]]:
         valid = []

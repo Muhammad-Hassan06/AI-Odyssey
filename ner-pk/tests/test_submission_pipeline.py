@@ -13,7 +13,10 @@ Tests:
 import os
 import sys
 import json
-import pytest
+try:
+    import pytest
+except ImportError:
+    pytest = None
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -22,7 +25,6 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from predict import UnifiedNERPredictor, load_input_file, run_predictions
 from validate_submission import validate_submission
 
-@pytest.fixture(scope="module")
 def predictor():
     # Load predictor in rules mode for ultra-fast, deterministic unit testing
     return UnifiedNERPredictor(mode="rules")

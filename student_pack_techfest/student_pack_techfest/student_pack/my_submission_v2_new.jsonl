@@ -1,0 +1,80 @@
+{"id": "TFN-SIM-0001", "entities": [{"start": 0, "end": 13, "label": "PERSON"}, {"start": 20, "end": 35, "label": "ID_NUMBER"}, {"start": 68, "end": 73, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0002", "entities": [{"start": 0, "end": 8, "label": "MEDIA_OUTLET"}, {"start": 23, "end": 45, "label": "GOVERNMENT_BODY"}, {"start": 60, "end": 71, "label": "MONEY"}, {"start": 92, "end": 98, "label": "PROVINCE_REGION"}]}
+{"id": "TFN-SIM-0003", "entities": [{"start": 0, "end": 11, "label": "PERSON"}, {"start": 26, "end": 31, "label": "POLITICAL_PARTY"}, {"start": 35, "end": 53, "label": "DATE"}]}
+{"id": "TFN-SIM-0004", "entities": [{"start": 20, "end": 42, "label": "PROVINCE_REGION"}, {"start": 50, "end": 62, "label": "EVENT"}]}
+{"id": "TFN-SIM-0005", "entities": [{"start": 0, "end": 5, "label": "POLITICAL_PARTY"}, {"start": 30, "end": 40, "label": "CITY"}, {"start": 44, "end": 50, "label": "DATE"}]}
+{"id": "TFN-SIM-0006", "entities": [{"start": 12, "end": 36, "label": "EDUCATIONAL_INSTITUTION"}, {"start": 64, "end": 74, "label": "TIME"}, {"start": 78, "end": 84, "label": "DATE"}]}
+{"id": "TFN-SIM-0007", "entities": [{"start": 4, "end": 24, "label": "COURT_LEGAL_BODY"}, {"start": 28, "end": 34, "label": "CITY"}, {"start": 43, "end": 62, "label": "COURT_LEGAL_BODY"}, {"start": 88, "end": 98, "label": "DATE"}]}
+{"id": "TFN-SIM-0008", "entities": [{"start": 4, "end": 20, "label": "COURT_LEGAL_BODY"}, {"start": 51, "end": 69, "label": "ORGANIZATION"}, {"start": 80, "end": 99, "label": "LAW_ACT"}]}
+{"id": "TFN-SIM-0009", "entities": [{"start": 20, "end": 35, "label": "PHONE_NUMBER"}, {"start": 44, "end": 47, "label": "TIME"}, {"start": 52, "end": 63, "label": "TIME"}]}
+{"id": "TFN-SIM-0010", "entities": [{"start": 0, "end": 4, "label": "ORGANIZATION"}, {"start": 32, "end": 38, "label": "CITY"}]}
+{"id": "TFN-SIM-0011", "entities": [{"start": 12, "end": 23, "label": "EVENT"}, {"start": 29, "end": 44, "label": "MONEY"}, {"start": 61, "end": 76, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-SIM-0012", "entities": [{"start": 0, "end": 3, "label": "POLITICAL_PARTY"}, {"start": 28, "end": 34, "label": "CITY"}, {"start": 38, "end": 44, "label": "DATE"}]}
+{"id": "TFN-SIM-0013", "entities": [{"start": 12, "end": 21, "label": "CITY"}, {"start": 25, "end": 31, "label": "CITY"}, {"start": 63, "end": 76, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-SIM-0014", "entities": [{"start": 13, "end": 31, "label": "LANDMARK_FACILITY"}, {"start": 64, "end": 79, "label": "POLITICAL_PARTY"}]}
+{"id": "TFN-SIM-0015", "entities": [{"start": 40, "end": 81, "label": "LAW_ACT"}, {"start": 99, "end": 111, "label": "PERSON"}]}
+{"id": "TFN-SIM-0016", "entities": [{"start": 18, "end": 23, "label": "PERCENT"}, {"start": 27, "end": 33, "label": "DATE"}, {"start": 52, "end": 74, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0017", "entities": [{"start": 5, "end": 15, "label": "PERSON"}, {"start": 49, "end": 62, "label": "DATE"}, {"start": 66, "end": 74, "label": "TIME"}]}
+{"id": "TFN-SIM-0018", "entities": [{"start": 3, "end": 11, "label": "COUNTRY"}, {"start": 13, "end": 29, "label": "ORGANIZATION"}, {"start": 51, "end": 56, "label": "MONEY"}]}
+{"id": "TFN-SIM-0019", "entities": [{"start": 0, "end": 9, "label": "SPORTS_TEAM"}, {"start": 19, "end": 26, "label": "SPORTS_TEAM"}, {"start": 42, "end": 57, "label": "LANDMARK_FACILITY"}, {"start": 61, "end": 74, "label": "DATE"}]}
+{"id": "TFN-SIM-0020", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 38, "end": 50, "label": "ORGANIZATION"}, {"start": 54, "end": 66, "label": "DATE"}]}
+{"id": "TFN-SIM-0021", "entities": [{"start": 18, "end": 21, "label": "PERCENT"}, {"start": 25, "end": 32, "label": "DATE"}, {"start": 51, "end": 70, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0022", "entities": [{"start": 13, "end": 23, "label": "PERSON"}, {"start": 32, "end": 43, "label": "PERSON"}, {"start": 56, "end": 71, "label": "ID_NUMBER"}]}
+{"id": "TFN-SIM-0023", "entities": [{"start": 0, "end": 8, "label": "MEDIA_OUTLET"}, {"start": 28, "end": 34, "label": "CITY"}, {"start": 55, "end": 60, "label": "TIME"}]}
+{"id": "TFN-SIM-0024", "entities": [{"start": 0, "end": 12, "label": "SPORTS_TEAM"}, {"start": 22, "end": 30, "label": "SPORTS_TEAM"}, {"start": 46, "end": 72, "label": "LANDMARK_FACILITY"}, {"start": 76, "end": 84, "label": "DATE"}]}
+{"id": "TFN-SIM-0025", "entities": [{"start": 18, "end": 21, "label": "PERCENT"}, {"start": 27, "end": 44, "label": "DATE"}, {"start": 48, "end": 71, "label": "EDUCATIONAL_INSTITUTION"}]}
+{"id": "TFN-SIM-0026", "entities": [{"start": 15, "end": 28, "label": "PERSON"}, {"start": 32, "end": 47, "label": "PHONE_NUMBER"}, {"start": 62, "end": 83, "label": "EVENT"}]}
+{"id": "TFN-SIM-0027", "entities": [{"start": 4, "end": 17, "label": "COURT_LEGAL_BODY"}, {"start": 21, "end": 31, "label": "CITY"}, {"start": 48, "end": 61, "label": "PERSON"}, {"start": 65, "end": 79, "label": "DATE"}]}
+{"id": "TFN-SIM-0028", "entities": [{"start": 0, "end": 6, "label": "CITY"}, {"start": 40, "end": 48, "label": "DATE"}, {"start": 54, "end": 67, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0029", "entities": [{"start": 0, "end": 10, "label": "CITY"}, {"start": 44, "end": 54, "label": "DATE"}, {"start": 60, "end": 98, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0030", "entities": [{"start": 4, "end": 23, "label": "COURT_LEGAL_BODY"}, {"start": 46, "end": 77, "label": "GOVERNMENT_BODY"}, {"start": 101, "end": 113, "label": "PERSON"}]}
+{"id": "TFN-SIM-0031", "entities": [{"start": 0, "end": 12, "label": "SPORTS_TEAM"}, {"start": 18, "end": 53, "label": "EVENT"}]}
+{"id": "TFN-SIM-0032", "entities": [{"start": 12, "end": 22, "label": "EVENT"}, {"start": 28, "end": 42, "label": "MONEY"}, {"start": 59, "end": 75, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-SIM-0033", "entities": [{"start": 0, "end": 37, "label": "GOVERNMENT_BODY"}, {"start": 47, "end": 52, "label": "MONEY"}, {"start": 57, "end": 63, "label": "CITY"}]}
+{"id": "TFN-SIM-0034", "entities": [{"start": 36, "end": 42, "label": "COUNTRY"}, {"start": 46, "end": 53, "label": "CITY"}, {"start": 79, "end": 90, "label": "MONEY"}]}
+{"id": "TFN-SIM-0035", "entities": [{"start": 37, "end": 62, "label": "COURT_LEGAL_BODY"}, {"start": 66, "end": 82, "label": "DATE"}]}
+{"id": "TFN-SIM-0036", "entities": [{"start": 13, "end": 32, "label": "LANDMARK_FACILITY"}, {"start": 65, "end": 91, "label": "POLITICAL_PARTY"}]}
+{"id": "TFN-SIM-0037", "entities": [{"start": 40, "end": 64, "label": "LAW_ACT"}, {"start": 82, "end": 94, "label": "PERSON"}]}
+{"id": "TFN-SIM-0038", "entities": [{"start": 13, "end": 24, "label": "PERSON"}, {"start": 33, "end": 44, "label": "PERSON"}, {"start": 57, "end": 72, "label": "ID_NUMBER"}]}
+{"id": "TFN-SIM-0039", "entities": [{"start": 38, "end": 47, "label": "CITY"}, {"start": 53, "end": 65, "label": "DATE"}, {"start": 69, "end": 85, "label": "DATE"}]}
+{"id": "TFN-SIM-0040", "entities": [{"start": 10, "end": 20, "label": "ORGANIZATION"}, {"start": 26, "end": 29, "label": "PERCENT"}]}
+{"id": "TFN-SIM-0041", "entities": [{"start": 0, "end": 20, "label": "POLITICAL_PARTY"}, {"start": 25, "end": 30, "label": "POLITICAL_PARTY"}, {"start": 67, "end": 75, "label": "DATE"}]}
+{"id": "TFN-SIM-0042", "entities": [{"start": 0, "end": 10, "label": "MEDIA_OUTLET"}, {"start": 25, "end": 63, "label": "GOVERNMENT_BODY"}, {"start": 78, "end": 89, "label": "MONEY"}, {"start": 110, "end": 119, "label": "PROVINCE_REGION"}]}
+{"id": "TFN-SIM-0043", "entities": [{"start": 9, "end": 21, "label": "PERSON"}, {"start": 27, "end": 32, "label": "POLITICAL_PARTY"}, {"start": 65, "end": 87, "label": "PROVINCE_REGION"}]}
+{"id": "TFN-SIM-0044", "entities": [{"start": 15, "end": 28, "label": "PERSON"}, {"start": 32, "end": 45, "label": "PHONE_NUMBER"}, {"start": 60, "end": 71, "label": "EVENT"}]}
+{"id": "TFN-SIM-0045", "entities": [{"start": 18, "end": 23, "label": "PERCENT"}, {"start": 29, "end": 40, "label": "DATE"}, {"start": 44, "end": 88, "label": "EDUCATIONAL_INSTITUTION"}]}
+{"id": "TFN-SIM-0046", "entities": [{"start": 36, "end": 51, "label": "PHONE_NUMBER"}, {"start": 65, "end": 95, "label": "GOVERNMENT_BODY"}, {"start": 106, "end": 115, "label": "CITY"}]}
+{"id": "TFN-SIM-0047", "entities": [{"start": 13, "end": 26, "label": "PERSON"}, {"start": 35, "end": 47, "label": "PERSON"}, {"start": 60, "end": 75, "label": "ID_NUMBER"}]}
+{"id": "TFN-SIM-0048", "entities": [{"start": 34, "end": 45, "label": "MONEY"}, {"start": 61, "end": 93, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0049", "entities": [{"start": 20, "end": 35, "label": "PHONE_NUMBER"}, {"start": 44, "end": 55, "label": "TIME"}, {"start": 60, "end": 71, "label": "TIME"}]}
+{"id": "TFN-SIM-0050", "entities": [{"start": 12, "end": 28, "label": "EVENT"}, {"start": 34, "end": 48, "label": "MONEY"}, {"start": 65, "end": 80, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-SIM-0051", "entities": [{"start": 12, "end": 28, "label": "PROVINCE_REGION"}, {"start": 33, "end": 44, "label": "PERCENT"}, {"start": 61, "end": 65, "label": "DATE"}]}
+{"id": "TFN-SIM-0052", "entities": [{"start": 0, "end": 11, "label": "PERSON"}, {"start": 24, "end": 41, "label": "MONEY"}, {"start": 60, "end": 80, "label": "COURT_LEGAL_BODY"}]}
+{"id": "TFN-SIM-0053", "entities": [{"start": 11, "end": 23, "label": "COUNTRY"}, {"start": 32, "end": 44, "label": "PERCENT"}, {"start": 52, "end": 61, "label": "DATE"}]}
+{"id": "TFN-SIM-0054", "entities": [{"start": 0, "end": 15, "label": "ORGANIZATION"}, {"start": 43, "end": 53, "label": "CITY"}]}
+{"id": "TFN-SIM-0055", "entities": [{"start": 4, "end": 18, "label": "COURT_LEGAL_BODY"}, {"start": 22, "end": 28, "label": "CITY"}, {"start": 37, "end": 54, "label": "COURT_LEGAL_BODY"}, {"start": 80, "end": 91, "label": "DATE"}]}
+{"id": "TFN-SIM-0056", "entities": [{"start": 15, "end": 28, "label": "PERSON"}, {"start": 34, "end": 57, "label": "POLITICAL_PARTY"}, {"start": 90, "end": 101, "label": "PROVINCE_REGION"}]}
+{"id": "TFN-SIM-0057", "entities": [{"start": 0, "end": 5, "label": "SPORTS_TEAM"}, {"start": 15, "end": 26, "label": "SPORTS_TEAM"}, {"start": 42, "end": 64, "label": "LANDMARK_FACILITY"}, {"start": 68, "end": 78, "label": "DATE"}]}
+{"id": "TFN-SIM-0058", "entities": [{"start": 0, "end": 8, "label": "MEDIA_OUTLET"}, {"start": 10, "end": 15, "label": "ORGANIZATION"}, {"start": 26, "end": 31, "label": "PERCENT"}, {"start": 35, "end": 40, "label": "DATE"}]}
+{"id": "TFN-SIM-0059", "entities": [{"start": 0, "end": 19, "label": "POLITICAL_PARTY"}, {"start": 46, "end": 68, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0060", "entities": [{"start": 8, "end": 21, "label": "PERSON"}, {"start": 50, "end": 61, "label": "LANDMARK_FACILITY"}, {"start": 65, "end": 73, "label": "DATE"}]}
+{"id": "TFN-SIM-0061", "entities": [{"start": 38, "end": 44, "label": "PROVINCE_REGION"}, {"start": 49, "end": 67, "label": "PROVINCE_REGION"}, {"start": 78, "end": 97, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0062", "entities": [{"start": 4, "end": 29, "label": "COURT_LEGAL_BODY"}, {"start": 60, "end": 94, "label": "ORGANIZATION"}, {"start": 105, "end": 124, "label": "LAW_ACT"}]}
+{"id": "TFN-SIM-0063", "entities": [{"start": 0, "end": 8, "label": "MEDIA_OUTLET"}, {"start": 28, "end": 34, "label": "CITY"}, {"start": 55, "end": 59, "label": "TIME"}]}
+{"id": "TFN-SIM-0064", "entities": [{"start": 36, "end": 49, "label": "PHONE_NUMBER"}, {"start": 63, "end": 91, "label": "GOVERNMENT_BODY"}, {"start": 102, "end": 109, "label": "CITY"}]}
+{"id": "TFN-SIM-0065", "entities": [{"start": 0, "end": 21, "label": "EVENT"}]}
+{"id": "TFN-SIM-0066", "entities": [{"start": 16, "end": 28, "label": "PERSON"}, {"start": 30, "end": 45, "label": "ID_NUMBER"}]}
+{"id": "TFN-SIM-0067", "entities": [{"start": 40, "end": 44, "label": "EDUCATIONAL_INSTITUTION"}, {"start": 46, "end": 56, "label": "CITY"}, {"start": 65, "end": 74, "label": "DATE"}]}
+{"id": "TFN-SIM-0068", "entities": [{"start": 15, "end": 19, "label": "COUNTRY"}, {"start": 24, "end": 35, "label": "COUNTRY"}, {"start": 43, "end": 49, "label": "CITY"}, {"start": 53, "end": 64, "label": "DATE"}]}
+{"id": "TFN-SIM-0069", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 18, "end": 29, "label": "MONEY"}, {"start": 33, "end": 45, "label": "PERSON"}, {"start": 49, "end": 57, "label": "DATE"}]}
+{"id": "TFN-SIM-0070", "entities": [{"start": 11, "end": 17, "label": "PROVINCE_REGION"}, {"start": 23, "end": 36, "label": "PERCENT"}]}
+{"id": "TFN-SIM-0071", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 28, "end": 39, "label": "CITY"}, {"start": 43, "end": 50, "label": "PROVINCE_REGION"}, {"start": 65, "end": 87, "label": "EVENT"}]}
+{"id": "TFN-SIM-0072", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 38, "end": 60, "label": "ORGANIZATION"}, {"start": 64, "end": 78, "label": "DATE"}]}
+{"id": "TFN-SIM-0073", "entities": [{"start": 12, "end": 40, "label": "EDUCATIONAL_INSTITUTION"}, {"start": 68, "end": 72, "label": "TIME"}, {"start": 76, "end": 84, "label": "DATE"}]}
+{"id": "TFN-SIM-0074", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 38, "end": 54, "label": "PROVINCE_REGION"}, {"start": 69, "end": 85, "label": "EVENT"}]}
+{"id": "TFN-SIM-0075", "entities": [{"start": 16, "end": 22, "label": "CITY"}, {"start": 34, "end": 37, "label": "TIME"}, {"start": 44, "end": 56, "label": "PHONE_NUMBER"}]}
+{"id": "TFN-SIM-0076", "entities": [{"start": 38, "end": 49, "label": "PROVINCE_REGION"}, {"start": 54, "end": 58, "label": "PROVINCE_REGION"}, {"start": 69, "end": 95, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-SIM-0077", "entities": [{"start": 0, "end": 10, "label": "PERSON"}, {"start": 14, "end": 30, "label": "SPORTS_TEAM"}, {"start": 57, "end": 73, "label": "SPORTS_TEAM"}]}
+{"id": "TFN-SIM-0078", "entities": [{"start": 40, "end": 44, "label": "EDUCATIONAL_INSTITUTION"}, {"start": 46, "end": 51, "label": "CITY"}, {"start": 60, "end": 71, "label": "DATE"}]}
+{"id": "TFN-SIM-0079", "entities": [{"start": 10, "end": 25, "label": "ORGANIZATION"}, {"start": 31, "end": 44, "label": "PERCENT"}]}
+{"id": "TFN-SIM-0080", "entities": [{"start": 37, "end": 53, "label": "COURT_LEGAL_BODY"}, {"start": 57, "end": 67, "label": "DATE"}]}

@@ -1,0 +1,155 @@
+<USER_REQUEST>
+ye kardo changes baqi 
+
+iske elawa meine gemini se bhi complex tetst cases niaklwaye hain 
+
+Yeh rahe 15 "Boss-Level" (Ultra-Complex) Adversarial Evaluation Sentences jo aapke hybrid NER engine (Team AI-Odyssey) ke tokenizer, regex rules, Gazetteer lookups, aur sequence tagger (BiLSTM/Transformer) ka asli stress-test karenge.
+
+In sentences mein stacked honorifics (prefix + suffix), triple-nested spans, bi-directional (RTL/LTR) script collisions, attached punctuation (cnic#...), aur brutal numeric distractors (14-digit bank accounts, ratios 50:50, case numbers 302/2025) shamil hain. Tamam Phone aur CNIC numbers 100% synthetic hain.
+
+Category A: Stacked Honorifics & Multi-Nested Span Collisions
+Test Case #1 — Multi-Token Punctuated Honorifics, Verb Homonym (nab vs NAB), & Triple Pakistan/Islamabad Nesting:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "Chief Justice (Retd.) Mian Saqib Nisar urged NAB to nab corrupt contractors near the Supreme Court of Pakistan in Islamabad under Section 302 of the Pakistan Penal Code, while the Islamabad High Court adjourned until 11:45 PM."
+Expected Entities (8): Mian Saqib Nisar (PERSON) | NAB (GOVERNMENT_BODY) | Supreme Court of Pakistan (COURT_LEGAL_BODY) | Islamabad (CITY) | Section 302 (LAW_ACT) | Pakistan Penal Code (LAW_ACT) | Islamabad High Court (COURT_LEGAL_BODY) | 11:45 PM (TIME)
+
+Brutal Trap Tested:
+
+Multi-token title Chief Justice (Retd.) with parentheses/dots must be completely stripped, while Mian (part of the name) is retained.
+
+Uppercase NAB (GOVERNMENT_BODY) vs. lowercase verb nab right next to it.
+
+Pakistan nested inside both Supreme Court of Pakistan and Pakistan Penal Code; Islamabad standalone vs. inside Islamabad High Court.
+
+Test Case #2 — The Karachi / Sindh / Pakistan Cascade Collision:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "After graduating from IBA Karachi in Sindh, Dr. Ayesha Siddiqa joined the State Bank of Pakistan to audit Karachi Kings and Sindh High Court pension funds worth Rs 14.75 billion on 30 June 2026."
+Expected Entities (8): IBA Karachi (EDUCATIONAL_INSTITUTION) | Sindh (PROVINCE_REGION) | Ayesha Siddiqa (PERSON) | State Bank of Pakistan (GOVERNMENT_BODY) | Karachi Kings (SPORTS_TEAM) | Sindh High Court (COURT_LEGAL_BODY) | Rs 14.75 billion (MONEY) | 30 June 2026 (DATE)
+
+Brutal Trap Tested: Karachi appears inside an institute (IBA Karachi) and a sports team (Karachi Kings)—neither should be split into CITY. Sindh appears both standalone (PROVINCE_REGION) and nested inside Sindh High Court (COURT_LEGAL_BODY).
+
+Test Case #3 — Compound Military/Academic Titles & Hyphenated Personal Names:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "Lt. Gen. (Retd.) Asim Saleem Bajwa and Prof. Dr. Atta-ur-Rahman appeared before the Sessions Court in Peshawar regarding CrPC Section 144 violations reported on 23rd March 2025 at 11:59 PM."
+Expected Entities (8): Asim Saleem Bajwa (PERSON) | Atta-ur-Rahman (PERSON) | Sessions Court (COURT_LEGAL_BODY) | Peshawar (CITY) | CrPC (LAW_ACT) | Section 144 (LAW_ACT) | 23rd March 2025 (DATE) | 11:59 PM (TIME)
+
+Brutal Trap Tested: Stripping stacked abbreviated prefixes (Lt. Gen. (Retd.) and Prof. Dr.) without breaking the hyphenated name Atta-ur-Rahman, plus handling adjacent law spans (CrPC and Section 144).
+
+Category B: Regex-Breaker Numeric & Financial Chaos
+Test Case #4 — 14-Digit CNIC Lookalike (5-7-2) & 13-Digit Phone Lookalike (4-9) Distractors:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "FIA traced call +92-300-0009999 and CNIC 42101-0000000-7 after complaint Ticket #42101-0000000-88 and bank account 0300-123456789 were flagged under PECA 2016 in Rawalpindi."
+Expected Entities (5): FIA (GOVERNMENT_BODY) | +92-300-0009999 (PHONE_NUMBER) | 42101-0000000-7 (ID_NUMBER) | PECA 2016 (LAW_ACT) | Rawalpindi (CITY)
+
+Brutal Trap Tested:
+
+Ticket #42101-0000000-88 has 5-7-2 digits (14 digits total)—a lazy regex without word-boundary (\b) or end-anchor checks will slice 42101-0000000-8 as a false ID_NUMBER.
+
+0300-123456789 has 9 digits after the hyphen—a lazy regex will slice 0300-1234567 as a false PHONE_NUMBER.
+
+Test Case #5 — Ratio vs. Time Trap (50:50), Micro-Decimals, & Multi-Script Currency:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "Engro and PIA shares rose by 0.08% and ۱۴.۲۵ per cent after China injected $3.5 billion (approx. ۲۵۰ ارب روپے) at a 50:50 equity ratio on 01/07/2025 at 09:00 PST."
+Expected Entities (9): Engro (ORGANIZATION) | PIA (ORGANIZATION) | 0.08% (PERCENT) | ۱۴.۲۵ per cent (PERCENT) | China (COUNTRY) | $3.5 billion (MONEY) | ۲۵۰ ارب روپے (MONEY) | 01/07/2025 (DATE) | 09:00 PST (TIME)
+
+Brutal Trap Tested: 50:50 uses colon formatting identical to HH:MM time—models relying on \d{2}:\d{2} without hour/minute range validation (00-23 / 00-59) will falsely tag 50:50 as TIME. Also tests parenthetical Urdu currency (approx. ۲۵۰ ارب روپے).
+
+Test Case #6 — Range Percentages, International Landlines, & Hyphenated Parties/Regions:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "During talks between MQM-P, JUI-F, and Jamaat-e-Islami in Gilgit-Baltistan, delegates dialled 051-9200000 and +92 21 30000000 at 16:30 PST, rejecting a 10-15 per cent tariff hike."
+Expected Entities (8): MQM-P (POLITICAL_PARTY) | JUI-F (POLITICAL_PARTY) | Jamaat-e-Islami (POLITICAL_PARTY) | Gilgit-Baltistan (PROVINCE_REGION) | 051-9200000 (PHONE_NUMBER) | +92 21 30000000 (PHONE_NUMBER) | 16:30 PST (TIME) | 10-15 per cent (PERCENT)
+
+Brutal Trap Tested: 10-15 per cent (range percentage), 8-digit Karachi PTCL landline +92 21 30000000 vs. 7-digit Islamabad landline 051-9200000, and three different hyphenated party patterns.
+
+Category C: Pure Urdu Script Stress-Test (Izafat, Prefix+Suffix Titles & Traps)
+Test Case #7 — Urdu Prefix + Suffix Honorifics (جسٹس (ر) ... صاحب), Izafat Law Spans, & Hijri Year:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "جسٹس (ر) قاضی فائز عیسیٰ صاحب نے سپریم کورٹ آف پاکستان میں تعزیراتِ پاکستان کی دفعہ ۳۰۲ اور ۲۶ویں آئینی ترمیم پر ۱۰ محرم الحرام ۱۴۴۷ھ کو تاریخی فیصلہ سنایا۔"
+Expected Entities (6): قاضی فائز عیسیٰ (PERSON) | سپریم کورٹ آف پاکستان (COURT_LEGAL_BODY) | تعزیراتِ پاکستان (LAW_ACT) | دفعہ ۳۰۲ (LAW_ACT) | ۲۶ویں آئینی ترمیم (LAW_ACT) | ۱۰ محرم الحرام ۱۴۴۷ھ (DATE)
+
+Brutal Trap Tested: Both prefix جسٹس (ر) AND suffix صاحب must be stripped from قاضی فائز عیسیٰ. Also tests whether تعزیراتِ پاکستان (Pakistan Penal Code in Urdu with ZWNJ/Zer-e-Izafat) is recognized as LAW_ACT instead of splitting پاکستان as COUNTRY.
+
+Test Case #8 — Pure Urdu Adversarial Traps (مقدمہ نمبر ۳۰۲/۲۰۲۵, آرڈر ۰۳۰۰۹۹۸۸, & ملزم Title):
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "ایف آئی اے نے مقدمہ نمبر ۳۰۲/۲۰۲۵ میں آرڈر ۰۳۰۰۹۹۸۸ کے تحت ملزم فواد چوہدری کا شناختی کارڈ ۳۵۲۰۲-۱۱۱۱۱۱۱-۵ اور موبائل ۰۳۲۱-۰۰۰۰۰۰۰ پشاور سے برآمد کیا۔"
+Expected Entities (5): ایف آئی اے (GOVERNMENT_BODY) | فواد چوہدری (PERSON — "ملزم" stripped) | ۳۵۲۰۲-۱۱۱۱۱۱۱-۵ (ID_NUMBER) | ۰۳۲۱-۰۰۰۰۰۰۰ (PHONE_NUMBER) | پشاور (CITY)
+
+Brutal Trap Tested:
+
+مقدمہ نمبر ۳۰۲/۲۰۲۵ (Case No. 302/2025) must not trigger LAW_ACT (دفعہ ۳۰۲) or DATE (۲۰۲۵).
+
+آرڈر ۰۳۰۰۹۹۸۸ must not trigger PHONE_NUMBER.
+
+Legal descriptor ملزم (Accused) before فواد چوہدری must not be absorbed into PERSON.
+
+Category D: Extreme Code-Mixing & Bi-Directional (RTL/LTR) Collisions
+Test Case #9 — Mid-Sentence RTL/LTR Script Switching & Hybrid Currency (Rs 850 کروڑ):
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "اسٹیٹ بینک آف پاکستان اور FBR نے Federal Budget 2025-26 کے دوران ۱۵.۷۵ فیصد ٹیکس کٹوتی کر کے Rs 850 کروڑ کا فنڈ نادرا کے شناختی کارڈ ۴۲۲۰۱-۹۹۹۹۹۹۹-۳ پر شام ۴:۱۵ بجے منتقل کیا۔"
+Expected Entities (8): اسٹیٹ بینک آف پاکستان (GOVERNMENT_BODY) | FBR (GOVERNMENT_BODY) | Federal Budget 2025-26 (EVENT) | ۱۵.۷۵ فیصد (PERCENT) | Rs 850 کروڑ (MONEY) | نادرا (GOVERNMENT_BODY) | ۴۲۲۰۱-۹۹۹۹۹۹۹-۳ (ID_NUMBER) | شام ۴:۱۵ بجے (TIME)
+
+Brutal Trap Tested: Rapid RTL-to-LTR transitions (اور FBR نے Federal Budget 2025-26 کے دوران) and hybrid currency (Rs in Latin + 850 in Western digits + کروڑ in Urdu script).
+
+Test Case #10 — Roman Urdu Prefix+Suffix Honorifics (Mohtarma ... Sahiba, Sahibzada) & Inline Urdu Time:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "Mohtarma Maryam Nawaz Sahiba aur Sahibzada Hamid Raza ne PML-N aur PTI ke General Elections 2024 مذاکرات ke baad Lahore mein رات ۱۱:۳۰ بجے ARY News ko interview diya."
+Expected Entities (8): Maryam Nawaz (PERSON) | Hamid Raza (PERSON) | PML-N (POLITICAL_PARTY) | PTI (POLITICAL_PARTY) | General Elections 2024 (EVENT) | Lahore (CITY) | رات ۱۱:۳۰ بجے (TIME) | ARY News (MEDIA_OUTLET)
+
+Brutal Trap Tested: Roman Urdu honorifics wrapping both sides of a name (Mohtarma [prefix] and Sahiba [suffix]) plus Sahibzada.
+
+Test Case #11 — Unspaced Punctuation Clutter (cnic#..., cell:...) in Code-Mixed Text:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "PPP aur PML-N ne NED University aur NUST ko 15 کروڑ روپے diye, jabke cnic#42101-8888888-1 aur cell:0333-0000000 par ECP ne صبح ۸:۴۵ بجے Quetta mein sms bheja."
+Expected Entities (10): PPP (POLITICAL_PARTY) | PML-N (POLITICAL_PARTY) | NED University (EDUCATIONAL_INSTITUTION) | NUST (EDUCATIONAL_INSTITUTION) | 15 کروڑ روپے (MONEY) | 42101-8888888-1 (ID_NUMBER) | 0333-0000000 (PHONE_NUMBER) | ECP (GOVERNMENT_BODY) | صبح ۸:۴۵ بجے (TIME) | Quetta (CITY)
+
+Brutal Trap Tested: Missing whitespace after # and : (cnic#42101-8888888-1, cell:0333-0000000). If your tokenizer splits only on whitespace or your regex uses \s, it will either miss the ID/Phone completely or include cnic# / cell: inside the entity span!
+
+Category E: Polysemy, Homonyms & Maximum-Density Stress Tests
+Test Case #12 — The Polysemy Nightmare (dawn, jazz, united, express as Common Words vs. Entities):
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "At dawn, while listening to smooth jazz on a united front, Anchor Kamran Khan from Geo News and The Express Tribune took an express train to interview Jazz executives and Islamabad United players at Gaddafi Stadium."
+Expected Entities (6): Kamran Khan (PERSON — "Anchor" stripped) | Geo News (MEDIA_OUTLET) | The Express Tribune (MEDIA_OUTLET) | Jazz (ORGANIZATION) | Islamabad United (SPORTS_TEAM) | Gaddafi Stadium (LANDMARK_FACILITY)
+
+Brutal Trap Tested: Every major entity in the second half has a lowercase homonym in the first half (dawn, jazz, united, express). Gazetteer matchers that use case-insensitive matching will fail catastrophically here.
+
+Test Case #13 — Landmark vs. Country vs. Sports Team vs. City Overlap:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "Ahead of PSL 10 on Independence Day, Captain Shaheen Shah Afridi led Lahore Qalandars past Minar-e-Pakistan to Jinnah International Airport while Pakistan Cricket Team departed for Saudi Arabia from Multan."
+Expected Entities (9): PSL 10 (EVENT) | Independence Day (EVENT) | Shaheen Shah Afridi (PERSON) | Lahore Qalandars (SPORTS_TEAM) | Minar-e-Pakistan (LANDMARK_FACILITY) | Jinnah International Airport (LANDMARK_FACILITY) | Pakistan Cricket Team (SPORTS_TEAM) | Saudi Arabia (COUNTRY) | Multan (CITY)
+
+Brutal Trap Tested: Pakistan is embedded in Minar-e-Pakistan (LANDMARK_FACILITY) and Pakistan Cricket Team (SPORTS_TEAM); Lahore is embedded in Lahore Qalandars (SPORTS_TEAM). None of those three should leak COUNTRY or CITY tags.
+
+Test Case #14 — Multi-Province, Acronym Universities & Philanthropy Collision:
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "Volunteers from LUMS and Punjab University travelled across Punjab, Khyber Pakhtunkhwa, Balochistan, and AJK, collecting PKR 9,999,999 (۷۸.۴% of target) for Edhi Foundation."
+Expected Entities (9): LUMS (EDUCATIONAL_INSTITUTION) | Punjab University (EDUCATIONAL_INSTITUTION) | Punjab (PROVINCE_REGION) | Khyber Pakhtunkhwa (PROVINCE_REGION) | Balochistan (PROVINCE_REGION) | AJK (PROVINCE_REGION) | PKR 9,999,999 (MONEY) | ۷۸.۴% (PERCENT) | Edhi Foundation (ORGANIZATION)
+
+Brutal Trap Tested: Punjab inside Punjab University immediately followed by standalone Punjab (PROVINCE_REGION), plus PKR 9,999,999 (7 nines—testing if it false-triggers a 7-digit phone number) and parenthesized Eastern-numeral percent (۷۸.۴%).
+
+Test Case #15 — The Ultimate 10-Entity Boss Sentence (Parentheses, Nested Spans & Mixed Script):
+
+PowerShell
+.\.venv\Scripts\python.exe predict.py --text "On 14 August 1947 at 12:00 AM, Dawn reported from Karachi that the State Bank of Pakistan, NADRA (helpline 051-1112223, ID 42101-0099887-3), and the Supreme Court of Pakistan enforced the Pakistan Penal Code with a ۱۰۰ فیصد compliance target and Rs 50 کروڑ reserve."
+Expected Entities (11): 14 August 1947 (DATE) | 12:00 AM (TIME) | Dawn (MEDIA_OUTLET) | Karachi (CITY) | State Bank of Pakistan (GOVERNMENT_BODY) | NADRA (GOVERNMENT_BODY) | 051-1112223 (PHONE_NUMBER) | 42101-0099887-3 (ID_NUMBER) | Supreme Court of Pakistan (COURT_LEGAL_BODY) | Pakistan Penal Code (LAW_ACT) | ۱۰۰ فیصد (PERCENT) | Rs 50 کروڑ (MONEY)
+
+Brutal Trap Tested: 12 distinct entities across 10 classes in a single sentence, featuring parenthetical entities (helpline 051-1112223, ID 42101-0099887-3), triple Pakistan nesting across 3 different entity classes (GOVERNMENT_BODY, COURT_LEGAL_BODY, LAW_ACT), and inline Urdu script metrics.
+
+ye total nikalwaye the meine
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-10-21T23:37:57+05:00.
+</ADDITIONAL_METADATA>

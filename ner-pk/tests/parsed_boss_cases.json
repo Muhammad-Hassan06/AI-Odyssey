@@ -1,0 +1,77 @@
+[
+  {
+    "title": "Test Case #1 — Multi-Token Punctuated Honorifics, Verb Homonym (nab vs NAB), & Triple Pakistan/Islamabad Nesting:",
+    "text": "Chief Justice (Retd.) Mian Saqib Nisar urged NAB to nab corrupt contractors near the Supreme Court of Pakistan in Islamabad under Section 302 of the Pakistan Penal Code, while the Islamabad High Court adjourned until 11:45 PM.",
+    "expected_str": "Mian Saqib Nisar (PERSON) | NAB (GOVERNMENT_BODY) | Supreme Court of Pakistan (COURT_LEGAL_BODY) | Islamabad (CITY) | Section 302 (LAW_ACT) | Pakistan Penal Code (LAW_ACT) | Islamabad High Court (COURT_LEGAL_BODY) | 11:45 PM (TIME)"
+  },
+  {
+    "title": "Test Case #2 — The Karachi / Sindh / Pakistan Cascade Collision:",
+    "text": "After graduating from IBA Karachi in Sindh, Dr. Ayesha Siddiqa joined the State Bank of Pakistan to audit Karachi Kings and Sindh High Court pension funds worth Rs 14.75 billion on 30 June 2026.",
+    "expected_str": "IBA Karachi (EDUCATIONAL_INSTITUTION) | Sindh (PROVINCE_REGION) | Ayesha Siddiqa (PERSON) | State Bank of Pakistan (GOVERNMENT_BODY) | Karachi Kings (SPORTS_TEAM) | Sindh High Court (COURT_LEGAL_BODY) | Rs 14.75 billion (MONEY) | 30 June 2026 (DATE)"
+  },
+  {
+    "title": "Test Case #3 — Compound Military/Academic Titles & Hyphenated Personal Names:",
+    "text": "Lt. Gen. (Retd.) Asim Saleem Bajwa and Prof. Dr. Atta-ur-Rahman appeared before the Sessions Court in Peshawar regarding CrPC Section 144 violations reported on 23rd March 2025 at 11:59 PM.",
+    "expected_str": "Asim Saleem Bajwa (PERSON) | Atta-ur-Rahman (PERSON) | Sessions Court (COURT_LEGAL_BODY) | Peshawar (CITY) | CrPC (LAW_ACT) | Section 144 (LAW_ACT) | 23rd March 2025 (DATE) | 11:59 PM (TIME)"
+  },
+  {
+    "title": "Test Case #4 — 14-Digit CNIC Lookalike (5-7-2) & 13-Digit Phone Lookalike (4-9) Distractors:",
+    "text": "FIA traced call +92-300-0009999 and CNIC 42101-0000000-7 after complaint Ticket #42101-0000000-88 and bank account 0300-123456789 were flagged under PECA 2016 in Rawalpindi.",
+    "expected_str": "FIA (GOVERNMENT_BODY) | +92-300-0009999 (PHONE_NUMBER) | 42101-0000000-7 (ID_NUMBER) | PECA 2016 (LAW_ACT) | Rawalpindi (CITY)"
+  },
+  {
+    "title": "Test Case #5 — Ratio vs. Time Trap (50:50), Micro-Decimals, & Multi-Script Currency:",
+    "text": "Engro and PIA shares rose by 0.08% and ۱۴.۲۵ per cent after China injected $3.5 billion (approx. ۲۵۰ ارب روپے) at a 50:50 equity ratio on 01/07/2025 at 09:00 PST.",
+    "expected_str": "Engro (ORGANIZATION) | PIA (ORGANIZATION) | 0.08% (PERCENT) | ۱۴.۲۵ per cent (PERCENT) | China (COUNTRY) | $3.5 billion (MONEY) | ۲۵۰ ارب روپے (MONEY) | 01/07/2025 (DATE) | 09:00 PST (TIME)"
+  },
+  {
+    "title": "Test Case #6 — Range Percentages, International Landlines, & Hyphenated Parties/Regions:",
+    "text": "During talks between MQM-P, JUI-F, and Jamaat-e-Islami in Gilgit-Baltistan, delegates dialled 051-9200000 and +92 21 30000000 at 16:30 PST, rejecting a 10-15 per cent tariff hike.",
+    "expected_str": "MQM-P (POLITICAL_PARTY) | JUI-F (POLITICAL_PARTY) | Jamaat-e-Islami (POLITICAL_PARTY) | Gilgit-Baltistan (PROVINCE_REGION) | 051-9200000 (PHONE_NUMBER) | +92 21 30000000 (PHONE_NUMBER) | 16:30 PST (TIME) | 10-15 per cent (PERCENT)"
+  },
+  {
+    "title": "Test Case #7 — Urdu Prefix + Suffix Honorifics (جسٹس (ر) ... صاحب), Izafat Law Spans, & Hijri Year:",
+    "text": "جسٹس (ر) قاضی فائز عیسیٰ صاحب نے سپریم کورٹ آف پاکستان میں تعزیراتِ پاکستان کی دفعہ ۳۰۲ اور ۲۶ویں آئینی ترمیم پر ۱۰ محرم الحرام ۱۴۴۷ھ کو تاریخی فیصلہ سنایا۔",
+    "expected_str": "قاضی فائز عیسیٰ (PERSON) | سپریم کورٹ آف پاکستان (COURT_LEGAL_BODY) | تعزیراتِ پاکستان (LAW_ACT) | دفعہ ۳۰۲ (LAW_ACT) | ۲۶ویں آئینی ترمیم (LAW_ACT) | ۱۰ محرم الحرام ۱۴۴۷ھ (DATE)"
+  },
+  {
+    "title": "Test Case #8 — Pure Urdu Adversarial Traps (مقدمہ نمبر ۳۰۲/۲۰۲۵, آرڈر ۰۳۰۰۹۹۸۸, & ملزم Title):",
+    "text": "ایف آئی اے نے مقدمہ نمبر ۳۰۲/۲۰۲۵ میں آرڈر ۰۳۰۰۹۹۸۸ کے تحت ملزم فواد چوہدری کا شناختی کارڈ ۳۵۲۰۲-۱۱۱۱۱۱۱-۵ اور موبائل ۰۳۲۱-۰۰۰۰۰۰۰ پشاور سے برآمد کیا۔",
+    "expected_str": "ایف آئی اے (GOVERNMENT_BODY) | فواد چوہدری (PERSON — \"ملزم\" stripped) | ۳۵۲۰۲-۱۱۱۱۱۱۱-۵ (ID_NUMBER) | ۰۳۲۱-۰۰۰۰۰۰۰ (PHONE_NUMBER) | پشاور (CITY)"
+  },
+  {
+    "title": "Test Case #9 — Mid-Sentence RTL/LTR Script Switching & Hybrid Currency (Rs 850 کروڑ):",
+    "text": "اسٹیٹ بینک آف پاکستان اور FBR نے Federal Budget 2025-26 کے دوران ۱۵.۷۵ فیصد ٹیکس کٹوتی کر کے Rs 850 کروڑ کا فنڈ نادرا کے شناختی کارڈ ۴۲۲۰۱-۹۹۹۹۹۹۹-۳ پر شام ۴:۱۵ بجے منتقل کیا۔",
+    "expected_str": "اسٹیٹ بینک آف پاکستان (GOVERNMENT_BODY) | FBR (GOVERNMENT_BODY) | Federal Budget 2025-26 (EVENT) | ۱۵.۷۵ فیصد (PERCENT) | Rs 850 کروڑ (MONEY) | نادرا (GOVERNMENT_BODY) | ۴۲۲۰۱-۹۹۹۹۹۹۹-۳ (ID_NUMBER) | شام ۴:۱۵ بجے (TIME)"
+  },
+  {
+    "title": "Test Case #10 — Roman Urdu Prefix+Suffix Honorifics (Mohtarma ... Sahiba, Sahibzada) & Inline Urdu Time:",
+    "text": "Mohtarma Maryam Nawaz Sahiba aur Sahibzada Hamid Raza ne PML-N aur PTI ke General Elections 2024 مذاکرات ke baad Lahore mein رات ۱۱:۳۰ بجے ARY News ko interview diya.",
+    "expected_str": "Maryam Nawaz (PERSON) | Hamid Raza (PERSON) | PML-N (POLITICAL_PARTY) | PTI (POLITICAL_PARTY) | General Elections 2024 (EVENT) | Lahore (CITY) | رات ۱۱:۳۰ بجے (TIME) | ARY News (MEDIA_OUTLET)"
+  },
+  {
+    "title": "Test Case #11 — Unspaced Punctuation Clutter (cnic#..., cell:...) in Code-Mixed Text:",
+    "text": "PPP aur PML-N ne NED University aur NUST ko 15 کروڑ روپے diye, jabke cnic#42101-8888888-1 aur cell:0333-0000000 par ECP ne صبح ۸:۴۵ بجے Quetta mein sms bheja.",
+    "expected_str": "PPP (POLITICAL_PARTY) | PML-N (POLITICAL_PARTY) | NED University (EDUCATIONAL_INSTITUTION) | NUST (EDUCATIONAL_INSTITUTION) | 15 کروڑ روپے (MONEY) | 42101-8888888-1 (ID_NUMBER) | 0333-0000000 (PHONE_NUMBER) | ECP (GOVERNMENT_BODY) | صبح ۸:۴۵ بجے (TIME) | Quetta (CITY)"
+  },
+  {
+    "title": "Test Case #12 — The Polysemy Nightmare (dawn, jazz, united, express as Common Words vs. Entities):",
+    "text": "At dawn, while listening to smooth jazz on a united front, Anchor Kamran Khan from Geo News and The Express Tribune took an express train to interview Jazz executives and Islamabad United players at Gaddafi Stadium.",
+    "expected_str": "Kamran Khan (PERSON — \"Anchor\" stripped) | Geo News (MEDIA_OUTLET) | The Express Tribune (MEDIA_OUTLET) | Jazz (ORGANIZATION) | Islamabad United (SPORTS_TEAM) | Gaddafi Stadium (LANDMARK_FACILITY)"
+  },
+  {
+    "title": "Test Case #13 — Landmark vs. Country vs. Sports Team vs. City Overlap:",
+    "text": "Ahead of PSL 10 on Independence Day, Captain Shaheen Shah Afridi led Lahore Qalandars past Minar-e-Pakistan to Jinnah International Airport while Pakistan Cricket Team departed for Saudi Arabia from Multan.",
+    "expected_str": "PSL 10 (EVENT) | Independence Day (EVENT) | Shaheen Shah Afridi (PERSON) | Lahore Qalandars (SPORTS_TEAM) | Minar-e-Pakistan (LANDMARK_FACILITY) | Jinnah International Airport (LANDMARK_FACILITY) | Pakistan Cricket Team (SPORTS_TEAM) | Saudi Arabia (COUNTRY) | Multan (CITY)"
+  },
+  {
+    "title": "Test Case #14 — Multi-Province, Acronym Universities & Philanthropy Collision:",
+    "text": "Volunteers from LUMS and Punjab University travelled across Punjab, Khyber Pakhtunkhwa, Balochistan, and AJK, collecting PKR 9,999,999 (۷۸.۴% of target) for Edhi Foundation.",
+    "expected_str": "LUMS (EDUCATIONAL_INSTITUTION) | Punjab University (EDUCATIONAL_INSTITUTION) | Punjab (PROVINCE_REGION) | Khyber Pakhtunkhwa (PROVINCE_REGION) | Balochistan (PROVINCE_REGION) | AJK (PROVINCE_REGION) | PKR 9,999,999 (MONEY) | ۷۸.۴% (PERCENT) | Edhi Foundation (ORGANIZATION)"
+  },
+  {
+    "title": "Test Case #15 — The Ultimate 10-Entity Boss Sentence (Parentheses, Nested Spans & Mixed Script):",
+    "text": "On 14 August 1947 at 12:00 AM, Dawn reported from Karachi that the State Bank of Pakistan, NADRA (helpline 051-1112223, ID 42101-0099887-3), and the Supreme Court of Pakistan enforced the Pakistan Penal Code with a ۱۰۰ فیصد compliance target and Rs 50 کروڑ reserve.",
+    "expected_str": "14 August 1947 (DATE) | 12:00 AM (TIME) | Dawn (MEDIA_OUTLET) | Karachi (CITY) | State Bank of Pakistan (GOVERNMENT_BODY) | NADRA (GOVERNMENT_BODY) | 051-1112223 (PHONE_NUMBER) | 42101-0099887-3 (ID_NUMBER) | Supreme Court of Pakistan (COURT_LEGAL_BODY) | Pakistan Penal Code (LAW_ACT) | ۱۰۰ فیصد (PERCENT) | Rs 50 کروڑ (MONEY)"
+  }
+]

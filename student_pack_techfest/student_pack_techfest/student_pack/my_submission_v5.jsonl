@@ -1,0 +1,80 @@
+{"id": "TFN-TST5-0001", "entities": [{"start": 0, "end": 14, "label": "PERSON"}, {"start": 21, "end": 36, "label": "ID_NUMBER"}, {"start": 66, "end": 71, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-TST5-0002", "entities": [{"start": 0, "end": 4, "label": "MEDIA_OUTLET"}, {"start": 19, "end": 48, "label": "GOVERNMENT_BODY"}, {"start": 58, "end": 69, "label": "MONEY"}, {"start": 85, "end": 95, "label": "CITY"}]}
+{"id": "TFN-TST5-0003", "entities": [{"start": 0, "end": 11, "label": "PERSON"}, {"start": 26, "end": 31, "label": "POLITICAL_PARTY"}, {"start": 35, "end": 50, "label": "DATE"}]}
+{"id": "TFN-TST5-0004", "entities": [{"start": 17, "end": 33, "label": "PROVINCE_REGION"}, {"start": 41, "end": 53, "label": "EVENT"}]}
+{"id": "TFN-TST5-0005", "entities": [{"start": 0, "end": 3, "label": "POLITICAL_PARTY"}, {"start": 28, "end": 38, "label": "CITY"}, {"start": 42, "end": 50, "label": "DATE"}]}
+{"id": "TFN-TST5-0006", "entities": [{"start": 12, "end": 16, "label": "EDUCATIONAL_INSTITUTION"}, {"start": 45, "end": 55, "label": "TIME"}, {"start": 59, "end": 65, "label": "DATE"}]}
+{"id": "TFN-TST5-0007", "entities": [{"start": 4, "end": 24, "label": "COURT_LEGAL_BODY"}, {"start": 28, "end": 34, "label": "CITY"}, {"start": 43, "end": 59, "label": "COURT_LEGAL_BODY"}, {"start": 82, "end": 92, "label": "DATE"}]}
+{"id": "TFN-TST5-0008", "entities": [{"start": 4, "end": 29, "label": "COURT_LEGAL_BODY"}, {"start": 60, "end": 76, "label": "PERSON"}, {"start": 77, "end": 96, "label": "LAW_ACT"}]}
+{"id": "TFN-TST5-0009", "entities": [{"start": 28, "end": 42, "label": "PHONE_NUMBER"}, {"start": 51, "end": 54, "label": "TIME"}, {"start": 59, "end": 70, "label": "TIME"}]}
+{"id": "TFN-TST5-0010", "entities": [{"start": 0, "end": 4, "label": "ORGANIZATION"}, {"start": 41, "end": 49, "label": "CITY"}]}
+{"id": "TFN-TST5-0011", "entities": [{"start": 33, "end": 48, "label": "MONEY"}, {"start": 52, "end": 67, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-TST5-0012", "entities": [{"start": 0, "end": 5, "label": "POLITICAL_PARTY"}, {"start": 37, "end": 45, "label": "CITY"}, {"start": 49, "end": 56, "label": "DATE"}]}
+{"id": "TFN-TST5-0013", "entities": [{"start": 15, "end": 21, "label": "CITY"}, {"start": 25, "end": 34, "label": "CITY"}, {"start": 60, "end": 72, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-TST5-0014", "entities": [{"start": 14, "end": 35, "label": "LANDMARK_FACILITY"}, {"start": 77, "end": 80, "label": "POLITICAL_PARTY"}]}
+{"id": "TFN-TST5-0015", "entities": [{"start": 29, "end": 48, "label": "LAW_ACT"}, {"start": 62, "end": 72, "label": "PERSON"}]}
+{"id": "TFN-TST5-0016", "entities": [{"start": 24, "end": 29, "label": "PERCENT"}, {"start": 33, "end": 37, "label": "DATE"}, {"start": 56, "end": 78, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-TST5-0017", "entities": [{"start": 0, "end": 10, "label": "PERSON"}, {"start": 45, "end": 57, "label": "DATE"}, {"start": 61, "end": 69, "label": "TIME"}]}
+{"id": "TFN-TST5-0018", "entities": [{"start": 3, "end": 8, "label": "COUNTRY"}, {"start": 10, "end": 27, "label": "ORGANIZATION"}, {"start": 47, "end": 52, "label": "MONEY"}]}
+{"id": "TFN-TST5-0019", "entities": [{"start": 0, "end": 5, "label": "SPORTS_TEAM"}, {"start": 15, "end": 24, "label": "SPORTS_TEAM"}, {"start": 40, "end": 62, "label": "LANDMARK_FACILITY"}, {"start": 66, "end": 82, "label": "DATE"}]}
+{"id": "TFN-TST5-0020", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 46, "end": 61, "label": "ORGANIZATION"}, {"start": 65, "end": 79, "label": "DATE"}]}
+{"id": "TFN-TST5-0021", "entities": [{"start": 26, "end": 31, "label": "PERCENT"}, {"start": 35, "end": 38, "label": "DATE"}, {"start": 57, "end": 82, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-TST5-0022", "entities": [{"start": 13, "end": 21, "label": "PERSON"}, {"start": 30, "end": 40, "label": "PERSON"}, {"start": 53, "end": 68, "label": "ID_NUMBER"}]}
+{"id": "TFN-TST5-0023", "entities": [{"start": 0, "end": 15, "label": "MEDIA_OUTLET"}, {"start": 30, "end": 36, "label": "CITY"}, {"start": 59, "end": 63, "label": "TIME"}]}
+{"id": "TFN-TST5-0024", "entities": [{"start": 0, "end": 9, "label": "SPORTS_TEAM"}, {"start": 19, "end": 29, "label": "SPORTS_TEAM"}, {"start": 45, "end": 61, "label": "LANDMARK_FACILITY"}, {"start": 65, "end": 73, "label": "DATE"}]}
+{"id": "TFN-TST5-0025", "entities": [{"start": 31, "end": 34, "label": "PERCENT"}, {"start": 40, "end": 54, "label": "DATE"}, {"start": 58, "end": 62, "label": "EDUCATIONAL_INSTITUTION"}]}
+{"id": "TFN-TST5-0026", "entities": [{"start": 15, "end": 27, "label": "PERSON"}, {"start": 31, "end": 46, "label": "PHONE_NUMBER"}, {"start": 61, "end": 77, "label": "EVENT"}]}
+{"id": "TFN-TST5-0027", "entities": [{"start": 4, "end": 17, "label": "COURT_LEGAL_BODY"}, {"start": 21, "end": 31, "label": "CITY"}, {"start": 50, "end": 60, "label": "PERSON"}, {"start": 64, "end": 79, "label": "DATE"}]}
+{"id": "TFN-TST5-0028", "entities": [{"start": 0, "end": 7, "label": "CITY"}, {"start": 56, "end": 67, "label": "DATE"}]}
+{"id": "TFN-TST5-0029", "entities": [{"start": 0, "end": 9, "label": "CITY"}, {"start": 43, "end": 53, "label": "DATE"}, {"start": 72, "end": 108, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-TST5-0030", "entities": [{"start": 4, "end": 21, "label": "COURT_LEGAL_BODY"}, {"start": 50, "end": 76, "label": "GOVERNMENT_BODY"}, {"start": 96, "end": 106, "label": "PERSON"}]}
+{"id": "TFN-TST5-0031", "entities": [{"start": 0, "end": 16, "label": "SPORTS_TEAM"}, {"start": 22, "end": 59, "label": "EVENT"}]}
+{"id": "TFN-TST5-0032", "entities": [{"start": 12, "end": 23, "label": "EVENT"}, {"start": 29, "end": 43, "label": "MONEY"}, {"start": 65, "end": 75, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-TST5-0033", "entities": [{"start": 0, "end": 37, "label": "GOVERNMENT_BODY"}, {"start": 48, "end": 53, "label": "MONEY"}, {"start": 58, "end": 64, "label": "CITY"}]}
+{"id": "TFN-TST5-0034", "entities": [{"start": 15, "end": 20, "label": "COUNTRY"}, {"start": 29, "end": 35, "label": "CITY"}, {"start": 63, "end": 75, "label": "MONEY"}]}
+{"id": "TFN-TST5-0035", "entities": [{"start": 41, "end": 66, "label": "COURT_LEGAL_BODY"}, {"start": 70, "end": 87, "label": "DATE"}]}
+{"id": "TFN-TST5-0036", "entities": [{"start": 13, "end": 32, "label": "LANDMARK_FACILITY"}, {"start": 54, "end": 57, "label": "POLITICAL_PARTY"}]}
+{"id": "TFN-TST5-0037", "entities": [{"start": 28, "end": 52, "label": "LAW_ACT"}, {"start": 66, "end": 82, "label": "PERSON"}]}
+{"id": "TFN-TST5-0038", "entities": [{"start": 13, "end": 26, "label": "PERSON"}, {"start": 40, "end": 54, "label": "PERSON"}, {"start": 67, "end": 82, "label": "ID_NUMBER"}]}
+{"id": "TFN-TST5-0039", "entities": [{"start": 4, "end": 34, "label": "EVENT"}, {"start": 54, "end": 64, "label": "CITY"}, {"start": 70, "end": 80, "label": "DATE"}, {"start": 84, "end": 97, "label": "DATE"}]}
+{"id": "TFN-TST5-0040", "entities": [{"start": 10, "end": 15, "label": "ORGANIZATION"}, {"start": 21, "end": 24, "label": "PERCENT"}]}
+{"id": "TFN-TST5-0041", "entities": [{"start": 0, "end": 28, "label": "POLITICAL_PARTY"}, {"start": 33, "end": 53, "label": "POLITICAL_PARTY"}, {"start": 76, "end": 84, "label": "DATE"}]}
+{"id": "TFN-TST5-0042", "entities": [{"start": 0, "end": 8, "label": "MEDIA_OUTLET"}, {"start": 23, "end": 61, "label": "GOVERNMENT_BODY"}, {"start": 71, "end": 82, "label": "MONEY"}, {"start": 87, "end": 91, "label": "PROVINCE_REGION"}]}
+{"id": "TFN-TST5-0043", "entities": [{"start": 9, "end": 20, "label": "PERSON"}, {"start": 36, "end": 41, "label": "POLITICAL_PARTY"}, {"start": 68, "end": 90, "label": "PROVINCE_REGION"}]}
+{"id": "TFN-TST5-0044", "entities": [{"start": 15, "end": 25, "label": "PERSON"}, {"start": 29, "end": 42, "label": "PHONE_NUMBER"}, {"start": 57, "end": 68, "label": "EVENT"}]}
+{"id": "TFN-TST5-0045", "entities": [{"start": 27, "end": 32, "label": "PERCENT"}, {"start": 38, "end": 49, "label": "DATE"}, {"start": 53, "end": 81, "label": "EDUCATIONAL_INSTITUTION"}]}
+{"id": "TFN-TST5-0046", "entities": [{"start": 34, "end": 49, "label": "PHONE_NUMBER"}, {"start": 63, "end": 87, "label": "GOVERNMENT_BODY"}, {"start": 98, "end": 106, "label": "CITY"}]}
+{"id": "TFN-TST5-0047", "entities": [{"start": 13, "end": 26, "label": "PERSON"}, {"start": 40, "end": 51, "label": "PERSON"}, {"start": 64, "end": 79, "label": "ID_NUMBER"}]}
+{"id": "TFN-TST5-0048", "entities": [{"start": 29, "end": 40, "label": "MONEY"}, {"start": 70, "end": 102, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-TST5-0049", "entities": [{"start": 30, "end": 44, "label": "PHONE_NUMBER"}, {"start": 53, "end": 64, "label": "TIME"}, {"start": 69, "end": 80, "label": "TIME"}]}
+{"id": "TFN-TST5-0050", "entities": [{"start": 42, "end": 56, "label": "MONEY"}, {"start": 60, "end": 73, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-TST5-0051", "entities": [{"start": 16, "end": 27, "label": "PROVINCE_REGION"}, {"start": 32, "end": 43, "label": "PERCENT"}, {"start": 60, "end": 64, "label": "DATE"}]}
+{"id": "TFN-TST5-0052", "entities": [{"start": 0, "end": 14, "label": "PERSON"}, {"start": 27, "end": 44, "label": "MONEY"}, {"start": 63, "end": 83, "label": "COURT_LEGAL_BODY"}]}
+{"id": "TFN-TST5-0053", "entities": [{"start": 15, "end": 29, "label": "COUNTRY"}, {"start": 38, "end": 50, "label": "PERCENT"}, {"start": 58, "end": 64, "label": "DATE"}]}
+{"id": "TFN-TST5-0054", "entities": [{"start": 0, "end": 15, "label": "ORGANIZATION"}, {"start": 52, "end": 62, "label": "CITY"}]}
+{"id": "TFN-TST5-0055", "entities": [{"start": 4, "end": 24, "label": "COURT_LEGAL_BODY"}, {"start": 28, "end": 36, "label": "CITY"}, {"start": 45, "end": 62, "label": "COURT_LEGAL_BODY"}, {"start": 79, "end": 88, "label": "DATE"}]}
+{"id": "TFN-TST5-0056", "entities": [{"start": 7, "end": 19, "label": "PERSON"}, {"start": 32, "end": 35, "label": "POLITICAL_PARTY"}, {"start": 67, "end": 72, "label": "PROVINCE_REGION"}]}
+{"id": "TFN-TST5-0057", "entities": [{"start": 0, "end": 11, "label": "SPORTS_TEAM"}, {"start": 21, "end": 29, "label": "SPORTS_TEAM"}, {"start": 45, "end": 67, "label": "LANDMARK_FACILITY"}, {"start": 71, "end": 81, "label": "DATE"}]}
+{"id": "TFN-TST5-0058", "entities": [{"start": 0, "end": 4, "label": "MEDIA_OUTLET"}, {"start": 6, "end": 22, "label": "ORGANIZATION"}, {"start": 37, "end": 42, "label": "PERCENT"}]}
+{"id": "TFN-TST5-0059", "entities": [{"start": 0, "end": 26, "label": "POLITICAL_PARTY"}, {"start": 56, "end": 78, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-TST5-0060", "entities": [{"start": 8, "end": 19, "label": "PERSON"}, {"start": 58, "end": 86, "label": "LANDMARK_FACILITY"}, {"start": 90, "end": 98, "label": "DATE"}]}
+{"id": "TFN-TST5-0061", "entities": [{"start": 28, "end": 34, "label": "PROVINCE_REGION"}, {"start": 50, "end": 70, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-TST5-0062", "entities": [{"start": 4, "end": 29, "label": "COURT_LEGAL_BODY"}, {"start": 62, "end": 93, "label": "ORGANIZATION"}, {"start": 104, "end": 123, "label": "LAW_ACT"}]}
+{"id": "TFN-TST5-0063", "entities": [{"start": 0, "end": 19, "label": "MEDIA_OUTLET"}, {"start": 37, "end": 43, "label": "CITY"}, {"start": 64, "end": 68, "label": "TIME"}]}
+{"id": "TFN-TST5-0064", "entities": [{"start": 35, "end": 48, "label": "PHONE_NUMBER"}, {"start": 62, "end": 92, "label": "GOVERNMENT_BODY"}, {"start": 103, "end": 109, "label": "CITY"}]}
+{"id": "TFN-TST5-0065", "entities": [{"start": 47, "end": 63, "label": "LANDMARK_FACILITY"}]}
+{"id": "TFN-TST5-0066", "entities": [{"start": 22, "end": 36, "label": "PERSON"}, {"start": 38, "end": 53, "label": "ID_NUMBER"}]}
+{"id": "TFN-TST5-0067", "entities": [{"start": 47, "end": 51, "label": "EDUCATIONAL_INSTITUTION"}, {"start": 53, "end": 61, "label": "CITY"}, {"start": 70, "end": 76, "label": "DATE"}]}
+{"id": "TFN-TST5-0068", "entities": [{"start": 21, "end": 26, "label": "COUNTRY"}, {"start": 31, "end": 43, "label": "COUNTRY"}, {"start": 51, "end": 57, "label": "CITY"}, {"start": 61, "end": 72, "label": "DATE"}]}
+{"id": "TFN-TST5-0069", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 25, "end": 36, "label": "MONEY"}, {"start": 40, "end": 54, "label": "PERSON"}, {"start": 58, "end": 66, "label": "DATE"}]}
+{"id": "TFN-TST5-0070", "entities": [{"start": 11, "end": 16, "label": "PROVINCE_REGION"}, {"start": 28, "end": 41, "label": "PERCENT"}]}
+{"id": "TFN-TST5-0071", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 27, "end": 33, "label": "CITY"}, {"start": 37, "end": 44, "label": "CITY"}, {"start": 53, "end": 67, "label": "EVENT"}]}
+{"id": "TFN-TST5-0072", "entities": [{"start": 0, "end": 12, "label": "PERSON"}, {"start": 42, "end": 52, "label": "ORGANIZATION"}, {"start": 56, "end": 73, "label": "DATE"}]}
+{"id": "TFN-TST5-0073", "entities": [{"start": 12, "end": 23, "label": "EDUCATIONAL_INSTITUTION"}, {"start": 51, "end": 55, "label": "TIME"}, {"start": 59, "end": 67, "label": "DATE"}]}
+{"id": "TFN-TST5-0074", "entities": [{"start": 0, "end": 15, "label": "PERSON"}, {"start": 39, "end": 61, "label": "PROVINCE_REGION"}]}
+{"id": "TFN-TST5-0075", "entities": [{"start": 17, "end": 23, "label": "CITY"}, {"start": 35, "end": 38, "label": "TIME"}, {"start": 45, "end": 57, "label": "PHONE_NUMBER"}]}
+{"id": "TFN-TST5-0076", "entities": [{"start": 38, "end": 41, "label": "PROVINCE_REGION"}, {"start": 56, "end": 90, "label": "GOVERNMENT_BODY"}]}
+{"id": "TFN-TST5-0077", "entities": [{"start": 0, "end": 10, "label": "PERSON"}, {"start": 14, "end": 28, "label": "SPORTS_TEAM"}, {"start": 54, "end": 70, "label": "SPORTS_TEAM"}]}
+{"id": "TFN-TST5-0078", "entities": [{"start": 46, "end": 50, "label": "EDUCATIONAL_INSTITUTION"}, {"start": 65, "end": 76, "label": "DATE"}]}
+{"id": "TFN-TST5-0079", "entities": [{"start": 10, "end": 29, "label": "ORGANIZATION"}, {"start": 35, "end": 47, "label": "PERCENT"}]}
+{"id": "TFN-TST5-0080", "entities": [{"start": 37, "end": 58, "label": "COURT_LEGAL_BODY"}, {"start": 62, "end": 72, "label": "DATE"}]}
