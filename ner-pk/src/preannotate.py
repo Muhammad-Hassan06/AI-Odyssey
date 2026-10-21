@@ -49,7 +49,10 @@ ORGANIZATIONS = [
     "Sui Southern Gas Company", "SSGC", "National Bank of Pakistan", "NBP",
     "Habib Bank Limited", "HBL", "United Bank Limited", "UBL", "MCB Bank", "Allied Bank",
     "Karachi Chamber of Commerce & Industry", "KCCI", "Supreme Court Bar Association", "SCBA",
-    "Lahore Chamber of Commerce and Industry", "LCCI", "Pakistan Olympic Association"
+    "Lahore Chamber of Commerce and Industry", "LCCI", "Pakistan Olympic Association",
+    "Pakistan Steel Mills", "Pakistan Steel", "Bank of Punjab", "BOP",
+    "Engro Corporation", "Engro", "International Monetary Fund", "IMF",
+    "World Bank", "Asian Development Bank", "ADB", "State Bank", "Federal Board of Revenue"
 ]
 
 # Prominent Pakistani Persons (names only; titles are strictly stripped per guidelines)
@@ -60,16 +63,19 @@ PROMINENT_PERSONS = [
     "Qazi Faez Isa", "Gulzar Ahmed", "Asif Saeed Khosa", "Saqib Nisar",
     "Abdul Qadeer Khan", "Abdus Salam", "Arshad Nadeem", "Babar Azam", "Shaheen Shah Afridi",
     "Mohammad Rizwan", "Wasim Akram", "Waqar Younis", "Jahangir Khan", "Jansher Khan",
-    "قائد اعظم", "محمد علی جناح", "علامہ اقبال", "عمران خان", "نواز شریف", "شہباز شریف", "بلاول بھٹو زرداری"
+    "Aamer Farooq", "Salman Akram Raja", "Salman Akram", "Ayesha Khan", "Jinnah Ali",
+    "قائد اعظم", "محمد علی جناح", "علامہ اقبال", "عمران خان", "نواز شریف", "شہباز شریف", "بلاول بھٹو زرداری",
+    "بلاول بھٹو", "بابر اعظم", "احمد علی", "عامر فاروق", "سلمان اکرم راجہ", "عائشہ خان"
 ]
 
 # Prominent Events
 KNOWN_EVENTS = [
-    "Pakistan Super League", "PSL", "Independence Day", "Pakistan Day", "Defense Day",
+    "Pakistan Super League 10", "Pakistan Super League 9", "Pakistan Super League", "PSL 10", "PSL 9", "PSL 8", "PSL",
+    "Independence Day", "Pakistan Day", "Defense Day",
     "Defence Day", "Youm-e-Takbir", "Kashmir Solidarity Day", "Eid-ul-Fitr", "Eid-ul-Adha",
-    "Federal Budget", "Budget 2025-26", "Budget 2024-25", "General Elections 2024",
-    "General Elections 2018", "SCO Summit", "COP29", "COP28", "2022 Pakistan floods",
-    "پاکستان سپر لیگ", "پی ایس ایل", "یوم آزادی", "یوم پاکستان", "یوم دفاع", "یوم تکبیر", "وفاقی بجٹ"
+    "Federal Budget 2025-26", "Federal Budget 2024-25", "Federal Budget", "Budget 2025-26", "Budget 2024-25",
+    "General Elections 2024", "General Elections 2018", "SCO Summit", "COP29", "COP28", "2022 Pakistan floods",
+    "پاکستان سپر لیگ 10", "پاکستان سپر لیگ", "پی ایس ایل 10", "پی ایس ایل", "یوم آزادی", "یوم پاکستان", "یوم دفاع", "یوم تکبیر", "وفاقی بجٹ 2025-26", "وفاقی بجٹ"
 ]
 
 def load_gazetteers() -> List[Tuple[re.Pattern, str, int]]:
@@ -166,6 +172,34 @@ def preannotate_sentence(text: str) -> List[Dict[str, Any]]:
             "start": ent["start"],
             "end": ent["end"],
             "label": ent["label"],
+            "priority": 10
+        })
+
+    # 1.5 Honorific-based Person Extraction (Dr., Justice, Mr., Advocate, Maulana etc.)
+    # Titles/honorifics are strictly stripped per guidelines; the extracted entity is the person's name!
+    HONORIFIC_EN_PATTERN = re.compile(
+        r"\b(?:Justice|Chief Justice|Judge|Dr\.?|Doctor|Prof\.?|Professor|Mr\.?|Ms\.?|Mrs\.?|Barrister|Advocate|Senator|Gen\.?|General|Maj\.?|Major|Capt\.?|Captain|Col\.?|Colonel|Maulana|Mufti|Chaudhry|Chaudhary|Sardar|Pir|Makhdoom)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){1,3})\b"
+    )
+    for m in HONORIFIC_EN_PATTERN.finditer(text):
+        name_text = m.group(1)
+        candidates.append({
+            "text": name_text,
+            "start": m.start(1),
+            "end": m.end(1),
+            "label": "PERSON",
+            "priority": 10 # High priority: beats accidental CITY or PROVINCE matches on parts of name (e.g. Dr. Multan Khan -> Multan Khan)
+        })
+
+    HONORIFIC_UR_PATTERN = re.compile(
+        r"(?:جسٹس|چیف جسٹس|ڈاکٹر|پروفیسر|علامہ|مولانا|مفتی|سینیٹر|بیرسٹر|ایڈووکیٹ|سردار|چوہدری|مخدوم|پیر)\s+([\u0600-\u06FF]+(?:\s+[\u0600-\u06FF]+){1,3})"
+    )
+    for m in HONORIFIC_UR_PATTERN.finditer(text):
+        name_text = m.group(1).strip()
+        candidates.append({
+            "text": name_text,
+            "start": m.start(1),
+            "end": m.end(1),
+            "label": "PERSON",
             "priority": 10
         })
 

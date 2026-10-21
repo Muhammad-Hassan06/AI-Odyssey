@@ -88,6 +88,9 @@ GAZETTEERS = {
     ],
     "government_bodies": [
         # English
+        "Punjab Police", "Sindh Police", "KP Police", "Balochistan Police", "Islamabad Police",
+        "Sindh Assembly", "Punjab Assembly", "Khyber Pakhtunkhwa Assembly", "Balochistan Assembly",
+        "National Assembly", "Senate of Pakistan", "Senate", "Government of Pakistan",
         "Federal Board of Revenue", "FBR", "State Bank of Pakistan", "SBP",
         "National Database and Registration Authority", "NADRA",
         "Securities and Exchange Commission of Pakistan", "SECP",
@@ -103,6 +106,7 @@ GAZETTEERS = {
         "National Disaster Management Authority", "NDMA",
         "Board of Investment", "BOI", "Federal Investigation Agency", "FIA",
         # Urdu
+        "پنجاب پولیس", "سندھ پولیس", "سندھ اسمبلی", "پنجاب اسمبلی", "قومی اسمبلی", "سینیٹ آف پاکستان",
         "وفاقی حکومت", "حکومت پاکستان", "حکومت سندھ", "حکومت پنجاب", "حکومت خیبر پختونخوا",
         "حکومت بلوچستان", "فیڈرل بورڈ آف ریونیو", "ایف بی آر", "اسٹیٹ بینک آف پاکستان", "اسٹیٹ بینک",
         "نیشنل ڈیٹا بیس اینڈ رجسٹریشن اتھارٹی", "نادرا", "سیکورٹیز اینڈ ایکسچینج کمیشن آف پاکستان",
@@ -140,7 +144,7 @@ GAZETTEERS = {
     ],
     "media_outlets": [
         # English
-        "Dawn", "The Express Tribune", "The News International", "The News",
+        "Dawn", "The Express Tribune", "Express Tribune", "The News International", "The News",
         "Business Recorder", "Pakistan Today", "Daily Times", "The Nation",
         "Geo News", "Geo TV", "ARY News", "ARY Digital", "Samaa TV", "Samaa",
         "Dunya News", "Hum News", "BOL News", "Express News", "92 News",
@@ -149,7 +153,7 @@ GAZETTEERS = {
         "Daily Jang", "Jang", "Nawa-i-Waqt", "Daily Express", "Daily Khabrain",
         "BBC Urdu", "Independent Urdu",
         # Urdu
-        "روزنامہ جنگ", "جنگ", "نوائے وقت", "ایکسپریس نیوز", "روزنامہ ایکسپریس", "روزنامہ دنیا",
+        "روزنامہ جنگ", "جنگ", "نوائے وقت", "ایکسپریس نیوز", "روزنامہ ایکسپریس", "ایکسپریس ٹریبیون", "روزنامہ دنیا",
         "دنیا نیوز", "ڈان نیوز", "ڈان", "دی ایکسپریس ٹریبیون", "دی نیوز", "بزنس ریکارڈر",
         "پاکستان ٹوڈے", "جیو نیوز", "جیو ٹی وی", "اے آر وائی نیوز", "اے آر وائی", "سماء ٹی وی",
         "سماء", "ہم نیوز", "بول نیوز", "92 نیوز", "پی ٹی وی نیوز", "پاکستان ٹیلی ویژن",
