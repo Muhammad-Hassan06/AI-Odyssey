@@ -351,22 +351,48 @@ CUSTOM_CSS = """
 .hero-box h1, .hero-box p { color: white !important; margin: 0; }
 """
 
+def load_live_eval_metrics():
+    """Dynamically read verified metrics from reports/final_eval/live_eval_real_only.json."""
+    metrics_path = os.path.join(base_dir, "reports", "final_eval", "live_eval_real_only.json")
+    if os.path.exists(metrics_path):
+        try:
+            with open(metrics_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            dev_model = data.get("dev_results", {}).get("model_only", {})
+            dev_hybrid = data.get("dev_results", {}).get("conservative_hybrid", {})
+            bench_hybrid = data.get("benchmark_results", {}).get("conservative_hybrid", {})
+            return {
+                "dev_model_f1": f"{dev_model.get('micro_f1', 82.69):.2f}%",
+                "dev_model_macro": f"{dev_model.get('macro_f1', 60.06):.2f}%",
+                "dev_hybrid_f1": f"{dev_hybrid.get('micro_f1', 87.54):.2f}%",
+                "bench_hybrid_f1": f"{bench_hybrid.get('micro_f1', 84.03):.2f}%"
+            }
+        except Exception:
+            pass
+    return {
+        "dev_model_f1": "82.69%",
+        "dev_model_macro": "60.06%",
+        "dev_hybrid_f1": "87.54%",
+        "bench_hybrid_f1": "84.03%"
+    }
+
 # ==============================================================================
 # GRADIO APPLICATION BUILDER
 # ==============================================================================
 def build_gradio_app():
+    metrics = load_live_eval_metrics()
     with gr.Blocks(title="Pakistani-Context NER System") as demo:
         gr.HTML(
-            """
+            f"""
             <div class="hero-box">
                 <h1 style="font-size: 26px; font-weight: 700; margin-bottom: 6px;">🇵🇰 Pakistani-Context Named Entity Recognition (NER)</h1>
                 <p style="font-size: 15px; opacity: 0.95;">TechFest NER Challenge — Dory's Data Dive (Round 2) | Unified Multilingual & Hybrid Architecture</p>
                 <div style="margin-top: 10px; font-size: 13px; opacity: 0.9;">
-                    <b>Strict Benchmark F1: 94.60%</b> &nbsp;|&nbsp; 
-                    <b>Relaxed F1: 95.07%</b> &nbsp;|&nbsp; 
-                    <b>Urdu Script Recall: 100.0%</b> &nbsp;|&nbsp; 
-                    <b>Exact 20 Classes</b> &nbsp;|&nbsp; 
-                    <b>Synthetic PII Safe</b>
+                    <b>Dev Real Hybrid Micro F1: {metrics['dev_hybrid_f1']}</b> &nbsp;|&nbsp; 
+                    <b>Dev Real Model Micro F1: {metrics['dev_model_f1']} (Macro: {metrics['dev_model_macro']})</b> &nbsp;|&nbsp; 
+                    <b>Internal Silver Benchmark F1: {metrics['bench_hybrid_f1']} (0 human-gold)</b> &nbsp;|&nbsp; 
+                    <b>Real Text Only (v4)</b> &nbsp;|&nbsp; 
+                    <b>Exact 20 Classes</b>
                 </div>
             </div>
             """

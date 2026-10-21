@@ -1,0 +1,299 @@
+{
+  "splits": {
+    "train": {
+      "split": "train",
+      "input_total": 7997,
+      "excluded_synthetic": 2715,
+      "exclusion_breakdown": {
+        "article_is_synthetic_pii": 400,
+        "source_is_synthetic_generator": 1915,
+        "article_is_augmented": 400
+      },
+      "retained_real": 5282,
+      "languages": {
+        "en": 4970,
+        "ur": 312
+      },
+      "total_mentions": 8602,
+      "entity_counts": {
+        "COUNTRY": 1103,
+        "MONEY": 338,
+        "COURT_LEGAL_BODY": 555,
+        "POLITICAL_PARTY": 1182,
+        "MEDIA_OUTLET": 425,
+        "EVENT": 62,
+        "PERSON": 812,
+        "PROVINCE_REGION": 668,
+        "LAW_ACT": 148,
+        "CITY": 1119,
+        "DATE": 381,
+        "GOVERNMENT_BODY": 678,
+        "SPORTS_TEAM": 361,
+        "TIME": 51,
+        "PERCENT": 225,
+        "EDUCATIONAL_INSTITUTION": 247,
+        "ORGANIZATION": 64,
+        "LANDMARK_FACILITY": 183
+      },
+      "jsonl_path": "C:\\Users\\muham\\OneDrive\\Desktop\\AI-Odyssey\\ner-pk\\v4\\train_real.jsonl",
+      "jsonl_sha256": "32029081b1427dfb3ec0bf94568333d78f83ee89b2df783b3a4456a24451cdab",
+      "conll_path": "C:\\Users\\muham\\OneDrive\\Desktop\\AI-Odyssey\\ner-pk\\v4\\train_real.conll",
+      "conll_sha256": "a54d29b5eacbc29b0d30c5a3bf24b9703d4b76a9606fbc3c3cf5b413583eff6a"
+    },
+    "dev": {
+      "split": "dev",
+      "input_total": 887,
+      "excluded_synthetic": 433,
+      "exclusion_breakdown": {
+        "source_is_synthetic_generator": 433
+      },
+      "retained_real": 454,
+      "languages": {
+        "en": 323,
+        "ur": 131
+      },
+      "total_mentions": 740,
+      "entity_counts": {
+        "EDUCATIONAL_INSTITUTION": 10,
+        "CITY": 223,
+        "PROVINCE_REGION": 48,
+        "COUNTRY": 226,
+        "DATE": 34,
+        "ORGANIZATION": 15,
+        "SPORTS_TEAM": 4,
+        "EVENT": 4,
+        "LAW_ACT": 6,
+        "POLITICAL_PARTY": 7,
+        "PERSON": 7,
+        "COURT_LEGAL_BODY": 1,
+        "MEDIA_OUTLET": 32,
+        "PERCENT": 85,
+        "MONEY": 18,
+        "LANDMARK_FACILITY": 13,
+        "GOVERNMENT_BODY": 7
+      },
+      "jsonl_path": "C:\\Users\\muham\\OneDrive\\Desktop\\AI-Odyssey\\ner-pk\\v4\\dev_real.jsonl",
+      "jsonl_sha256": "e18f91170b1b927a932a7ff7f4a9b4f7c8449b92394c4aa9ff45d2b6d8eeddbd",
+      "conll_path": "C:\\Users\\muham\\OneDrive\\Desktop\\AI-Odyssey\\ner-pk\\v4\\dev_real.conll",
+      "conll_sha256": "13b5d8ebe40e578ee6df2c6ac0421138ebcc7aab3edec39d572920d75b0d36e4"
+    },
+    "benchmark": {
+      "split": "benchmark",
+      "input_total": 1035,
+      "excluded_synthetic": 420,
+      "exclusion_breakdown": {
+        "source_is_synthetic_generator": 420
+      },
+      "retained_real": 615,
+      "languages": {
+        "en": 615
+      },
+      "total_mentions": 1177,
+      "entity_counts": {
+        "COUNTRY": 286,
+        "GOVERNMENT_BODY": 3,
+        "MONEY": 7,
+        "MEDIA_OUTLET": 28,
+        "PERSON": 15,
+        "CITY": 522,
+        "DATE": 41,
+        "EDUCATIONAL_INSTITUTION": 24,
+        "PROVINCE_REGION": 128,
+        "LAW_ACT": 1,
+        "PERCENT": 52,
+        "COURT_LEGAL_BODY": 12,
+        "LANDMARK_FACILITY": 42,
+        "ORGANIZATION": 9,
+        "SPORTS_TEAM": 1,
+        "EVENT": 1,
+        "POLITICAL_PARTY": 5
+      },
+      "jsonl_path": "C:\\Users\\muham\\OneDrive\\Desktop\\AI-Odyssey\\ner-pk\\v4\\benchmark_real.jsonl",
+      "jsonl_sha256": "ad007eea98ba0c0ff422745e008ab98f8f1efa9d4daa890cb46a3e7c547490ae",
+      "conll_path": "C:\\Users\\muham\\OneDrive\\Desktop\\AI-Odyssey\\ner-pk\\v4\\benchmark_real.conll",
+      "conll_sha256": "307653b4b0482c388b8589f6902482bd688b2983d0b47d5a5c75e8d63f836313"
+    }
+  },
+  "per_class_table": [
+    {
+      "class": "PERSON",
+      "train_count": 812,
+      "train_flag": "RELIABLE",
+      "dev_count": 7,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 15,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "CITY",
+      "train_count": 1119,
+      "train_flag": "RELIABLE",
+      "dev_count": 223,
+      "dev_flag": "RELIABLE",
+      "bench_count": 522,
+      "bench_flag": "RELIABLE"
+    },
+    {
+      "class": "PROVINCE_REGION",
+      "train_count": 668,
+      "train_flag": "RELIABLE",
+      "dev_count": 48,
+      "dev_flag": "RELIABLE",
+      "bench_count": 128,
+      "bench_flag": "RELIABLE"
+    },
+    {
+      "class": "COUNTRY",
+      "train_count": 1103,
+      "train_flag": "RELIABLE",
+      "dev_count": 226,
+      "dev_flag": "RELIABLE",
+      "bench_count": 286,
+      "bench_flag": "RELIABLE"
+    },
+    {
+      "class": "LANDMARK_FACILITY",
+      "train_count": 183,
+      "train_flag": "THIN",
+      "dev_count": 13,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 42,
+      "bench_flag": "RELIABLE"
+    },
+    {
+      "class": "GOVERNMENT_BODY",
+      "train_count": 678,
+      "train_flag": "RELIABLE",
+      "dev_count": 7,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 3,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "POLITICAL_PARTY",
+      "train_count": 1182,
+      "train_flag": "RELIABLE",
+      "dev_count": 7,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 5,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "ORGANIZATION",
+      "train_count": 64,
+      "train_flag": "THIN",
+      "dev_count": 15,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 9,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "EDUCATIONAL_INSTITUTION",
+      "train_count": 247,
+      "train_flag": "THIN",
+      "dev_count": 10,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 24,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "COURT_LEGAL_BODY",
+      "train_count": 555,
+      "train_flag": "RELIABLE",
+      "dev_count": 1,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 12,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "LAW_ACT",
+      "train_count": 148,
+      "train_flag": "THIN",
+      "dev_count": 6,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 1,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "EVENT",
+      "train_count": 62,
+      "train_flag": "THIN",
+      "dev_count": 4,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 1,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "MEDIA_OUTLET",
+      "train_count": 425,
+      "train_flag": "RELIABLE",
+      "dev_count": 32,
+      "dev_flag": "RELIABLE",
+      "bench_count": 28,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "SPORTS_TEAM",
+      "train_count": 361,
+      "train_flag": "RELIABLE",
+      "dev_count": 4,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 1,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "DATE",
+      "train_count": 381,
+      "train_flag": "RELIABLE",
+      "dev_count": 34,
+      "dev_flag": "RELIABLE",
+      "bench_count": 41,
+      "bench_flag": "RELIABLE"
+    },
+    {
+      "class": "TIME",
+      "train_count": 51,
+      "train_flag": "THIN",
+      "dev_count": 0,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 0,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "MONEY",
+      "train_count": 338,
+      "train_flag": "RELIABLE",
+      "dev_count": 18,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 7,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "PERCENT",
+      "train_count": 225,
+      "train_flag": "THIN",
+      "dev_count": 85,
+      "dev_flag": "RELIABLE",
+      "bench_count": 52,
+      "bench_flag": "RELIABLE"
+    },
+    {
+      "class": "PHONE_NUMBER",
+      "train_count": 0,
+      "train_flag": "THIN",
+      "dev_count": 0,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 0,
+      "bench_flag": "UNRELIABLE"
+    },
+    {
+      "class": "ID_NUMBER",
+      "train_count": 0,
+      "train_flag": "THIN",
+      "dev_count": 0,
+      "dev_flag": "UNRELIABLE",
+      "bench_count": 0,
+      "bench_flag": "UNRELIABLE"
+    }
+  ]
+}

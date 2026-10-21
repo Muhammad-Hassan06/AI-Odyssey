@@ -147,13 +147,16 @@ class PakistaniNERPredictor:
 
             with torch.no_grad():
                 logits = self.model(input_ids=input_ids, attention_mask=attention_mask).logits
+                probs = torch.softmax(logits, dim=2)[0].cpu().numpy()
                 preds = torch.argmax(logits, dim=2)[0].cpu().numpy()
 
             curr_ent = None
-            for p_id, (start_char, end_char) in zip(preds, offset_mapping):
+            for t_idx, (p_id, (start_char, end_char)) in enumerate(zip(preds, offset_mapping)):
                 if start_char == end_char:
                     continue
                 tag = ID2LABEL.get(int(p_id), "O")
+                conf = float(probs[t_idx, p_id])
+
                 if tag.startswith("B-"):
                     if curr_ent:
                         model_entities.append(curr_ent)
@@ -162,13 +165,15 @@ class PakistaniNERPredictor:
                         "text": text[start_char:end_char],
                         "start": int(start_char),
                         "end": int(end_char),
-                        "label": lbl
+                        "label": lbl,
+                        "confidences": [conf]
                     }
                 elif tag.startswith("I-"):
                     lbl = tag[2:]
                     if curr_ent and curr_ent["label"] == lbl:
                         curr_ent["end"] = int(end_char)
                         curr_ent["text"] = text[curr_ent["start"]:int(end_char)]
+                        curr_ent["confidences"].append(conf)
                     else:
                         if curr_ent:
                             model_entities.append(curr_ent)
@@ -176,7 +181,8 @@ class PakistaniNERPredictor:
                             "text": text[start_char:end_char],
                             "start": int(start_char),
                             "end": int(end_char),
-                            "label": lbl
+                            "label": lbl,
+                            "confidences": [conf]
                         }
                 else:
                     if curr_ent:
@@ -185,6 +191,10 @@ class PakistaniNERPredictor:
             if curr_ent:
                 model_entities.append(curr_ent)
 
+            for e in model_entities:
+                if "confidences" in e:
+                    e["confidence"] = sum(e["confidences"]) / len(e["confidences"])
+
         # 4. Hybrid Merge & Postprocess
         merged = hybrid_merge_predictions(model_entities, rule_entities, len(text))
         final_entities = postprocess_entities(text, merged)
@@ -192,7 +202,11 @@ class PakistaniNERPredictor:
         # Strict validation: never emit any label outside the exact 20
         valid_entities = []
         for e in final_entities:
-            if validate_entity_type(e["label"]) and e["start"] < e["end"]:
+            lbl = e["label"]
+            if lbl == "GOVERNMENT_BODIES":
+                lbl = "GOVERNMENT_BODY"
+                e["label"] = lbl
+            if validate_entity_type(lbl) and e["start"] < e["end"]:
                 # Ensure span matches text exactly
                 if text[e["start"]:e["end"]] == e["text"]:
                     valid_entities.append(e)

@@ -1,0 +1,9 @@
+split,mode_key,mode_name,precision,recall,micro_f1,ci_micro_low,ci_micro_high,macro_f1,ci_macro_low,ci_macro_high,micro_f1_nopii,token_accuracy,exact_match_sent_acc
+dev,model_only,Model-Only (XLM-R Checkpoint),77.17,89.05,82.69,77.5,84.95,60.06,32.48,64.76,82.69,97.53,68.06
+dev,rules_only,Rules-Only (Regex + Gazetteers),92.24,97.97,95.02,88.56,96.45,80.78,41.05,82.56,95.02,99.35,89.21
+dev,old_hybrid,Old Hybrid (Model Overrides Rules),77.42,96.35,85.85,79.21,87.46,64.26,34.77,68.42,85.85,97.81,71.59
+dev,conservative_hybrid,Conservative Hybrid (Rules Priority),78.94,98.24,87.54,81.02,90.01,67.31,35.89,71.44,87.54,97.99,73.35
+benchmark,model_only,Model-Only (XLM-R Checkpoint),72.52,92.61,81.34,76.7,83.14,52.65,35.62,55.49,81.34,96.96,58.05
+benchmark,rules_only,Rules-Only (Regex + Gazetteers),91.52,99.07,95.14,87.81,97.49,80.2,49.4,81.55,95.14,99.37,87.15
+benchmark,old_hybrid,Old Hybrid (Model Overrides Rules),70.83,95.92,81.49,74.65,83.73,54.14,36.64,57.33,81.49,96.88,58.05
+benchmark,conservative_hybrid,Conservative Hybrid (Rules Priority),73.1,98.81,84.03,76.74,86.28,60.51,38.65,63.6,84.03,97.24,60.33

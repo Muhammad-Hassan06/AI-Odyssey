@@ -1,0 +1,157 @@
+{
+  "v2_files": {
+    "train.jsonl": {
+      "exists": true,
+      "sentences": 7998,
+      "mentions": 13128,
+      "sha256": "8594c2e5c99f16023355a82b492e25040799230dea496cf9d4609428b28ea699"
+    },
+    "dev.jsonl": {
+      "exists": true,
+      "sentences": 887,
+      "mentions": 1400,
+      "sha256": "191597bb054191f65c379107d60b4001f9a76b2ad24af412158c6a01107f174c"
+    },
+    "benchmark.jsonl": {
+      "exists": true,
+      "sentences": 1035,
+      "mentions": 1823,
+      "sha256": "04e1d47da4aed4f15071dbdb5e3590d10d00abc4339cd8cae9b228fcf9f3a4bd"
+    }
+  },
+  "v2_per_class": {
+    "train.jsonl": {
+      "COUNTRY": 1237,
+      "MONEY": 521,
+      "PHONE_NUMBER": 822,
+      "ID_NUMBER": 842,
+      "COURT_LEGAL_BODY": 784,
+      "POLITICAL_PARTY": 1203,
+      "MEDIA_OUTLET": 533,
+      "EVENT": 204,
+      "PERSON": 828,
+      "PROVINCE_REGION": 700,
+      "LAW_ACT": 362,
+      "CITY": 2341,
+      "DATE": 416,
+      "GOVERNMENT_BODIES": 603,
+      "TIME": 264,
+      "SPORTS_TEAM": 496,
+      "PERCENT": 234,
+      "EDUCATIONAL_INSTITUTION": 375,
+      "LANDMARK_FACILITY": 188,
+      "ORGANIZATION": 72,
+      "GOVERNMENT_BODY": 103
+    },
+    "dev.jsonl": {
+      "EDUCATIONAL_INSTITUTION": 34,
+      "CITY": 448,
+      "PROVINCE_REGION": 48,
+      "COUNTRY": 226,
+      "DATE": 34,
+      "ORGANIZATION": 15,
+      "SPORTS_TEAM": 23,
+      "EVENT": 28,
+      "LAW_ACT": 48,
+      "POLITICAL_PARTY": 11,
+      "PERSON": 7,
+      "COURT_LEGAL_BODY": 43,
+      "MEDIA_OUTLET": 52,
+      "PERCENT": 85,
+      "MONEY": 45,
+      "LANDMARK_FACILITY": 13,
+      "GOVERNMENT_BODY": 14,
+      "PHONE_NUMBER": 86,
+      "ID_NUMBER": 96,
+      "TIME": 44
+    },
+    "benchmark.jsonl": {
+      "COUNTRY": 286,
+      "GOVERNMENT_BODY": 9,
+      "MONEY": 38,
+      "MEDIA_OUTLET": 56,
+      "PERSON": 15,
+      "CITY": 744,
+      "DATE": 41,
+      "EDUCATIONAL_INSTITUTION": 51,
+      "PROVINCE_REGION": 128,
+      "LAW_ACT": 38,
+      "PERCENT": 52,
+      "COURT_LEGAL_BODY": 49,
+      "LANDMARK_FACILITY": 42,
+      "ORGANIZATION": 9,
+      "SPORTS_TEAM": 24,
+      "EVENT": 32,
+      "POLITICAL_PARTY": 8,
+      "PHONE_NUMBER": 80,
+      "TIME": 41,
+      "ID_NUMBER": 80
+    }
+  },
+  "old_files": {
+    "train.jsonl": {
+      "sentences": 3366,
+      "mentions": 5969
+    },
+    "dev.jsonl": {
+      "sentences": 787,
+      "mentions": 1404
+    },
+    "silver_annotated.jsonl": {
+      "sentences": 2320,
+      "mentions": 4874
+    },
+    "synthetic_train.jsonl": {
+      "sentences": 2050,
+      "mentions": 3222
+    },
+    "synthetic_dev.jsonl": {
+      "sentences": 460,
+      "mentions": 700
+    },
+    "synthetic_benchmark.jsonl": {
+      "sentences": 420,
+      "mentions": 652
+    },
+    "synthetic_dataset.jsonl": {
+      "sentences": 1700,
+      "mentions": 2077
+    }
+  },
+  "pool_files": {
+    "sentences_en.jsonl": {
+      "sentences": 22575,
+      "mentions": 12985
+    },
+    "sentences_ur.jsonl": {
+      "sentences": 9409,
+      "mentions": 4872
+    },
+    "train.jsonl": {
+      "sentences": 11662,
+      "mentions": 4313
+    },
+    "dev.jsonl": {
+      "sentences": 6489,
+      "mentions": 5468
+    },
+    "test.jsonl": {
+      "sentences": 5074,
+      "mentions": 3984
+    },
+    "review_sample_1500.jsonl": {
+      "sentences": 1500,
+      "mentions": 513
+    }
+  },
+  "leakage": {
+    "doc_overlap_train_dev": 1,
+    "doc_overlap_traindev_bench": 1,
+    "exact_train_bench": 0,
+    "exact_dev_bench": 0,
+    "near_dup_bench": 1,
+    "verdict": "FAILED"
+  },
+  "model_final_exists": false,
+  "smoke_model_exists": true
+}

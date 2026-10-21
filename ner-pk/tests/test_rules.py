@@ -147,8 +147,13 @@ class TestRegexEntityExtraction(unittest.TestCase):
     def test_date_iso_format(self):
         self._assert_entity("Report due on 2025-10-21.", "DATE", "2025-10-21")
 
-    def test_date_day_of_week(self):
-        self._assert_entity("The court resumes hearing on Monday.", "DATE", "Monday")
+    def test_date_day_of_week_with_date(self):
+        self._assert_entity("The court resumes hearing on Monday, 21 October 2026.", "DATE", "21 October 2026")
+
+    def test_negative_bare_weekday_not_date(self):
+        entities = extract_regex_entities("The court resumes hearing on Monday.")
+        dates = [e for e in entities if e["label"] == "DATE"]
+        self.assertEqual(len(dates), 0, "Bare weekday was falsely identified as DATE.")
 
     def test_date_urdu(self):
         self._assert_entity("اعلان 14 اگست 2025 کو کیا جائے گا۔", "DATE", "14 اگست 2025")

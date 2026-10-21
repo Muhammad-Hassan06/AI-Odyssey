@@ -1,0 +1,921 @@
+{
+  "inventory": {
+    "train": {
+      "sentences": 7998,
+      "mentions": 13128,
+      "urdu_sentences": 777,
+      "urdu_mentions": 1408,
+      "tier_counts": {
+        "SILVER": 6083,
+        "SYNTHETIC": 1915
+      },
+      "class_tier_counts": {
+        "COUNTRY": {
+          "SILVER": 1237
+        },
+        "MONEY": {
+          "SILVER": 371,
+          "SYNTHETIC": 150
+        },
+        "PHONE_NUMBER": {
+          "SILVER": 436,
+          "SYNTHETIC": 386
+        },
+        "ID_NUMBER": {
+          "SILVER": 457,
+          "SYNTHETIC": 385
+        },
+        "COURT_LEGAL_BODY": {
+          "SILVER": 595,
+          "SYNTHETIC": 189
+        },
+        "POLITICAL_PARTY": {
+          "SILVER": 1190,
+          "SYNTHETIC": 13
+        },
+        "MEDIA_OUTLET": {
+          "SILVER": 439,
+          "SYNTHETIC": 94
+        },
+        "EVENT": {
+          "SILVER": 81,
+          "SYNTHETIC": 123
+        },
+        "PERSON": {
+          "SILVER": 828
+        },
+        "PROVINCE_REGION": {
+          "SILVER": 700
+        },
+        "LAW_ACT": {
+          "SILVER": 173,
+          "SYNTHETIC": 189
+        },
+        "CITY": {
+          "SILVER": 1298,
+          "SYNTHETIC": 1043
+        },
+        "DATE": {
+          "SILVER": 416
+        },
+        "GOVERNMENT_BODIES": {
+          "SILVER": 603
+        },
+        "TIME": {
+          "SYNTHETIC": 194,
+          "SILVER": 70
+        },
+        "SPORTS_TEAM": {
+          "SILVER": 384,
+          "SYNTHETIC": 112
+        },
+        "PERCENT": {
+          "SILVER": 234
+        },
+        "EDUCATIONAL_INSTITUTION": {
+          "SILVER": 269,
+          "SYNTHETIC": 106
+        },
+        "LANDMARK_FACILITY": {
+          "SILVER": 188
+        },
+        "ORGANIZATION": {
+          "SILVER": 72
+        },
+        "GOVERNMENT_BODY": {
+          "SYNTHETIC": 13,
+          "SILVER": 90
+        }
+      }
+    },
+    "dev": {
+      "sentences": 887,
+      "mentions": 1400,
+      "urdu_sentences": 225,
+      "urdu_mentions": 396,
+      "tier_counts": {
+        "SILVER": 454,
+        "SYNTHETIC": 433
+      },
+      "class_tier_counts": {
+        "EDUCATIONAL_INSTITUTION": {
+          "SILVER": 10,
+          "SYNTHETIC": 24
+        },
+        "CITY": {
+          "SILVER": 223,
+          "SYNTHETIC": 225
+        },
+        "PROVINCE_REGION": {
+          "SILVER": 48
+        },
+        "COUNTRY": {
+          "SILVER": 226
+        },
+        "DATE": {
+          "SILVER": 34
+        },
+        "ORGANIZATION": {
+          "SILVER": 15
+        },
+        "SPORTS_TEAM": {
+          "SILVER": 4,
+          "SYNTHETIC": 19
+        },
+        "EVENT": {
+          "SILVER": 4,
+          "SYNTHETIC": 24
+        },
+        "LAW_ACT": {
+          "SILVER": 6,
+          "SYNTHETIC": 42
+        },
+        "POLITICAL_PARTY": {
+          "SILVER": 7,
+          "SYNTHETIC": 4
+        },
+        "PERSON": {
+          "SILVER": 7
+        },
+        "COURT_LEGAL_BODY": {
+          "SILVER": 1,
+          "SYNTHETIC": 42
+        },
+        "MEDIA_OUTLET": {
+          "SILVER": 32,
+          "SYNTHETIC": 20
+        },
+        "PERCENT": {
+          "SILVER": 85
+        },
+        "MONEY": {
+          "SILVER": 18,
+          "SYNTHETIC": 27
+        },
+        "LANDMARK_FACILITY": {
+          "SILVER": 13
+        },
+        "GOVERNMENT_BODY": {
+          "SILVER": 7,
+          "SYNTHETIC": 7
+        },
+        "PHONE_NUMBER": {
+          "SYNTHETIC": 86
+        },
+        "ID_NUMBER": {
+          "SYNTHETIC": 96
+        },
+        "TIME": {
+          "SYNTHETIC": 44
+        }
+      }
+    },
+    "benchmark": {
+      "sentences": 1035,
+      "mentions": 1823,
+      "urdu_sentences": 102,
+      "urdu_mentions": 174,
+      "tier_counts": {
+        "SILVER": 615,
+        "SYNTHETIC": 420
+      },
+      "class_tier_counts": {
+        "COUNTRY": {
+          "SILVER": 286
+        },
+        "GOVERNMENT_BODY": {
+          "SILVER": 3,
+          "SYNTHETIC": 6
+        },
+        "MONEY": {
+          "SILVER": 7,
+          "SYNTHETIC": 31
+        },
+        "MEDIA_OUTLET": {
+          "SILVER": 28,
+          "SYNTHETIC": 28
+        },
+        "PERSON": {
+          "SILVER": 15
+        },
+        "CITY": {
+          "SILVER": 522,
+          "SYNTHETIC": 222
+        },
+        "DATE": {
+          "SILVER": 41
+        },
+        "EDUCATIONAL_INSTITUTION": {
+          "SILVER": 24,
+          "SYNTHETIC": 27
+        },
+        "PROVINCE_REGION": {
+          "SILVER": 128
+        },
+        "LAW_ACT": {
+          "SILVER": 1,
+          "SYNTHETIC": 37
+        },
+        "PERCENT": {
+          "SILVER": 52
+        },
+        "COURT_LEGAL_BODY": {
+          "SILVER": 12,
+          "SYNTHETIC": 37
+        },
+        "LANDMARK_FACILITY": {
+          "SILVER": 42
+        },
+        "ORGANIZATION": {
+          "SILVER": 9
+        },
+        "SPORTS_TEAM": {
+          "SILVER": 1,
+          "SYNTHETIC": 23
+        },
+        "EVENT": {
+          "SILVER": 1,
+          "SYNTHETIC": 31
+        },
+        "POLITICAL_PARTY": {
+          "SILVER": 5,
+          "SYNTHETIC": 3
+        },
+        "PHONE_NUMBER": {
+          "SYNTHETIC": 80
+        },
+        "TIME": {
+          "SYNTHETIC": 41
+        },
+        "ID_NUMBER": {
+          "SYNTHETIC": 80
+        }
+      }
+    }
+  },
+  "per_class": [
+    {
+      "entity": "PERSON",
+      "train": 828,
+      "dev": 7,
+      "benchmark": 15,
+      "train_flag": "BELOW_MIN (<600)",
+      "dev_flag": "UNRELIABLE (<30)",
+      "benchmark_flag": "UNRELIABLE (<30)",
+      "train_target": 1500,
+      "shortfall_train": 672,
+      "shortfall_dev": 53,
+      "shortfall_benchmark": 45,
+      "urdu_train": 23,
+      "urdu_dev": 1,
+      "urdu_benchmark": 0
+    },
+    {
+      "entity": "CITY",
+      "train": 2341,
+      "dev": 448,
+      "benchmark": 744,
+      "train_flag": "OK",
+      "dev_flag": "OK",
+      "benchmark_flag": "OK",
+      "train_target": 600,
+      "shortfall_train": 0,
+      "shortfall_dev": 0,
+      "shortfall_benchmark": 0,
+      "urdu_train": 307,
+      "urdu_dev": 208,
+      "urdu_benchmark": 65
+    },
+    {
+      "entity": "PROVINCE_REGION",
+      "train": 700,
+      "dev": 48,
+      "benchmark": 128,
+      "train_flag": "OK",
+      "dev_flag": "BELOW_MIN",
+      "benchmark_flag": "OK",
+      "train_target": 600,
+      "shortfall_train": 0,
+      "shortfall_dev": 12,
+      "shortfall_benchmark": 0,
+      "urdu_train": 113,
+      "urdu_dev": 18,
+      "urdu_benchmark": 0
+    },
+    {
+      "entity": "COUNTRY",
+      "train": 1237,
+      "dev": 226,
+      "benchmark": 286,
+      "train_flag": "OK",
+      "dev_flag": "OK",
+      "benchmark_flag": "OK",
+      "train_target": 600,
+      "shortfall_train": 0,
+      "shortfall_dev": 0,
+      "shortfall_benchmark": 0,
+      "urdu_train": 324,
+      "urdu_dev": 50,
+      "urdu_benchmark": 2
+    },
+    {
+      "entity": "LANDMARK_FACILITY",
+      "train": 188,
+      "dev": 13,
+      "benchmark": 42,
+      "train_flag": "THIN (<300)",
+      "dev_flag": "UNRELIABLE (<30)",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 412,
+      "shortfall_dev": 47,
+      "shortfall_benchmark": 18,
+      "urdu_train": 8,
+      "urdu_dev": 0,
+      "urdu_benchmark": 0
+    },
+    {
+      "entity": "GOVERNMENT_BODY",
+      "train": 103,
+      "dev": 14,
+      "benchmark": 9,
+      "train_flag": "THIN (<300)",
+      "dev_flag": "UNRELIABLE (<30)",
+      "benchmark_flag": "UNRELIABLE (<30)",
+      "train_target": 600,
+      "shortfall_train": 497,
+      "shortfall_dev": 46,
+      "shortfall_benchmark": 51,
+      "urdu_train": 20,
+      "urdu_dev": 7,
+      "urdu_benchmark": 6
+    },
+    {
+      "entity": "POLITICAL_PARTY",
+      "train": 1203,
+      "dev": 11,
+      "benchmark": 8,
+      "train_flag": "OK",
+      "dev_flag": "UNRELIABLE (<30)",
+      "benchmark_flag": "UNRELIABLE (<30)",
+      "train_target": 600,
+      "shortfall_train": 0,
+      "shortfall_dev": 49,
+      "shortfall_benchmark": 52,
+      "urdu_train": 29,
+      "urdu_dev": 4,
+      "urdu_benchmark": 3
+    },
+    {
+      "entity": "ORGANIZATION",
+      "train": 72,
+      "dev": 15,
+      "benchmark": 9,
+      "train_flag": "THIN (<300)",
+      "dev_flag": "UNRELIABLE (<30)",
+      "benchmark_flag": "UNRELIABLE (<30)",
+      "train_target": 600,
+      "shortfall_train": 528,
+      "shortfall_dev": 45,
+      "shortfall_benchmark": 51,
+      "urdu_train": 4,
+      "urdu_dev": 0,
+      "urdu_benchmark": 0
+    },
+    {
+      "entity": "EDUCATIONAL_INSTITUTION",
+      "train": 375,
+      "dev": 34,
+      "benchmark": 51,
+      "train_flag": "BELOW_MIN (<600)",
+      "dev_flag": "BELOW_MIN",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 225,
+      "shortfall_dev": 26,
+      "shortfall_benchmark": 9,
+      "urdu_train": 36,
+      "urdu_dev": 12,
+      "urdu_benchmark": 7
+    },
+    {
+      "entity": "COURT_LEGAL_BODY",
+      "train": 784,
+      "dev": 43,
+      "benchmark": 49,
+      "train_flag": "OK",
+      "dev_flag": "BELOW_MIN",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 0,
+      "shortfall_dev": 17,
+      "shortfall_benchmark": 11,
+      "urdu_train": 58,
+      "urdu_dev": 7,
+      "urdu_benchmark": 9
+    },
+    {
+      "entity": "LAW_ACT",
+      "train": 362,
+      "dev": 48,
+      "benchmark": 38,
+      "train_flag": "BELOW_MIN (<600)",
+      "dev_flag": "BELOW_MIN",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 238,
+      "shortfall_dev": 12,
+      "shortfall_benchmark": 22,
+      "urdu_train": 60,
+      "urdu_dev": 9,
+      "urdu_benchmark": 9
+    },
+    {
+      "entity": "EVENT",
+      "train": 204,
+      "dev": 28,
+      "benchmark": 32,
+      "train_flag": "THIN (<300)",
+      "dev_flag": "UNRELIABLE (<30)",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 396,
+      "shortfall_dev": 32,
+      "shortfall_benchmark": 28,
+      "urdu_train": 54,
+      "urdu_dev": 8,
+      "urdu_benchmark": 11
+    },
+    {
+      "entity": "MEDIA_OUTLET",
+      "train": 533,
+      "dev": 52,
+      "benchmark": 56,
+      "train_flag": "BELOW_MIN (<600)",
+      "dev_flag": "BELOW_MIN",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 67,
+      "shortfall_dev": 8,
+      "shortfall_benchmark": 4,
+      "urdu_train": 47,
+      "urdu_dev": 10,
+      "urdu_benchmark": 9
+    },
+    {
+      "entity": "SPORTS_TEAM",
+      "train": 496,
+      "dev": 23,
+      "benchmark": 24,
+      "train_flag": "BELOW_MIN (<600)",
+      "dev_flag": "UNRELIABLE (<30)",
+      "benchmark_flag": "UNRELIABLE (<30)",
+      "train_target": 600,
+      "shortfall_train": 104,
+      "shortfall_dev": 37,
+      "shortfall_benchmark": 36,
+      "urdu_train": 58,
+      "urdu_dev": 7,
+      "urdu_benchmark": 11
+    },
+    {
+      "entity": "DATE",
+      "train": 416,
+      "dev": 34,
+      "benchmark": 41,
+      "train_flag": "BELOW_MIN (<600)",
+      "dev_flag": "BELOW_MIN",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 184,
+      "shortfall_dev": 26,
+      "shortfall_benchmark": 19,
+      "urdu_train": 37,
+      "urdu_dev": 5,
+      "urdu_benchmark": 0
+    },
+    {
+      "entity": "TIME",
+      "train": 264,
+      "dev": 44,
+      "benchmark": 41,
+      "train_flag": "THIN (<300)",
+      "dev_flag": "BELOW_MIN",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 336,
+      "shortfall_dev": 16,
+      "shortfall_benchmark": 19,
+      "urdu_train": 53,
+      "urdu_dev": 14,
+      "urdu_benchmark": 11
+    },
+    {
+      "entity": "MONEY",
+      "train": 521,
+      "dev": 45,
+      "benchmark": 38,
+      "train_flag": "BELOW_MIN (<600)",
+      "dev_flag": "BELOW_MIN",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 79,
+      "shortfall_dev": 15,
+      "shortfall_benchmark": 22,
+      "urdu_train": 63,
+      "urdu_dev": 8,
+      "urdu_benchmark": 11
+    },
+    {
+      "entity": "PERCENT",
+      "train": 234,
+      "dev": 85,
+      "benchmark": 52,
+      "train_flag": "THIN (<300)",
+      "dev_flag": "OK",
+      "benchmark_flag": "BELOW_MIN",
+      "train_target": 600,
+      "shortfall_train": 366,
+      "shortfall_dev": 0,
+      "shortfall_benchmark": 8,
+      "urdu_train": 12,
+      "urdu_dev": 5,
+      "urdu_benchmark": 0
+    },
+    {
+      "entity": "PHONE_NUMBER",
+      "train": 822,
+      "dev": 86,
+      "benchmark": 80,
+      "train_flag": "OK",
+      "dev_flag": "OK",
+      "benchmark_flag": "OK",
+      "train_target": 600,
+      "shortfall_train": 0,
+      "shortfall_dev": 0,
+      "shortfall_benchmark": 0,
+      "urdu_train": 50,
+      "urdu_dev": 7,
+      "urdu_benchmark": 10
+    },
+    {
+      "entity": "ID_NUMBER",
+      "train": 842,
+      "dev": 96,
+      "benchmark": 80,
+      "train_flag": "OK",
+      "dev_flag": "OK",
+      "benchmark_flag": "OK",
+      "train_target": 600,
+      "shortfall_train": 0,
+      "shortfall_dev": 0,
+      "shortfall_benchmark": 0,
+      "urdu_train": 42,
+      "urdu_dev": 16,
+      "urdu_benchmark": 10
+    }
+  ],
+  "leakage": {
+    "doc_overlap_train_dev": 0,
+    "doc_overlap_train_bench": 0,
+    "doc_overlap_dev_bench": 0,
+    "exact_sentence_train_dev": 0,
+    "exact_sentence_train_bench": 0,
+    "exact_sentence_dev_bench": 0,
+    "near_duplicates_bench_train": 1,
+    "pool_overlap_train": 4133,
+    "pool_overlap_dev": 235,
+    "pool_overlap_bench": 291,
+    "synth_template_exact_leakage": 0,
+    "verdict_doc_isolation": "PASSED",
+    "verdict_sentence_isolation": "FAILED"
+  },
+  "entity_string_overlap": {
+    "PERSON": {
+      "bench_count": 7,
+      "seen_in_train": 7,
+      "pct": 100.0
+    },
+    "CITY": {
+      "bench_count": 33,
+      "seen_in_train": 32,
+      "pct": 96.97
+    },
+    "PROVINCE_REGION": {
+      "bench_count": 10,
+      "seen_in_train": 8,
+      "pct": 80.0
+    },
+    "COUNTRY": {
+      "bench_count": 13,
+      "seen_in_train": 12,
+      "pct": 92.31
+    },
+    "LANDMARK_FACILITY": {
+      "bench_count": 15,
+      "seen_in_train": 14,
+      "pct": 93.33
+    },
+    "GOVERNMENT_BODY": {
+      "bench_count": 6,
+      "seen_in_train": 5,
+      "pct": 83.33
+    },
+    "POLITICAL_PARTY": {
+      "bench_count": 6,
+      "seen_in_train": 6,
+      "pct": 100.0
+    },
+    "ORGANIZATION": {
+      "bench_count": 7,
+      "seen_in_train": 4,
+      "pct": 57.14
+    },
+    "EDUCATIONAL_INSTITUTION": {
+      "bench_count": 22,
+      "seen_in_train": 20,
+      "pct": 90.91
+    },
+    "COURT_LEGAL_BODY": {
+      "bench_count": 14,
+      "seen_in_train": 14,
+      "pct": 100.0
+    },
+    "LAW_ACT": {
+      "bench_count": 13,
+      "seen_in_train": 13,
+      "pct": 100.0
+    },
+    "EVENT": {
+      "bench_count": 13,
+      "seen_in_train": 13,
+      "pct": 100.0
+    },
+    "MEDIA_OUTLET": {
+      "bench_count": 21,
+      "seen_in_train": 21,
+      "pct": 100.0
+    },
+    "SPORTS_TEAM": {
+      "bench_count": 13,
+      "seen_in_train": 13,
+      "pct": 100.0
+    },
+    "DATE": {
+      "bench_count": 39,
+      "seen_in_train": 6,
+      "pct": 15.38
+    },
+    "TIME": {
+      "bench_count": 38,
+      "seen_in_train": 13,
+      "pct": 34.21
+    },
+    "MONEY": {
+      "bench_count": 38,
+      "seen_in_train": 1,
+      "pct": 2.63
+    },
+    "PERCENT": {
+      "bench_count": 47,
+      "seen_in_train": 7,
+      "pct": 14.89
+    },
+    "PHONE_NUMBER": {
+      "bench_count": 80,
+      "seen_in_train": 0,
+      "pct": 0.0
+    },
+    "ID_NUMBER": {
+      "bench_count": 80,
+      "seen_in_train": 0,
+      "pct": 0.0
+    }
+  },
+  "integrity": {
+    "train_corruptions": 71,
+    "dev_corruptions": 12,
+    "benchmark_corruptions": 11,
+    "train_overlaps": 0,
+    "dev_overlaps": 0,
+    "benchmark_overlaps": 0,
+    "train_honorific_leaks": 12,
+    "dev_honorific_leaks": 0,
+    "bench_honorific_leaks": 0,
+    "unlabeled_capitalized_candidates": 108
+  },
+  "disagreements": {
+    "train_error_rate_pct": 11.28,
+    "dev_error_rate_pct": 1.71,
+    "bench_error_rate_pct": 1.33
+  },
+  "token_accuracy": {
+    "dev_rules": 99.08,
+    "bench_rules": 99.27
+  },
+  "top_confusion_pairs": [
+    [
+      "O",
+      "DATE",
+      93
+    ],
+    [
+      "O",
+      "CITY",
+      36
+    ],
+    [
+      "O",
+      "COUNTRY",
+      31
+    ],
+    [
+      "CITY",
+      "O",
+      22
+    ],
+    [
+      "O",
+      "PROVINCE_REGION",
+      16
+    ],
+    [
+      "EVENT",
+      "O",
+      9
+    ],
+    [
+      "O",
+      "GOVERNMENT_BODY",
+      9
+    ],
+    [
+      "O",
+      "ORGANIZATION",
+      4
+    ],
+    [
+      "COUNTRY",
+      "GOVERNMENT_BODY",
+      3
+    ],
+    [
+      "EDUCATIONAL_INSTITUTION",
+      "O",
+      2
+    ]
+  ],
+  "zero_ent_sentences": {
+    "total_zero_ent_bench": 103,
+    "false_positive_count": 39,
+    "examples": [
+      [
+        "پولیس کے مطابق ملزم کی گاڑی کا رجسٹریشن نمبر ICT-4521 درج تھا۔",
+        [
+          "PROVINCE_REGION: ICT"
+        ]
+      ],
+      [
+        "On Sept 27, 14 people, including two rescue officials, were martyred and 35 sust",
+        [
+          "DATE: Sept 27"
+        ]
+      ],
+      [
+        "Afridi has not been seen since the imposition of governor’s rule and emergency i",
+        [
+          "DATE: Oct 11"
+        ]
+      ],
+      [
+        "His lawyer is also Vazir, who requested the court at Tuesday’s hearing to issue ",
+        [
+          "DATE: Tuesday"
+        ]
+      ],
+      [
+        "He claimed that on Oct 11 at approximately 7pm, Swati was “abducted” from the KP",
+        [
+          "DATE: Oct 11",
+          "PROVINCE_REGION: KP"
+        ]
+      ]
+    ]
+  },
+  "robustness": {
+    "clean": {
+      "micro_p": 91.02,
+      "micro_r": 98.46,
+      "micro_f1": 94.6,
+      "macro_f1": 94.13,
+      "classes": {
+        "PERSON": 100.0,
+        "CITY": 96.62,
+        "PROVINCE_REGION": 94.12,
+        "COUNTRY": 94.1,
+        "LANDMARK_FACILITY": 100.0,
+        "GOVERNMENT_BODY": 75.0,
+        "POLITICAL_PARTY": 100.0,
+        "ORGANIZATION": 90.0,
+        "EDUCATIONAL_INSTITUTION": 99.01,
+        "COURT_LEGAL_BODY": 100.0,
+        "LAW_ACT": 100.0,
+        "EVENT": 84.38,
+        "MEDIA_OUTLET": 100.0,
+        "SPORTS_TEAM": 100.0,
+        "DATE": 49.4,
+        "TIME": 100.0,
+        "MONEY": 100.0,
+        "PERCENT": 100.0,
+        "PHONE_NUMBER": 100.0,
+        "ID_NUMBER": 100.0
+      }
+    },
+    "lowercase": {
+      "micro_p": 91.02,
+      "micro_r": 98.46,
+      "micro_f1": 94.6,
+      "macro_f1": 94.13,
+      "classes": {
+        "PERSON": 100.0,
+        "CITY": 96.62,
+        "PROVINCE_REGION": 94.12,
+        "COUNTRY": 94.1,
+        "LANDMARK_FACILITY": 100.0,
+        "GOVERNMENT_BODY": 75.0,
+        "POLITICAL_PARTY": 100.0,
+        "ORGANIZATION": 90.0,
+        "EDUCATIONAL_INSTITUTION": 99.01,
+        "COURT_LEGAL_BODY": 100.0,
+        "LAW_ACT": 100.0,
+        "EVENT": 84.38,
+        "MEDIA_OUTLET": 100.0,
+        "SPORTS_TEAM": 100.0,
+        "DATE": 49.4,
+        "TIME": 100.0,
+        "MONEY": 100.0,
+        "PERCENT": 100.0,
+        "PHONE_NUMBER": 100.0,
+        "ID_NUMBER": 100.0
+      }
+    },
+    "uppercase": {
+      "micro_p": 91.02,
+      "micro_r": 98.46,
+      "micro_f1": 94.6,
+      "macro_f1": 94.13,
+      "classes": {
+        "PERSON": 100.0,
+        "CITY": 96.62,
+        "PROVINCE_REGION": 94.12,
+        "COUNTRY": 94.1,
+        "LANDMARK_FACILITY": 100.0,
+        "GOVERNMENT_BODY": 75.0,
+        "POLITICAL_PARTY": 100.0,
+        "ORGANIZATION": 90.0,
+        "EDUCATIONAL_INSTITUTION": 99.01,
+        "COURT_LEGAL_BODY": 100.0,
+        "LAW_ACT": 100.0,
+        "EVENT": 84.38,
+        "MEDIA_OUTLET": 100.0,
+        "SPORTS_TEAM": 100.0,
+        "DATE": 49.4,
+        "TIME": 100.0,
+        "MONEY": 100.0,
+        "PERCENT": 100.0,
+        "PHONE_NUMBER": 100.0,
+        "ID_NUMBER": 100.0
+      }
+    },
+    "noisy_punct": {
+      "micro_p": 90.74,
+      "micro_r": 97.31,
+      "micro_f1": 93.91,
+      "macro_f1": 92.71,
+      "classes": {
+        "PERSON": 100.0,
+        "CITY": 96.62,
+        "PROVINCE_REGION": 94.12,
+        "COUNTRY": 94.1,
+        "LANDMARK_FACILITY": 100.0,
+        "GOVERNMENT_BODY": 75.0,
+        "POLITICAL_PARTY": 100.0,
+        "ORGANIZATION": 90.0,
+        "EDUCATIONAL_INSTITUTION": 99.01,
+        "COURT_LEGAL_BODY": 100.0,
+        "LAW_ACT": 84.51,
+        "EVENT": 82.54,
+        "MEDIA_OUTLET": 100.0,
+        "SPORTS_TEAM": 100.0,
+        "DATE": 49.4,
+        "TIME": 98.77,
+        "MONEY": 100.0,
+        "PERCENT": 94.0,
+        "PHONE_NUMBER": 97.44,
+        "ID_NUMBER": 98.73
+      }
+    }
+  },
+  "model_final_exists": false,
+  "smoke_model_exists": true
+}

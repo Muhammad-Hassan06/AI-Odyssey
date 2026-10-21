@@ -1,0 +1,363 @@
+{
+  "sha256": "4189db7276ee7c2cf7eff1be39e21e79df33adb8f43d9df6aef15b7ef9e016d8",
+  "size_bytes": 1109962396,
+  "labels": [
+    "O",
+    "B-PERSON",
+    "B-CITY",
+    "B-PROVINCE_REGION",
+    "B-COUNTRY",
+    "B-LANDMARK_FACILITY",
+    "B-GOVERNMENT_BODY",
+    "B-POLITICAL_PARTY",
+    "B-ORGANIZATION",
+    "B-EDUCATIONAL_INSTITUTION",
+    "B-COURT_LEGAL_BODY",
+    "B-LAW_ACT",
+    "B-EVENT",
+    "B-MEDIA_OUTLET",
+    "B-SPORTS_TEAM",
+    "B-DATE",
+    "B-TIME",
+    "B-MONEY",
+    "B-PERCENT",
+    "B-PHONE_NUMBER",
+    "B-ID_NUMBER",
+    "I-PERSON",
+    "I-CITY",
+    "I-PROVINCE_REGION",
+    "I-COUNTRY",
+    "I-LANDMARK_FACILITY",
+    "I-GOVERNMENT_BODY",
+    "I-POLITICAL_PARTY",
+    "I-ORGANIZATION",
+    "I-EDUCATIONAL_INSTITUTION",
+    "I-COURT_LEGAL_BODY",
+    "I-LAW_ACT",
+    "I-EVENT",
+    "I-MEDIA_OUTLET",
+    "I-SPORTS_TEAM",
+    "I-DATE",
+    "I-TIME",
+    "I-MONEY",
+    "I-PERCENT",
+    "I-PHONE_NUMBER",
+    "I-ID_NUMBER"
+  ],
+  "outside_labels": [],
+  "app_status_banner": "🟢 **Trained Transformer Checkpoint Active (`models/final`)** | Full Hybrid Inference Enabled",
+  "sanity_predictions": [
+    {
+      "index": 1,
+      "text": "A division bench of the Supreme Court of Pakistan convened in Islamabad on Monday.",
+      "model_only": [
+        [
+          "COURT_LEGAL_BODY",
+          "Supreme Court of Pakistan"
+        ],
+        [
+          "CITY",
+          "Islam"
+        ],
+        [
+          "CITY",
+          "abad"
+        ]
+      ],
+      "hybrid": [
+        [
+          "COURT_LEGAL_BODY",
+          "Supreme Court of Pakistan"
+        ],
+        [
+          "CITY",
+          "Islamabad"
+        ]
+      ]
+    },
+    {
+      "index": 2,
+      "text": "Prime Minister Shehbaz Sharif met with Chinese Premier Li Qiang in Beijing.",
+      "model_only": [
+        [
+          "PERSON",
+          "She"
+        ],
+        [
+          "PERSON",
+          "h"
+        ],
+        [
+          "PERSON",
+          "baz Sharif"
+        ]
+      ],
+      "hybrid": [
+        [
+          "PERSON",
+          "Shehbaz Sharif"
+        ]
+      ]
+    },
+    {
+      "index": 3,
+      "text": "سندھ ہائیکورٹ نے کراچی میں بلدیاتی انتخابات کے حوالے سے الیکشن کمیشن کو نوٹس جاری کر دیا۔",
+      "model_only": [
+        [
+          "COURT_LEGAL_BODY",
+          "سندھ ہائیکورٹ"
+        ],
+        [
+          "CITY",
+          "کراچی"
+        ],
+        [
+          "EVENT",
+          "بلد"
+        ],
+        [
+          "EVENT",
+          "انتخابات"
+        ],
+        [
+          "GOVERNMENT_BODY",
+          "الیکشن کمیشن"
+        ]
+      ],
+      "hybrid": [
+        [
+          "COURT_LEGAL_BODY",
+          "سندھ ہائیکورٹ"
+        ],
+        [
+          "CITY",
+          "کراچی"
+        ],
+        [
+          "EVENT",
+          "بلد"
+        ],
+        [
+          "EVENT",
+          "انتخابات"
+        ],
+        [
+          "GOVERNMENT_BODY",
+          "الیکشن کمیشن"
+        ]
+      ]
+    },
+    {
+      "index": 4,
+      "text": "Lahore Qalandars defeated Multan Sultans by 5 wickets in the Pakistan Super League final at Gaddafi Stadium.",
+      "model_only": [
+        [
+          "SPORTS_TEAM",
+          "Lahore Qalandars"
+        ],
+        [
+          "SPORTS_TEAM",
+          "Multan Sultans"
+        ],
+        [
+          "EVENT",
+          "Pakistan Super League"
+        ],
+        [
+          "LANDMARK_FACILITY",
+          "G"
+        ],
+        [
+          "LANDMARK_FACILITY",
+          "addafi Stadium"
+        ]
+      ],
+      "hybrid": [
+        [
+          "SPORTS_TEAM",
+          "Lahore Qalandars"
+        ],
+        [
+          "SPORTS_TEAM",
+          "Multan Sultans"
+        ],
+        [
+          "EVENT",
+          "Pakistan Super League"
+        ],
+        [
+          "LANDMARK_FACILITY",
+          "Gaddafi Stadium"
+        ]
+      ]
+    },
+    {
+      "index": 5,
+      "text": "STATE BANK OF PAKISTAN HIKES POLICY RATE TO 17.5 PERCENT IN KARACHI.",
+      "model_only": [
+        [
+          "GOVERNMENT_BODY",
+          "STATE BANK OF"
+        ],
+        [
+          "COUNTRY",
+          "P"
+        ],
+        [
+          "COUNTRY",
+          "AKI"
+        ],
+        [
+          "COUNTRY",
+          "STAN"
+        ],
+        [
+          "CITY",
+          "KARA"
+        ],
+        [
+          "CITY",
+          "CHI"
+        ]
+      ],
+      "hybrid": [
+        [
+          "GOVERNMENT_BODY",
+          "STATE BANK OF PAKISTAN"
+        ],
+        [
+          "PERCENT",
+          "17.5 PERCENT"
+        ],
+        [
+          "CITY",
+          "KARACHI"
+        ]
+      ]
+    },
+    {
+      "index": 6,
+      "text": "The Federal Board of Revenue collected Rs 850 billion in taxes in October 2025.",
+      "model_only": [
+        [
+          "MONEY",
+          "Rs 850 billion"
+        ]
+      ],
+      "hybrid": [
+        [
+          "GOVERNMENT_BODY",
+          "Federal Board of Revenue"
+        ],
+        [
+          "MONEY",
+          "Rs 850 billion"
+        ],
+        [
+          "DATE",
+          "October 2025"
+        ]
+      ]
+    },
+    {
+      "index": 7,
+      "text": "National Database and Registration Authority issued CNIC 35201-7654321-9 to the citizen.",
+      "model_only": [
+        [
+          "ID_NUMBER",
+          "35201-7654321-9"
+        ]
+      ],
+      "hybrid": [
+        [
+          "GOVERNMENT_BODY",
+          "National Database and Registration Authority"
+        ],
+        [
+          "ID_NUMBER",
+          "35201-7654321-9"
+        ]
+      ]
+    },
+    {
+      "index": 8,
+      "text": "Please contact the emergency response cell at +92-300-1234567 or 042-35871234.",
+      "model_only": [
+        [
+          "PHONE_NUMBER",
+          "+92-300-1234567"
+        ],
+        [
+          "PHONE_NUMBER",
+          "042-35871234"
+        ]
+      ],
+      "hybrid": [
+        [
+          "PHONE_NUMBER",
+          "+92-300-1234567"
+        ],
+        [
+          "PHONE_NUMBER",
+          "042-35871234"
+        ]
+      ]
+    },
+    {
+      "index": 9,
+      "text": "The hearing at the Peshawar High Court was adjourned until 11:30 AM.",
+      "model_only": [
+        [
+          "COURT_LEGAL_BODY",
+          "Pe"
+        ],
+        [
+          "COURT_LEGAL_BODY",
+          "shawar High Court"
+        ],
+        [
+          "TIME",
+          "11:30 AM"
+        ]
+      ],
+      "hybrid": [
+        [
+          "COURT_LEGAL_BODY",
+          "Peshawar High Court"
+        ],
+        [
+          "TIME",
+          "11:30 AM"
+        ]
+      ]
+    },
+    {
+      "index": 10,
+      "text": "Allama Iqbal Open University in Islamabad announced new admissions for the spring semester.",
+      "model_only": [
+        [
+          "EDUCATIONAL_INSTITUTION",
+          "Allama Iqbal Open University"
+        ],
+        [
+          "CITY",
+          "Islam"
+        ],
+        [
+          "CITY",
+          "abad"
+        ]
+      ],
+      "hybrid": [
+        [
+          "EDUCATIONAL_INSTITUTION",
+          "Allama Iqbal Open University"
+        ],
+        [
+          "CITY",
+          "Islamabad"
+        ]
+      ]
+    }
+  ]
+}

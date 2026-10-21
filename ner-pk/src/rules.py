@@ -85,31 +85,31 @@ TIME_REGEXES = [
 ]
 
 # ==============================================================================
-# 6. DATE PATTERNS (Gregorian dates, months, days of week, Urdu dates, Hijri dates)
+# 6. DATE PATTERNS (Gregorian dates, months, Urdu dates, Hijri dates)
+# Rules: Capitalized month names only when adjacent to day number or year;
+# No bare weekday abbreviations or lowercase words (may, march, sun, sat, wed).
 # ==============================================================================
 MONTH_NAMES = (
     r"January|February|March|April|May|June|July|August|September|October|November|December|"
     r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec"
 )
-DAY_NAMES = r"Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday|Mon|Tue|Wed|Thu|Fri|Sat|Sun"
 
 DATE_REGEXES = [
-    # 14 August 2025, 14th of August 2025, August 14, 2025
-    re.compile(rf"(?i)\b\d{{1,2}}(?:st|nd|rd|th)?(?:\s+of)?\s+(?:{MONTH_NAMES})(?:[,\s]+\d{{4}})?\b"),
-    re.compile(rf"(?i)\b(?:{MONTH_NAMES})\s+\d{{1,2}}(?:st|nd|rd|th)?(?:[,\s]+\d{{4}})?\b"),
+    # 14 August 2025, 14th of August 2025, August 14, 2025 (Case-sensitive capitalized months)
+    re.compile(rf"\b\d{{1,2}}(?:st|nd|rd|th)?(?:\s+of)?\s+(?:{MONTH_NAMES})(?:[,\s]+\d{{4}})?\b"),
+    re.compile(rf"\b(?:{MONTH_NAMES})\s+\d{{1,2}}(?:st|nd|rd|th)?(?:[,\s]+\d{{4}})?\b"),
+    # Month + 4-digit Year: August 2025, Dec 2024
+    re.compile(rf"\b(?:{MONTH_NAMES})\s+\d{{4}}\b"),
     # ISO / Standard numeric dates: 2025-10-21, 14/08/2025, 14-08-2025
     re.compile(r"\b\d{4}[-/]\d{1,2}[-/]\d{1,2}\b"),
     re.compile(r"\b\d{1,2}[-/]\d{1,2}[-/]\d{2,4}\b"),
-    # Days of week: Monday, Tuesday
-    re.compile(rf"(?i)\b(?:{DAY_NAMES})\b"),
-    # Urdu months and calendar expressions: 14 اگست 2025, ۱۴ اگست ۲۰۲۵, یکم ستمبر, یکم جنوری
+    # Urdu months and calendar expressions with day or year: 14 اگست 2025, ۱۴ اگست ۲۰۲۵, یکم ستمبر
     re.compile(r"(?:[0-9۰-۹]{1,2}|یکم)\s*(?:جنوری|فروری|مارچ|اپریل|مئی|جون|جولائی|اگست|ستمبر|اکتوبر|نومبر|دسمبر)(?:\s*[0-9۰-۹]{4})?"),
-    # Urdu weekdays: پیر, منگل, بدھ, جمعرات, جمعہ, ہفتہ, اتوار
-    re.compile(r"\b(?:پیر|منگل|بدھ|جمعرات|جمعہ|ہفتہ|اتوار)\b"),
-    # Islamic / Hijri calendar dates: ۱۰ محرم, یکم رمضان, ۱۲ ربیع الاول, عید الفطر, عید الاضحیٰ
+    # Islamic / Hijri calendar dates with day: ۱۰ محرم, یکم رمضان, ۱۲ ربیع الاول
     re.compile(r"(?:[0-9۰-۹]{1,2}|یکم)\s*(?:محرم(?:\s*الحرام)?|صفر|ربیع\s*(?:الاول|الثانی)|جمادی\s*(?:الاول|الثانی)|رجب|شعبان|رمضان(?:\s*المبارک)?|شوال|ذی\s*(?:القعدہ|الحج))\b"),
     re.compile(r"\b(?:عید\s*الفطر|عید\s*الاضحیٰ|یوم\s*عاشورہ)\b")
 ]
+
 
 
 def heal_ocr_numeric_noise(text: str) -> str:

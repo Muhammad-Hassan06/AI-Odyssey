@@ -138,25 +138,33 @@ def compute_metrics_builder():
 
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    if os.path.exists(os.path.join(base_dir, "v2_frozen", "train.jsonl")):
-        default_data_dir = "v2_frozen"
+    if os.path.exists(os.path.join(base_dir, "v4", "train_real.jsonl")):
+        default_data_dir = "v4"
+    elif os.path.exists(os.path.join(base_dir, "v3", "train.jsonl")):
+        default_data_dir = "v3"
     else:
         default_data_dir = "v2"
 
-    parser = argparse.ArgumentParser(description="Fine-tune Multilingual Transformer for Pakistani NER")
+    parser = argparse.ArgumentParser(description="Fine-tune Multilingual Transformer for Pakistani NER (v4 Real-Only Package)")
     parser.add_argument("--model_name", type=str, default="xlm-roberta-base", help="Pretrained model identifier")
-    parser.add_argument("--data_dir", type=str, default=default_data_dir, help="Directory containing train.jsonl and dev.jsonl")
-    parser.add_argument("--train_file", type=str, default=None, help="Explicit path to train.jsonl")
-    parser.add_argument("--dev_file", type=str, default=None, help="Explicit path to dev.jsonl")
-    parser.add_argument("--output_dir", type=str, default="models/best_ner_model")
-    parser.add_argument("--experiment_name", type=str, default="XLM-R V2 Train")
+    parser.add_argument("--data_dir", type=str, default=default_data_dir, help="Directory containing train and dev files")
+    parser.add_argument("--train_file", type=str, default=None, help="Explicit path to train.jsonl / train_real.jsonl")
+    parser.add_argument("--dev_file", type=str, default=None, help="Explicit path to dev.jsonl / dev_real.jsonl")
+    parser.add_argument("--output_dir", type=str, default="models/best_ner_model_v4")
+    parser.add_argument("--experiment_name", type=str, default="XLM-R V4 Real-Only Train")
     parser.add_argument("--batch_size", type=int, default=16)
-    parser.add_argument("--epochs", type=int, default=5)
-    parser.add_argument("--lr", type=float, default=3e-5)
-    parser.add_argument("--max_length", type=int, default=128)
-    parser.add_argument("--use_class_weights", action="store_true", default=False)
-    parser.add_argument("--fp16", action="store_true", default=False)
+    parser.add_argument("--epochs", type=int, default=8)
+    parser.add_argument("--lr", type=float, default=2.5e-5)
+    parser.add_argument("--max_length", type=int, default=256)
+    parser.add_argument("--use_class_weights", action="store_true", default=True)
+    parser.add_argument("--fp16", action="store_true", default=True)
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--include_synthetic_pii", action="store_true", default=False,
+                        help="Include synthetic PII (PHONE_NUMBER, ID_NUMBER) sentences. Default OFF. Handled via regex rules in hybrid mode.")
+    parser.add_argument("--augment_casing", action="store_true", default=True,
+                        help="Augment TRAIN ONLY with 5%% ALL-CAPS and 5%% lowercase copies of real sentences (kept strictly out of dev/benchmark).")
+    parser.add_argument("--no_augment_casing", action="store_false", dest="augment_casing",
+                        help="Disable casing augmentation on train set.")
     parser.add_argument("--max_train_samples", type=int, default=None, help="Truncate train samples for fast debugging/smoke tests")
     parser.add_argument("--max_eval_samples", type=int, default=None, help="Truncate eval samples for fast debugging/smoke tests")
     args = parser.parse_args()
@@ -164,8 +172,20 @@ def main():
     set_seed(args.seed)
 
     # 1. Resolve dataset paths from DATA_DIR
-    train_rel = args.train_file or os.path.join(args.data_dir, "train.jsonl")
-    dev_rel = args.dev_file or os.path.join(args.data_dir, "dev.jsonl")
+    if args.train_file:
+        train_rel = args.train_file
+    elif os.path.exists(os.path.join(base_dir, args.data_dir, "train_real.jsonl")):
+        train_rel = os.path.join(args.data_dir, "train_real.jsonl")
+    else:
+        train_rel = os.path.join(args.data_dir, "train.jsonl")
+
+    if args.dev_file:
+        dev_rel = args.dev_file
+    elif os.path.exists(os.path.join(base_dir, args.data_dir, "dev_real.jsonl")):
+        dev_rel = os.path.join(args.data_dir, "dev_real.jsonl")
+    else:
+        dev_rel = os.path.join(args.data_dir, "dev.jsonl")
+
     train_path = os.path.join(base_dir, train_rel) if not os.path.isabs(train_rel) else train_rel
     dev_path = os.path.join(base_dir, dev_rel) if not os.path.isabs(dev_rel) else dev_rel
 
@@ -215,9 +235,70 @@ def main():
     # Load records
     logger.info(f"Loading training data from {train_path}...")
     train_records = load_data(train_path)
+
+    # Synthetic PII enforcement
+    if not args.include_synthetic_pii:
+        logger.info("PII Flag: --include_synthetic_pii is OFF (default). Real text only; synthetic PII excluded.")
+        logger.info("PHONE_NUMBER and ID_NUMBER are handled strictly via regex rules in hybrid mode.")
+        original_count = len(train_records)
+        train_records = [
+            r for r in train_records
+            if not r.get("synthetic", False)
+            and r.get("provenance") != "synthetic_pii"
+            and r.get("source") != "synthetic_pii"
+        ]
+        if len(train_records) < original_count:
+            logger.info(f"Filtered out {original_count - len(train_records)} synthetic PII records from train.")
+    else:
+        logger.warning("PII Flag: --include_synthetic_pii is ON. Synthetic PII data included in training.")
+
     if args.max_train_samples:
         train_records = train_records[:args.max_train_samples]
         logger.info(f"Subsampled train records to {len(train_records)}")
+
+    # Casing augmentation on TRAIN ONLY (5% ALL-CAPS and 5% lowercase)
+    augmented_caps_count = 0
+    augmented_lower_count = 0
+    if args.augment_casing and train_records:
+        import copy
+        import random
+        rng = random.Random(args.seed)
+        n_aug = max(1, int(0.05 * len(train_records)))
+
+        # 5% ALL-CAPS
+        sample_caps = rng.sample(train_records, min(n_aug, len(train_records)))
+        augmented_caps = []
+        for r in sample_caps:
+            aug_r = copy.deepcopy(r)
+            if "text" in aug_r:
+                aug_r["text"] = aug_r["text"].upper()
+            aug_r["tokens"] = [t.upper() for t in aug_r["tokens"]]
+            aug_r["is_augmented"] = True
+            aug_r["provenance"] = "augmented_all_caps"
+            augmented_caps.append(aug_r)
+
+        # 5% lowercase
+        sample_lower = rng.sample(train_records, min(n_aug, len(train_records)))
+        augmented_lower = []
+        for r in sample_lower:
+            aug_r = copy.deepcopy(r)
+            if "text" in aug_r:
+                aug_r["text"] = aug_r["text"].lower()
+            aug_r["tokens"] = [t.lower() for t in aug_r["tokens"]]
+            aug_r["is_augmented"] = True
+            aug_r["provenance"] = "augmented_lowercase"
+            augmented_lower.append(aug_r)
+
+        augmented_caps_count = len(augmented_caps)
+        augmented_lower_count = len(augmented_lower)
+        train_records.extend(augmented_caps)
+        train_records.extend(augmented_lower)
+        logger.info(
+            f"Applied casing augmentation to TRAIN ONLY: +{augmented_caps_count} ALL-CAPS, "
+            f"+{augmented_lower_count} lowercase. Total train records: {len(train_records)}. "
+            f"Dev/benchmark kept 100% real text without augmentation."
+        )
+
     logger.info(f"Loading dev data from {dev_path}...")
     dev_records = load_data(dev_path)
     if args.max_eval_samples:
@@ -240,10 +321,14 @@ def main():
         "data_dir": args.data_dir,
         "train_file": train_path,
         "train_sha256": train_sha,
-        "train_sentences": train_count,
+        "train_sentences_original": train_count,
+        "train_sentences_total": len(train_records),
+        "augmented_caps": augmented_caps_count,
+        "augmented_lower": augmented_lower_count,
+        "include_synthetic_pii": args.include_synthetic_pii,
         "dev_file": dev_path,
         "dev_sha256": dev_sha,
-        "dev_sentences": dev_count,
+        "dev_sentences": len(dev_records),
         "model_name": args.model_name,
         "epochs": args.epochs,
         "batch_size": args.batch_size,

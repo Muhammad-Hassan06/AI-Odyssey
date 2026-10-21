@@ -85,7 +85,9 @@ def merge_adjacent_fragments(text: str, entities: List[Dict[str, Any]]) -> List[
 def hybrid_merge_predictions(
     model_entities: List[Dict[str, Any]],
     rule_entities: List[Dict[str, Any]],
-    text_len: int
+    text_len: int,
+    confidence_thresholds: Dict[str, float] = None,
+    default_threshold: float = 0.40
 ) -> List[Dict[str, Any]]:
     """
     Merge neural model predictions with deterministic rules using conservative priority:
@@ -93,18 +95,41 @@ def hybrid_merge_predictions(
        from rules have absolute highest priority (100).
     2. Curated high-precision gazetteer matches have priority (80).
     3. Neural model spans for contextual classes (PERSON, ORGANIZATION, EVENT, LANDMARK_FACILITY)
-       are retained unless they conflict with higher-priority rule/gazetteer spans.
+       are filtered by tuned confidence thresholds, and retained unless conflicting with rules.
+    4. Post-inference label filter: remaps GOVERNMENT_BODIES -> GOVERNMENT_BODY, drops invalid.
     """
+    if confidence_thresholds is None:
+        confidence_thresholds = {
+            "PERSON": 0.60,
+            "LANDMARK_FACILITY": 0.55,
+            "ORGANIZATION": 0.50,
+            "GOVERNMENT_BODY": 0.50,
+            "DATE": 0.50
+        }
+
+    ALLOWED_20_LABELS = {
+        "PERSON", "CITY", "PROVINCE_REGION", "COUNTRY", "LANDMARK_FACILITY",
+        "GOVERNMENT_BODY", "POLITICAL_PARTY", "ORGANIZATION", "EDUCATIONAL_INSTITUTION",
+        "COURT_LEGAL_BODY", "LAW_ACT", "EVENT", "MEDIA_OUTLET", "SPORTS_TEAM",
+        "DATE", "TIME", "MONEY", "PERCENT", "PHONE_NUMBER", "ID_NUMBER"
+    }
+
     DETERMINISTIC_RULE_LABELS = {"PHONE_NUMBER", "ID_NUMBER", "MONEY", "PERCENT", "TIME", "DATE"}
     GAZETTEER_LABELS = {
         "COURT_LEGAL_BODY", "GOVERNMENT_BODY", "LAW_ACT", "POLITICAL_PARTY",
         "EDUCATIONAL_INSTITUTION", "MEDIA_OUTLET", "SPORTS_TEAM", "CITY",
-        "PROVINCE_REGION", "COUNTRY"
+        "PROVINCE_REGION", "COUNTRY", "ORGANIZATION", "EVENT"
     }
 
     final_candidates = []
     for r in rule_entities:
         lbl = r["label"]
+        if lbl == "GOVERNMENT_BODIES":
+            lbl = "GOVERNMENT_BODY"
+            r["label"] = lbl
+        if lbl not in ALLOWED_20_LABELS:
+            continue
+
         if lbl in DETERMINISTIC_RULE_LABELS:
             priority = 100
         elif lbl in GAZETTEER_LABELS:
@@ -115,6 +140,17 @@ def hybrid_merge_predictions(
 
     for m in model_entities:
         lbl = m["label"]
+        if lbl == "GOVERNMENT_BODIES":
+            lbl = "GOVERNMENT_BODY"
+            m["label"] = lbl
+        if lbl not in ALLOWED_20_LABELS:
+            continue
+
+        conf = m.get("confidence", 1.0)
+        thresh = confidence_thresholds.get(lbl, default_threshold)
+        if conf < thresh:
+            continue
+
         # Model predictions on deterministic or closed-set classes get lower priority
         if lbl in DETERMINISTIC_RULE_LABELS:
             priority = 30
@@ -149,6 +185,7 @@ def hybrid_merge_predictions(
 
     resolved.sort(key=lambda x: x["start"])
     return resolved
+
 
 def postprocess_entities(text: str, entities: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Complete postprocessing pipeline: clean boundaries -> merge fragments."""

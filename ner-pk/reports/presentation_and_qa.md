@@ -11,7 +11,7 @@
 - **Title:** Robust Hybrid Named Entity Recognition for Pakistani-Context Text
 - **Team:** AI-Odyssey
 - **Core Thesis:** The hidden benchmark rewards robustness and clean span boundaries over brute model size. We built a hybrid pipeline combining a multilingual transformer, deterministic regex patterns, and curated Pakistani gazetteers across 20 exact entity classes.
-- **Key Headline:** **94.60% Strict IOB2 Micro F1** on an untouched, zero-leakage benchmark of 1,035 sentences (1,823 mentions) with 100% synthetic compliance on sensitive entities.
+- **Key Headline:** **87.54% Strict IOB2 Micro F1** (Conservative Hybrid) and **82.69% Micro F1** (Neural Transformer alone) on real collected text (`v4/dev_real.jsonl`), with strict zero-leakage isolation, 0 human-gold sentences acknowledged, and 100% deterministic regex handling for sensitive PII.
 
 ### Slide 2: The Pakistani Context Challenge
 - **Code-Mixing & Multilingualism:** Pakistani news and civic discourse mix English, formal Urdu script (Nastaliq/Naskh), and Roman Urdu within the same document.
@@ -32,21 +32,18 @@
 - **50 Public Sources Scraped:** Dawn, The Express Tribune, APP news releases, State Bank of Pakistan bulletins, Wikipedia Pakistan portal, and Urdu Wikipedia.
 - **No Private Data & No Paywalls:** Zero login-walled sources accessed. Full provenance logged in `data/sources.csv` (58 records).
 
-### Slide 5: Synthetic Data Generation (Zero Real PII)
+### Slide 5: Real-Text Privacy & Deterministic PII Handling
 - **Rule 3 Compliance:** Absolute prohibition on real phone numbers or CNIC cards.
-- **Parametric Pakistani Generator:**
-  - *PHONE_NUMBER:* Varied mobile (+92 3xx, 03xx-xxxxxxx, 03xx xxxxxxx) and landlines (021, 042, 051) using random seed permutations.
-  - *ID_NUMBER:* Valid province-prefixed CNIC patterns (`xxxxx-xxxxxxx-x` and unhyphenated with context).
-- **Distractor Negatives:** Injected fake case numbers, tracking IDs, postal codes, and vehicle registration plates to train the model to discriminate without false alarms.
-- **Strict Cap:** Synthetic data constitutes 400 sentences out of 7,998 training sentences (**5.00%**), safely below the 25% synthetic ceiling.
+- **Zero Real PII in Data:** The collected real corpus contains 0 phone numbers and 0 CNIC cards.
+- **Deterministic Regex Execution:** `PHONE_NUMBER` and `ID_NUMBER` are handled 100% deterministically by regex rules in hybrid mode without generating synthetic PII.
 
-### Slide 6: Zero-Leakage Dataset Partitioning (`v2/`)
+### Slide 6: Zero-Leakage Dataset Partitioning (`v4` Real-Only)
 - **Article/Document-Level Split:** Documents partitioned before sentence splitting, preventing the same article from leaking across splits.
 - **Automated 3-Tier Leakage Audit:**
   - Shared Document IDs: **0**
   - Exact Sentence Collisions: **0**
   - Near-Duplicate Matches (>75% Jaccard): **0**
-- **Corpus Sizes:** Train = 7,998 sentences; Dev = 887 sentences; Held-out Benchmark = 1,035 sentences.
+- **Corpus Sizes:** Train = 5,282 real sentences; Dev = 454 real sentences; Held-out Benchmark = 615 real sentences (0 synthetic sentences in `v4`).
 
 ### Slide 7: Hybrid System Architecture
 - **Layer 1: Multilingual Deep Learning Backbone** (`xlm-roberta-base`): Fine-tuned with smoothed class-weighted cross-entropy loss to counter severe frequency imbalances.
@@ -63,95 +60,62 @@
   - Native dual-numeral regex matching for Urdu CNIC (`۴۲۱۰۱-۱۲۳۴۵۶۷-۱`), Urdu phone numbers (`۰۳۰۰-۱۲۳۴۵۶۷`), and Urdu percentages (`۵.۲ فیصد`).
 - **Bilingual Gazetteers Across All 10 Domains:**
   - Full Urdu coverage for political parties, high courts, sports franchises, laws, and educational institutions (*سپریم کورٹ آف پاکستان*, *لاہور قلندرز*, *26ویں آئینی ترمیم*).
-- **Stress-Tested Recall:** **100% Entity Recall** on pure Urdu-script text and code-mixed Roman Urdu.
 
-### Slide 8: Benchmark Evaluation Results
-- **Overall Benchmark Metrics (1,035 sentences, 1,823 mentions):**
-  - **Strict IOB2 Precision:** **91.02%**
-  - **Strict IOB2 Recall:** **98.46%**
-  - **Strict IOB2 Micro F1:** **94.60%**
-  - **Strict IOB2 Macro F1:** **94.13%**
-  - **Relaxed / Partial Overlap F1:** **95.07%**
-- **Per-Class Perfect Scores (100% Strict F1):**
-  - `PERSON` (100.0%)
-  - `ID_NUMBER` (100.0%)
-  - `PHONE_NUMBER` (100.0%)
-  - `MONEY` (100.0%)
-  - `PERCENT` (100.0%)
-  - `TIME` (100.0%)
-  - `COURT_LEGAL_BODY` (100.0%)
-  - `LAW_ACT` (100.0%)
-  - `LANDMARK_FACILITY` (100.0%)
-  - `MEDIA_OUTLET` (100.0%)
-  - `POLITICAL_PARTY` (100.0%)
+### Slide 8: Real Model & Benchmark Evaluation Results
+- **Benchmark Characterization:** "Internal silver benchmark, real text only, 0 human-gold sentences" containing 615 real sentences (100% Silver auto-annotated).
+- **True Transformer Performance (XLM-RoBERTa Alone):**
+  - Dev Real (454 sents): **77.17% Precision, 89.05% Recall, 82.69% Micro F1** (95% CI: [77.50, 84.95]), **60.06% Macro F1**.
+  - Internal Silver Benchmark (615 sents): **72.84% Precision, 92.10% Recall, 81.34% Micro F1** (95% CI: [76.70, 83.14]).
+- **Why Rules-Only Scores 95.14% on Internal Benchmark:**
+  - Gazetteers and rules generated the silver labels; high rules performance is circular self-agreement.
+- **Production Choice (Conservative Hybrid):**
+  - Dev Real (454 sents): **78.94% Precision, 98.24% Recall, 87.54% Micro F1, 67.31% Macro F1**.
+  - Rules win on structured types (PHONE, ID, MONEY, PERCENT, TIME, DATE); Model generalizes on open-vocabulary classes (PERSON, ORG, EVENT, LANDMARK).
 
-### Slide 9: Ablation Study
-- Demonstrating the measurable value of every architectural layer:
-  - *Layer 1 (Rules + Gazetteers):* 93.42% F1 on closed vocabulary.
-  - *Layer 2 (Neural Backbone Alone):* ~87.3% F1 (strong generalization, but minor boundary jitter on numbers).
-  - *Layer 3 (Hybrid Architecture):* **94.60% Strict F1** (eliminates false positives, captures long-tail entities, guarantees CNIC/Phone precision).
+### Slide 9: Ablation Study & Empirical Model Selection on DEV
+- Selected strictly on **DEV** (`v4/dev_real.jsonl`, Benchmark kept read-only):
+  - *Model-Only:* 82.69% Micro F1 (77.17% Precision / 89.05% Recall / 60.06% Macro F1).
+  - *Rules-Only:* 94.97% Micro F1 (circular on silver data, cannot generalize to unseen names).
+  - *Old Hybrid (Model Overrides):* 85.85% Micro F1 (model errors override high-precision regex).
+  - *Conservative Hybrid:* **87.54% Micro F1, 67.31% Macro F1** (optimal blend).
 
 ### Slide 10: Robustness & Out-of-Domain Stress Testing
-- **Urdu Script Sentences:** **100% Entity Recall**
-- **Roman Urdu Transliterations:** **100% Entity Recall**
-- **ALL-CAPS Headlines:** **100% Entity Recall**
-- **All-Lowercase Text:** **100% Entity Recall**
-- **OCR / Typo Noise:** **100% Entity Recall** (Recovered completely via length-preserving OCR numeric & word healing).
+- **Urdu Script Sentences:** 100% Entity Recall
+- **Roman Urdu Transliterations:** 100% Entity Recall
+- **ALL-CAPS Headlines:** Handled via train casing augmentation and uppercase regex normalization.
+- **All-Lowercase Text:** Preserved via lowercased gazetteer matches.
+- **OCR / Typo Noise:** Recovered via length-preserving OCR numeric & word healing.
 
 ### Slide 11: Error Analysis & Key Takeaways
-- **Dominant Error Class:** Calendar `DATE` precision (32.8%) due to ambiguous isolated years/days appearing in general sentences.
+- **Dominant Error Class:** Calendar `DATE` precision due to ambiguous isolated years/days appearing in general sentences.
 - **Boundary Jitter Mitigation:** Resolved by regex override for currency symbols and post-processing punctuation stripping.
 - **Engineering Principle:** Clean data annotation, stratification, and strict decision boundaries matter more than adding billions of model parameters.
 
 ### Slide 12: Interactive 6-Tab Gradio Application & Deployment
 - Full 6-tab Gradio web application (`app/app.py`):
   1. **Live NER Inspector:** Single-sentence text input, script detection, and color-coded entity highlight.
-  2. **Pakistani Entity Showcase:** Pre-loaded real-world scenarios covering all 20 classes.
-  3. **Model Comparison:** Side-by-side comparison of Rules vs Neural vs Hybrid.
-  4. **Error Explorer:** Interactive browser for Boundary Mismatches, Type Confusions, and Discrepancies.
-  5. **Review Queue:** Human-in-the-loop active learning interface browsing 2,473 mined candidates.
-  6. **Dataset Explorer & Exporter:** Batch processor supporting CSV, JSONL, and CoNLL-2003 formats.
-- Average inference latency: **2.1 ms per sentence** on CPU.
+  2. **20-Entity Showcase:** Pre-loaded scenarios demonstrating all 20 classes.
+  3. **Architecture Comparison:** Side-by-side comparison of Rules vs Neural vs Hybrid.
+  4. **Diagnostic Error Browser:** Exploration of boundary edge cases.
+  5. **Review Queue (HITL):** Active review of 2,473 flagged candidates.
+  6. **Dataset & Exporter:** Batch file processor accepting `.txt`, `.csv`, `.jsonl`.
 
 ---
 
-## Part 2: Anticipated Judge Questions & Defensible Answers
+## Part 2: Judge Q&A Defense Guide
 
-### Q1: Why choose a multilingual transformer (`xlm-roberta`) rather than a large English LLM?
-**Answer:**
-> "Pakistani text is inherently code-mixed. A standard English model fails on Urdu-script sentences (like `کراچی` or `سندھ ہائیکورٹ`) and struggles with Roman Urdu phonetics. XLM-RoBERTa is pre-trained on 100 languages including Urdu and Sindhi, sharing subword vocabulary. Furthermore, for token classification under tight hackathon latency requirements, XLM-RoBERTa provides deterministic token-level BIO probabilities with inference speeds under 10 ms per sentence, which is order-of-magnitude faster and cheaper than prompting a generative LLM."
+### Q1: What does the neural model alone achieve?
+> "On the held-out real dev set (`v4/dev_real.jsonl`, 454 sentences), the fine-tuned XLM-RoBERTa model alone scores **77.17% Precision, 89.05% Recall, 82.69% Micro F1**, and **60.06% Macro F1**. On the real benchmark, it achieves **81.34% Micro F1**. Any claim that the neural model alone scores >94% F1 is inaccurate; that score is only reached by rules matching their own gazetteers."
 
-### Q2: How did you mathematically guarantee zero data leakage into the benchmark?
-**Answer:**
-> "Data leakage is the most common reason hackathon models fail on hidden benchmarks. We implemented three strict safeguards:
-> 1. **Document-Level Partitioning:** We split data strictly at the article level before sentence splitting. No two sentences from the same URL or source document exist across train and benchmark.
-> 2. **Split Isolation for Synthetic Data:** Benchmark synthetic templates used dedicated random seeds and distinct document IDs.
-> 3. **Automated Leakage Audit Script:** We wrote an assertion script in `src/dataset.py` that verifies 0 shared document IDs, 0 exact string collisions, and 0 near-duplicate sentences (>75% 5-gram Jaccard). If a single collision is detected, the pipeline fails loudly."
+### Q2: How were the benchmark labels created?
+> "The benchmark labels were generated using our deterministic rule engine and bilingual gazetteers on real text. There are **zero human-verified gold sentences** in `v4/benchmark_real.jsonl`. We openly designate it as an 'internal silver benchmark, real text only, 0 human-gold sentences'."
 
-### Q3: How was annotation quality maintained across ~10,000 sentences?
-**Answer:**
-> "We used an active-learning disagreement mining strategy:
-> 1. Formulated comprehensive formal guidelines (`docs/annotation_guideline.md`) defining positive and negative boundaries for all 20 classes.
-> 2. Executed an automated consistency pass (`src/clean.py`) that flattened nested entities, stripped honorifics from `PERSON`, and cleaned punctuation.
-> 3. Mined 2,473 candidate review tasks where rule-based matchers and model predictions disagreed, exporting them in Label Studio format (`annotation/review_queue_label_studio.json`).
-> 4. Maintained an untouched, hand-verified gold benchmark of 1,035 sentences that was never touched during training."
+### Q3: How was annotation quality maintained, and how much is human-verified?
+> "In active split `v4` (6,351 sentences: 5,282 train, 454 dev, 615 benchmark), exactly **0 sentences are human-verified GOLD**. All sentences are real collected text auto-annotated by silver rules.
+> We openly characterize our 615-sentence benchmark as an 'internal silver benchmark (0 human-gold sentences)'.
+> To build a true human-gold benchmark, we exported 2,473 candidate sentences from un-split pool documents into Label Studio format (`annotation/review_queue_label_studio.json`) with rare classes prioritized, creating the pipeline for human verification."
 
-### Q4: Why use deterministic rules for PHONE_NUMBER and ID_NUMBER instead of letting the neural model learn them?
-**Answer:**
-> "Pakistani national identity cards (CNIC) and phone numbers follow rigid mathematical and telecommunication conventions (e.g., 5-7-1 digit splits, 03xx mobile codes). Neural token classifiers often suffer from boundary jitter on numbers—for example, predicting 12 digits instead of 13, or splitting the area code from the landline. A deterministic regex layer guarantees 100% boundary precision and zero hallucinations on structured patterns, leaving the neural network to focus on semantic entities like PERSON, ORGANIZATION, and EVENT."
-
-### Q5: What happens when the system encounters OCR noise or spelling errors?
-**Answer:**
-> "In our initial evaluation, OCR substitutions like `l.5 billion` (letter `l` replacing `1`) or `Karach1` (digit `1` replacing `i`) caused boundary failures. We developed a dedicated, length-preserving OCR numeric and word healing layer (`heal_ocr_numeric_noise`) that substitutes typical OCR errors only in numeric and entity contexts while strictly preserving string lengths and character offsets. As a result, our out-of-domain stress test achieves **100.0% entity recall** even on noisy OCR text."
-
-### Q6: What was the single most difficult engineering challenge?
-**Answer:**
-> "Disambiguating overlapping institutional boundaries in Pakistani civic discourse—specifically `GOVERNMENT_BODY` (like FBR or NADRA) versus `ORGANIZATION` (like PIA or Edhi Foundation) versus `COURT_LEGAL_BODY` (like the Supreme Court or High Courts). We solved this by instituting an explicit specificity precedence hierarchy in `docs/annotation_guideline.md` and compiling curated gazetteers that resolved conflicts deterministically during post-processing."
-
-### Q7: The organizers emphasized that Urdu NER support provides a significant advantage. How does your architecture specifically deliver on this?
-**Answer:**
-> "Most teams either ignore Urdu or simply pass Urdu text into an English pipeline where numbers and named entities fail due to script mismatch and Unicode variations. We engineered a dedicated bilingual pipeline:
-> 1. **Orthographic Normalization (`src/urdu_normalize.py`):** Unifies Unicode forms and strips aerab while maintaining 100% 1-to-1 character offset preservation.
-> 2. **Dual-Numeral System:** Directly supports Eastern Arabic-Indic numerals (`۰-۹`) alongside standard ASCII digits (`0-9`) for CNIC (`۴۲۱۰۱-۱۲۳۴۵۶۷-۱`), mobile numbers (`۰۳۰۰-۱۲۳۴۵۶۷`), percentages (`۵.۲ فیصد`), and clock times (`شام ۶ بجے`).
-> 3. **Bilingual Gazetteers:** We translated and localized all 10 domain gazetteers to Urdu script.
-> 4. **Empirical Results:** On out-of-domain stress tests, our system achieves **100.0% entity recall** on native Urdu news sentences and Roman Urdu code-mixed text."
+### Q4: Why will the hybrid model generalize to unseen test text?
+> "The conservative hybrid architecture divides responsibilities:
+> 1. Regex rules handle closed, syntactically-defined entities with high certainty (`PHONE_NUMBER`, `ID_NUMBER`, `MONEY`, `PERCENT`, `TIME`, `DATE`).
+> 2. The XLM-RoBERTa transformer handles semantic and open-vocabulary entities (`PERSON`, `ORGANIZATION`, `EVENT`, `LANDMARK_FACILITY`), leveraging contextual multilingual representations to recognize entities not present in our gazetteers."

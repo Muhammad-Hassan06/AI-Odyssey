@@ -1,0 +1,207 @@
+{
+  "audit_passed": true,
+  "isolation_checks": [
+    {
+      "check": "Document ID Isolation (Train vs Dev)",
+      "collisions": 0,
+      "passed": true
+    },
+    {
+      "check": "Document ID Isolation (Train vs Benchmark)",
+      "collisions": 0,
+      "passed": true
+    },
+    {
+      "check": "Document ID Isolation (Dev vs Benchmark)",
+      "collisions": 0,
+      "passed": true
+    },
+    {
+      "check": "Exact Sentence Text (Train vs Dev)",
+      "collisions": 0,
+      "passed": true
+    },
+    {
+      "check": "Exact Sentence Text (Train vs Benchmark)",
+      "collisions": 0,
+      "passed": true
+    },
+    {
+      "check": "Exact Sentence Text (Dev vs Benchmark)",
+      "collisions": 0,
+      "passed": true
+    },
+    {
+      "check": "Near-Duplicate (Train vs Benchmark, 5-gram Jaccard > 0.75)",
+      "collisions": 0,
+      "passed": true
+    },
+    {
+      "check": "Near-Duplicate (Train vs Dev, 5-gram Jaccard > 0.75)",
+      "collisions": 1,
+      "passed": true
+    }
+  ],
+  "entity_memorization": {
+    "PERSON": {
+      "unique_benchmark_strings": 7,
+      "bench_seen_in_train": 7,
+      "bench_share_seen_pct": 100.0,
+      "unique_dev_strings": 6,
+      "dev_seen_in_train": 6,
+      "dev_share_seen_pct": 100.0
+    },
+    "CITY": {
+      "unique_benchmark_strings": 23,
+      "bench_seen_in_train": 22,
+      "bench_share_seen_pct": 95.65,
+      "unique_dev_strings": 14,
+      "dev_seen_in_train": 14,
+      "dev_share_seen_pct": 100.0
+    },
+    "PROVINCE_REGION": {
+      "unique_benchmark_strings": 10,
+      "bench_seen_in_train": 8,
+      "bench_share_seen_pct": 80.0,
+      "unique_dev_strings": 9,
+      "dev_seen_in_train": 8,
+      "dev_share_seen_pct": 88.89
+    },
+    "COUNTRY": {
+      "unique_benchmark_strings": 13,
+      "bench_seen_in_train": 12,
+      "bench_share_seen_pct": 92.31,
+      "unique_dev_strings": 12,
+      "dev_seen_in_train": 10,
+      "dev_share_seen_pct": 83.33
+    },
+    "LANDMARK_FACILITY": {
+      "unique_benchmark_strings": 15,
+      "bench_seen_in_train": 14,
+      "bench_share_seen_pct": 93.33,
+      "unique_dev_strings": 3,
+      "dev_seen_in_train": 3,
+      "dev_share_seen_pct": 100.0
+    },
+    "GOVERNMENT_BODY": {
+      "unique_benchmark_strings": 2,
+      "bench_seen_in_train": 2,
+      "bench_share_seen_pct": 100.0,
+      "unique_dev_strings": 5,
+      "dev_seen_in_train": 4,
+      "dev_share_seen_pct": 80.0
+    },
+    "POLITICAL_PARTY": {
+      "unique_benchmark_strings": 4,
+      "bench_seen_in_train": 4,
+      "bench_share_seen_pct": 100.0,
+      "unique_dev_strings": 2,
+      "dev_seen_in_train": 2,
+      "dev_share_seen_pct": 100.0
+    },
+    "ORGANIZATION": {
+      "unique_benchmark_strings": 7,
+      "bench_seen_in_train": 4,
+      "bench_share_seen_pct": 57.14,
+      "unique_dev_strings": 5,
+      "dev_seen_in_train": 4,
+      "dev_share_seen_pct": 80.0
+    },
+    "EDUCATIONAL_INSTITUTION": {
+      "unique_benchmark_strings": 13,
+      "bench_seen_in_train": 11,
+      "bench_share_seen_pct": 84.62,
+      "unique_dev_strings": 5,
+      "dev_seen_in_train": 5,
+      "dev_share_seen_pct": 100.0
+    },
+    "COURT_LEGAL_BODY": {
+      "unique_benchmark_strings": 4,
+      "bench_seen_in_train": 4,
+      "bench_share_seen_pct": 100.0,
+      "unique_dev_strings": 1,
+      "dev_seen_in_train": 1,
+      "dev_share_seen_pct": 100.0
+    },
+    "LAW_ACT": {
+      "unique_benchmark_strings": 1,
+      "bench_seen_in_train": 1,
+      "bench_share_seen_pct": 100.0,
+      "unique_dev_strings": 3,
+      "dev_seen_in_train": 3,
+      "dev_share_seen_pct": 100.0
+    },
+    "EVENT": {
+      "unique_benchmark_strings": 1,
+      "bench_seen_in_train": 1,
+      "bench_share_seen_pct": 100.0,
+      "unique_dev_strings": 2,
+      "dev_seen_in_train": 2,
+      "dev_share_seen_pct": 100.0
+    },
+    "MEDIA_OUTLET": {
+      "unique_benchmark_strings": 10,
+      "bench_seen_in_train": 10,
+      "bench_share_seen_pct": 100.0,
+      "unique_dev_strings": 11,
+      "dev_seen_in_train": 10,
+      "dev_share_seen_pct": 90.91
+    },
+    "SPORTS_TEAM": {
+      "unique_benchmark_strings": 1,
+      "bench_seen_in_train": 1,
+      "bench_share_seen_pct": 100.0,
+      "unique_dev_strings": 4,
+      "dev_seen_in_train": 4,
+      "dev_share_seen_pct": 100.0
+    },
+    "DATE": {
+      "unique_benchmark_strings": 39,
+      "bench_seen_in_train": 6,
+      "bench_share_seen_pct": 15.38,
+      "unique_dev_strings": 34,
+      "dev_seen_in_train": 6,
+      "dev_share_seen_pct": 17.65
+    },
+    "TIME": {
+      "unique_benchmark_strings": 0,
+      "bench_seen_in_train": 0,
+      "bench_share_seen_pct": 0.0,
+      "unique_dev_strings": 0,
+      "dev_seen_in_train": 0,
+      "dev_share_seen_pct": 0.0
+    },
+    "MONEY": {
+      "unique_benchmark_strings": 7,
+      "bench_seen_in_train": 0,
+      "bench_share_seen_pct": 0.0,
+      "unique_dev_strings": 17,
+      "dev_seen_in_train": 5,
+      "dev_share_seen_pct": 29.41
+    },
+    "PERCENT": {
+      "unique_benchmark_strings": 47,
+      "bench_seen_in_train": 7,
+      "bench_share_seen_pct": 14.89,
+      "unique_dev_strings": 71,
+      "dev_seen_in_train": 10,
+      "dev_share_seen_pct": 14.08
+    },
+    "PHONE_NUMBER": {
+      "unique_benchmark_strings": 0,
+      "bench_seen_in_train": 0,
+      "bench_share_seen_pct": 0.0,
+      "unique_dev_strings": 0,
+      "dev_seen_in_train": 0,
+      "dev_share_seen_pct": 0.0
+    },
+    "ID_NUMBER": {
+      "unique_benchmark_strings": 0,
+      "bench_seen_in_train": 0,
+      "bench_share_seen_pct": 0.0,
+      "unique_dev_strings": 0,
+      "dev_seen_in_train": 0,
+      "dev_share_seen_pct": 0.0
+    }
+  }
+}

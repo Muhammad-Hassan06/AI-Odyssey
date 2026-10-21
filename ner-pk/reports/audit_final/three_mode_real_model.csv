@@ -1,0 +1,185 @@
+split,mode,entity_class,precision,recall,f1,ci_95_lower,ci_95_upper,support,reliability_flag
+dev,Model-Only (Fine-Tuned XLM-R),OVERALL_MICRO,85.07,93.21,88.96,79.04,94.11,1400,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),OVERALL_MACRO,-,-,81.25,39.20,85.28,1400,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),MICRO_EXCLUDING_PHONE_AND_ID,-,-,88.23,79.04,94.18,-,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),PERSON,15.79,85.71,26.67,5.26,37.84,7,UNRELIABLE (support < 30)
+dev,Model-Only (Fine-Tuned XLM-R),CITY,95.51,99.78,97.60,94.31,99.39,448,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),PROVINCE_REGION,73.33,91.67,81.48,76.92,100.00,48,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),COUNTRY,83.73,93.36,88.28,73.42,92.37,226,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),LANDMARK_FACILITY,40.62,100.00,57.78,0.00,92.31,13,UNRELIABLE (support < 30)
+dev,Model-Only (Fine-Tuned XLM-R),GOVERNMENT_BODY,91.67,78.57,84.62,0.00,100.00,14,UNRELIABLE (support < 30)
+dev,Model-Only (Fine-Tuned XLM-R),POLITICAL_PARTY,69.23,81.82,75.00,0.00,90.91,11,UNRELIABLE (support < 30)
+dev,Model-Only (Fine-Tuned XLM-R),ORGANIZATION,66.67,80.00,72.73,0.00,87.50,15,UNRELIABLE (support < 30)
+dev,Model-Only (Fine-Tuned XLM-R),EDUCATIONAL_INSTITUTION,91.43,94.12,92.75,0.00,100.00,34,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),COURT_LEGAL_BODY,95.56,100.00,97.73,0.00,100.00,43,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),LAW_ACT,88.00,91.67,89.80,0.00,100.00,48,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),EVENT,86.21,89.29,87.72,0.00,100.00,28,UNRELIABLE (support < 30)
+dev,Model-Only (Fine-Tuned XLM-R),MEDIA_OUTLET,77.61,100.00,87.39,60.00,94.45,52,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),SPORTS_TEAM,79.31,100.00,88.46,0.00,100.00,23,UNRELIABLE (support < 30)
+dev,Model-Only (Fine-Tuned XLM-R),DATE,53.12,50.00,51.52,19.04,73.59,34,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),TIME,100.00,100.00,100.00,0.00,100.00,44,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),MONEY,78.18,95.56,86.00,0.00,100.00,45,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),PERCENT,86.67,61.18,71.72,0.00,76.92,85,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),PHONE_NUMBER,92.05,94.19,93.10,0.00,93.10,86,RELIABLE
+dev,Model-Only (Fine-Tuned XLM-R),ID_NUMBER,89.72,100.00,94.58,0.00,94.58,96,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),OVERALL_MICRO,89.58,97.64,93.44,90.14,97.78,1400,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),OVERALL_MACRO,-,-,91.96,51.81,93.76,1400,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),MICRO_EXCLUDING_PHONE_AND_ID,-,-,92.55,87.62,97.78,-,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),PERSON,75.00,85.71,80.00,40.00,100.00,7,UNRELIABLE (support < 30)
+dev,Rules-Only (Regex + Gazetteers),CITY,99.09,96.88,97.97,96.79,100.00,448,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),PROVINCE_REGION,85.71,100.00,92.31,65.29,100.00,48,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),COUNTRY,89.02,96.90,92.80,73.46,96.37,226,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),LANDMARK_FACILITY,81.25,100.00,89.66,0.00,100.00,13,UNRELIABLE (support < 30)
+dev,Rules-Only (Regex + Gazetteers),GOVERNMENT_BODY,70.00,100.00,82.35,0.00,100.00,14,UNRELIABLE (support < 30)
+dev,Rules-Only (Regex + Gazetteers),POLITICAL_PARTY,90.91,90.91,90.91,0.00,100.00,11,UNRELIABLE (support < 30)
+dev,Rules-Only (Regex + Gazetteers),ORGANIZATION,100.00,100.00,100.00,0.00,100.00,15,UNRELIABLE (support < 30)
+dev,Rules-Only (Regex + Gazetteers),EDUCATIONAL_INSTITUTION,100.00,97.06,98.51,0.00,100.00,34,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),COURT_LEGAL_BODY,100.00,100.00,100.00,0.00,100.00,43,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),LAW_ACT,100.00,100.00,100.00,0.00,100.00,48,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),EVENT,80.77,75.00,77.78,0.00,100.00,28,UNRELIABLE (support < 30)
+dev,Rules-Only (Regex + Gazetteers),MEDIA_OUTLET,96.30,100.00,98.11,75.00,100.00,52,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),SPORTS_TEAM,100.00,100.00,100.00,0.00,100.00,23,UNRELIABLE (support < 30)
+dev,Rules-Only (Regex + Gazetteers),DATE,24.63,97.06,39.29,10.00,97.87,34,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),TIME,100.00,100.00,100.00,0.00,100.00,44,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),MONEY,100.00,100.00,100.00,0.00,100.00,45,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),PERCENT,100.00,100.00,100.00,0.00,100.00,85,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),PHONE_NUMBER,100.00,100.00,100.00,0.00,100.00,86,RELIABLE
+dev,Rules-Only (Regex + Gazetteers),ID_NUMBER,100.00,98.96,99.48,0.00,99.48,96,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),OVERALL_MICRO,81.58,98.36,89.18,83.03,90.66,1400,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),OVERALL_MACRO,-,-,84.03,41.36,86.60,1400,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),MICRO_EXCLUDING_PHONE_AND_ID,-,-,87.90,83.03,89.02,-,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),PERSON,15.79,85.71,26.67,5.26,37.84,7,UNRELIABLE (support < 30)
+dev,Old Hybrid (Model Overrides Rules),CITY,95.31,99.78,97.49,94.08,99.39,448,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),PROVINCE_REGION,68.12,97.92,80.34,60.60,89.19,48,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),COUNTRY,81.75,95.13,87.93,70.65,92.11,226,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),LANDMARK_FACILITY,40.62,100.00,57.78,0.00,92.31,13,UNRELIABLE (support < 30)
+dev,Old Hybrid (Model Overrides Rules),GOVERNMENT_BODY,68.42,92.86,78.79,0.00,85.71,14,UNRELIABLE (support < 30)
+dev,Old Hybrid (Model Overrides Rules),POLITICAL_PARTY,78.57,100.00,88.00,0.00,100.00,11,UNRELIABLE (support < 30)
+dev,Old Hybrid (Model Overrides Rules),ORGANIZATION,72.22,86.67,78.79,0.00,100.00,15,UNRELIABLE (support < 30)
+dev,Old Hybrid (Model Overrides Rules),EDUCATIONAL_INSTITUTION,94.29,97.06,95.65,0.00,100.00,34,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),COURT_LEGAL_BODY,95.56,100.00,97.73,0.00,100.00,43,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),LAW_ACT,96.00,100.00,97.96,0.00,100.00,48,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),EVENT,96.55,100.00,98.25,0.00,100.00,28,UNRELIABLE (support < 30)
+dev,Old Hybrid (Model Overrides Rules),MEDIA_OUTLET,75.36,100.00,85.95,50.00,94.45,52,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),SPORTS_TEAM,79.31,100.00,88.46,0.00,100.00,23,UNRELIABLE (support < 30)
+dev,Old Hybrid (Model Overrides Rules),DATE,23.19,94.12,37.21,9.74,92.75,34,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),TIME,100.00,100.00,100.00,0.00,100.00,44,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),MONEY,84.31,95.56,89.58,0.00,100.00,45,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),PERCENT,94.38,98.82,96.55,0.00,98.14,85,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),PHONE_NUMBER,100.00,100.00,100.00,0.00,100.00,86,RELIABLE
+dev,Old Hybrid (Model Overrides Rules),ID_NUMBER,95.05,100.00,97.46,0.00,97.46,96,RELIABLE
+dev,Conservative Hybrid (Protected Merge),OVERALL_MICRO,82.30,99.29,90.00,84.34,91.49,1400,RELIABLE
+dev,Conservative Hybrid (Protected Merge),OVERALL_MACRO,-,-,85.31,42.21,87.70,1400,RELIABLE
+dev,Conservative Hybrid (Protected Merge),MICRO_EXCLUDING_PHONE_AND_ID,-,-,88.82,84.34,90.93,-,RELIABLE
+dev,Conservative Hybrid (Protected Merge),PERSON,15.79,85.71,26.67,5.26,37.84,7,UNRELIABLE (support < 30)
+dev,Conservative Hybrid (Protected Merge),CITY,95.32,100.00,97.60,94.09,100.00,448,RELIABLE
+dev,Conservative Hybrid (Protected Merge),PROVINCE_REGION,69.57,100.00,82.05,63.14,89.72,48,RELIABLE
+dev,Conservative Hybrid (Protected Merge),COUNTRY,82.64,96.90,89.21,71.18,94.13,226,RELIABLE
+dev,Conservative Hybrid (Protected Merge),LANDMARK_FACILITY,40.62,100.00,57.78,0.00,92.31,13,UNRELIABLE (support < 30)
+dev,Conservative Hybrid (Protected Merge),GOVERNMENT_BODY,66.67,100.00,80.00,0.00,93.33,14,UNRELIABLE (support < 30)
+dev,Conservative Hybrid (Protected Merge),POLITICAL_PARTY,76.92,90.91,83.33,0.00,100.00,11,UNRELIABLE (support < 30)
+dev,Conservative Hybrid (Protected Merge),ORGANIZATION,83.33,100.00,90.91,0.00,100.00,15,UNRELIABLE (support < 30)
+dev,Conservative Hybrid (Protected Merge),EDUCATIONAL_INSTITUTION,97.14,100.00,98.55,0.00,100.00,34,RELIABLE
+dev,Conservative Hybrid (Protected Merge),COURT_LEGAL_BODY,95.56,100.00,97.73,0.00,100.00,43,RELIABLE
+dev,Conservative Hybrid (Protected Merge),LAW_ACT,97.96,100.00,98.97,0.00,100.00,48,RELIABLE
+dev,Conservative Hybrid (Protected Merge),EVENT,96.55,100.00,98.25,0.00,100.00,28,UNRELIABLE (support < 30)
+dev,Conservative Hybrid (Protected Merge),MEDIA_OUTLET,75.36,100.00,85.95,50.00,94.45,52,RELIABLE
+dev,Conservative Hybrid (Protected Merge),SPORTS_TEAM,85.19,100.00,92.00,0.00,100.00,23,UNRELIABLE (support < 30)
+dev,Conservative Hybrid (Protected Merge),DATE,23.91,97.06,38.37,9.86,93.75,34,RELIABLE
+dev,Conservative Hybrid (Protected Merge),TIME,100.00,100.00,100.00,0.00,100.00,44,RELIABLE
+dev,Conservative Hybrid (Protected Merge),MONEY,88.24,100.00,93.75,0.00,100.00,45,RELIABLE
+dev,Conservative Hybrid (Protected Merge),PERCENT,95.51,100.00,97.70,0.00,99.38,85,RELIABLE
+dev,Conservative Hybrid (Protected Merge),PHONE_NUMBER,100.00,100.00,100.00,0.00,100.00,86,RELIABLE
+dev,Conservative Hybrid (Protected Merge),ID_NUMBER,95.05,100.00,97.46,0.00,97.46,96,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),OVERALL_MICRO,79.38,94.40,86.24,78.11,92.11,1823,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),OVERALL_MACRO,-,-,79.06,39.86,84.15,1823,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),MICRO_EXCLUDING_PHONE_AND_ID,-,-,85.49,78.11,91.50,-,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),PERSON,22.45,73.33,34.38,11.10,45.98,15,UNRELIABLE (support < 30)
+benchmark,Model-Only (Fine-Tuned XLM-R),CITY,87.91,97.72,92.55,77.14,98.10,744,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),PROVINCE_REGION,78.21,95.31,85.92,73.68,93.43,128,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),COUNTRY,90.66,91.61,91.13,79.13,94.10,286,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),LANDMARK_FACILITY,27.78,95.24,43.01,30.77,62.50,42,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),GOVERNMENT_BODY,46.67,77.78,58.33,0.00,92.87,9,UNRELIABLE (support < 30)
+benchmark,Model-Only (Fine-Tuned XLM-R),POLITICAL_PARTY,54.55,75.00,63.16,0.00,90.02,8,UNRELIABLE (support < 30)
+benchmark,Model-Only (Fine-Tuned XLM-R),ORGANIZATION,100.00,55.56,71.43,0.00,100.00,9,UNRELIABLE (support < 30)
+benchmark,Model-Only (Fine-Tuned XLM-R),EDUCATIONAL_INSTITUTION,54.55,94.12,69.06,34.15,96.88,51,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),COURT_LEGAL_BODY,87.50,100.00,93.33,50.00,100.00,49,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),LAW_ACT,77.50,81.58,79.49,0.00,81.08,38,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),EVENT,87.88,90.62,89.23,0.00,100.00,32,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),MEDIA_OUTLET,60.67,96.43,74.48,50.00,90.32,56,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),SPORTS_TEAM,85.71,100.00,92.31,0.00,100.00,24,UNRELIABLE (support < 30)
+benchmark,Model-Only (Fine-Tuned XLM-R),DATE,83.72,87.80,85.71,71.79,96.23,41,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),TIME,97.62,100.00,98.80,0.00,100.00,41,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),MONEY,90.24,97.37,93.67,50.00,100.00,38,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),PERCENT,87.50,67.31,76.09,63.04,91.43,52,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),PHONE_NUMBER,93.90,96.25,95.06,0.00,95.06,80,RELIABLE
+benchmark,Model-Only (Fine-Tuned XLM-R),ID_NUMBER,88.89,100.00,94.12,0.00,94.12,80,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),OVERALL_MICRO,91.02,98.46,94.60,90.63,97.37,1823,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),OVERALL_MACRO,-,-,94.13,60.85,95.17,1823,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),MICRO_EXCLUDING_PHONE_AND_ID,-,-,94.10,88.99,97.37,-,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),PERSON,100.00,100.00,100.00,100.00,100.00,15,UNRELIABLE (support < 30)
+benchmark,Rules-Only (Regex + Gazetteers),CITY,95.29,97.98,96.62,86.62,100.00,744,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),PROVINCE_REGION,88.89,100.00,94.12,74.42,97.50,128,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),COUNTRY,90.88,97.55,94.10,81.85,97.05,286,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),LANDMARK_FACILITY,100.00,100.00,100.00,100.00,100.00,42,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),GOVERNMENT_BODY,60.00,100.00,75.00,0.00,87.81,9,UNRELIABLE (support < 30)
+benchmark,Rules-Only (Regex + Gazetteers),POLITICAL_PARTY,100.00,100.00,100.00,0.00,100.00,8,UNRELIABLE (support < 30)
+benchmark,Rules-Only (Regex + Gazetteers),ORGANIZATION,81.82,100.00,90.00,0.00,100.00,9,UNRELIABLE (support < 30)
+benchmark,Rules-Only (Regex + Gazetteers),EDUCATIONAL_INSTITUTION,100.00,98.04,99.01,98.27,100.00,51,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),COURT_LEGAL_BODY,100.00,100.00,100.00,100.00,100.00,49,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),LAW_ACT,100.00,100.00,100.00,0.00,100.00,38,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),EVENT,84.38,84.38,84.38,0.00,100.00,32,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),MEDIA_OUTLET,100.00,100.00,100.00,100.00,100.00,56,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),SPORTS_TEAM,100.00,100.00,100.00,0.00,100.00,24,UNRELIABLE (support < 30)
+benchmark,Rules-Only (Regex + Gazetteers),DATE,32.80,100.00,49.40,19.04,90.32,41,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),TIME,100.00,100.00,100.00,0.00,100.00,41,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),MONEY,100.00,100.00,100.00,100.00,100.00,38,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),PERCENT,100.00,100.00,100.00,100.00,100.00,52,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),PHONE_NUMBER,100.00,100.00,100.00,0.00,100.00,80,RELIABLE
+benchmark,Rules-Only (Regex + Gazetteers),ID_NUMBER,100.00,100.00,100.00,0.00,100.00,80,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),OVERALL_MICRO,76.53,97.31,85.68,77.43,89.69,1823,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),OVERALL_MACRO,-,-,80.34,41.90,84.04,1823,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),MICRO_EXCLUDING_PHONE_AND_ID,-,-,84.68,77.43,88.18,-,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),PERSON,25.49,86.67,39.39,15.36,50.00,15,UNRELIABLE (support < 30)
+benchmark,Old Hybrid (Model Overrides Rules),CITY,87.71,97.85,92.50,76.92,98.10,744,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),PROVINCE_REGION,72.99,99.22,84.11,64.45,90.69,128,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),COUNTRY,86.08,95.10,90.37,74.42,94.08,286,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),LANDMARK_FACILITY,27.78,95.24,43.01,30.77,62.50,42,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),GOVERNMENT_BODY,43.75,77.78,56.00,0.00,86.68,9,UNRELIABLE (support < 30)
+benchmark,Old Hybrid (Model Overrides Rules),POLITICAL_PARTY,61.54,100.00,76.19,0.00,94.12,8,UNRELIABLE (support < 30)
+benchmark,Old Hybrid (Model Overrides Rules),ORGANIZATION,75.00,66.67,70.59,0.00,100.00,9,UNRELIABLE (support < 30)
+benchmark,Old Hybrid (Model Overrides Rules),EDUCATIONAL_INSTITUTION,54.55,94.12,69.06,34.15,96.88,51,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),COURT_LEGAL_BODY,87.50,100.00,93.33,50.00,100.00,49,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),LAW_ACT,95.00,100.00,97.44,0.00,100.00,38,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),EVENT,96.97,100.00,98.46,0.00,100.00,32,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),MEDIA_OUTLET,60.67,96.43,74.48,50.00,90.32,56,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),SPORTS_TEAM,85.71,100.00,92.31,0.00,100.00,24,UNRELIABLE (support < 30)
+benchmark,Old Hybrid (Model Overrides Rules),DATE,32.28,100.00,48.81,18.84,88.46,41,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),TIME,97.62,100.00,98.80,0.00,100.00,41,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),MONEY,92.50,97.37,94.87,57.14,100.00,38,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),PERCENT,90.74,94.23,92.45,89.15,100.00,52,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),PHONE_NUMBER,100.00,100.00,100.00,0.00,100.00,80,RELIABLE
+benchmark,Old Hybrid (Model Overrides Rules),ID_NUMBER,89.89,100.00,94.67,0.00,94.67,80,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),OVERALL_MICRO,78.14,99.23,87.43,80.00,90.62,1823,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),OVERALL_MACRO,-,-,83.57,45.49,85.95,1823,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),MICRO_EXCLUDING_PHONE_AND_ID,-,-,86.58,80.00,89.34,-,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),PERSON,26.92,93.33,41.79,15.36,57.14,15,UNRELIABLE (support < 30)
+benchmark,Conservative Hybrid (Protected Merge),CITY,86.85,99.46,92.73,75.98,98.51,744,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),PROVINCE_REGION,75.74,100.00,86.20,64.51,94.23,128,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),COUNTRY,87.74,97.55,92.38,79.30,95.69,286,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),LANDMARK_FACILITY,31.01,95.24,46.78,33.33,66.67,42,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),GOVERNMENT_BODY,45.00,100.00,62.07,0.00,81.17,9,UNRELIABLE (support < 30)
+benchmark,Conservative Hybrid (Protected Merge),POLITICAL_PARTY,61.54,100.00,76.19,0.00,94.12,8,UNRELIABLE (support < 30)
+benchmark,Conservative Hybrid (Protected Merge),ORGANIZATION,81.82,100.00,90.00,0.00,100.00,9,UNRELIABLE (support < 30)
+benchmark,Conservative Hybrid (Protected Merge),EDUCATIONAL_INSTITUTION,60.71,100.00,75.56,41.03,97.22,51,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),COURT_LEGAL_BODY,92.45,100.00,96.08,50.00,100.00,49,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),LAW_ACT,95.00,100.00,97.44,0.00,100.00,38,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),EVENT,96.97,100.00,98.46,0.00,100.00,32,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),MEDIA_OUTLET,66.67,100.00,80.00,62.50,94.12,56,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),SPORTS_TEAM,96.00,100.00,97.96,0.00,100.00,24,UNRELIABLE (support < 30)
+benchmark,Conservative Hybrid (Protected Merge),DATE,32.28,100.00,48.81,18.84,88.46,41,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),TIME,97.62,100.00,98.80,0.00,100.00,41,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),MONEY,95.00,100.00,97.44,79.96,100.00,38,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),PERCENT,96.30,100.00,98.11,96.49,100.00,52,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),PHONE_NUMBER,100.00,100.00,100.00,0.00,100.00,80,RELIABLE
+benchmark,Conservative Hybrid (Protected Merge),ID_NUMBER,89.89,100.00,94.67,0.00,94.67,80,RELIABLE
