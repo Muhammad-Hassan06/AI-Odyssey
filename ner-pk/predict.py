@@ -56,7 +56,11 @@ set_seeds(42)
 class UnifiedNERPredictor:
     def __init__(self, model_dir: str = "models/final", mode: str = "hybrid", device: str = None):
         self.mode = mode.lower()
-        self.model_dir = model_dir
+        if not os.path.isabs(model_dir):
+            candidate = PROJECT_ROOT / model_dir
+            if candidate.exists():
+                model_dir = str(candidate)
+        self.model_dir = str(model_dir)
         self.device = device or ("cuda" if self._is_cuda_available() else "cpu")
         self.model = None
         self.tokenizer = None
@@ -507,15 +511,37 @@ def run_predictions(
 
 def main():
     parser = argparse.ArgumentParser(description="Pakistani NER Test-File Predictor")
-    parser.add_argument("input_file", help="Path to input file (.txt, .csv, .jsonl, .json, .conll, .xlsx)")
-    parser.add_argument("--output_dir", default="predictions", help="Output directory")
+    parser.add_argument("input_file", nargs="?", default=None, help="Path to input file (.txt, .csv, .jsonl, .json, .conll, .xlsx)")
+    parser.add_argument("--input", "-i", dest="input_opt", default=None, help="Path to input file")
+    parser.add_argument("--text", "-t", default=None, help="Directly predict a single sentence string")
+    parser.add_argument("--output_dir", "-o", default="predictions", help="Output directory")
     parser.add_argument("--mode", default="hybrid", choices=["hybrid", "model", "rules"], help="Inference mode")
     parser.add_argument("--model_dir", default="models/final", help="Path to fine-tuned checkpoint")
     parser.add_argument("--device", default=None, help="Device (cpu or cuda)")
 
     args = parser.parse_args()
+
+    if args.text:
+        predictor = UnifiedNERPredictor(model_dir=args.model_dir, mode=args.mode, device=args.device)
+        entities = predictor.predict_single(args.text)
+        print("\n" + "=" * 60)
+        print(f"INPUT TEXT:     {args.text}")
+        print(f"INFERENCE MODE: {args.mode}")
+        print("=" * 60)
+        print(f"EXTRACTED ENTITIES ({len(entities)}):")
+        if not entities:
+            print("  (No entities detected)")
+        for idx, ent in enumerate(entities, 1):
+            print(f"  {idx:>2}. [{ent['label']:<24}] \"{ent['text']}\" (offsets: {ent['start']}-{ent['end']})")
+        print("=" * 60 + "\n")
+        return
+
+    in_file = args.input_file or args.input_opt
+    if not in_file:
+        parser.error("Please provide an input_file (positional or --input) or a single sentence via --text.")
+
     run_predictions(
-        input_file=args.input_file,
+        input_file=in_file,
         output_dir=args.output_dir,
         mode=args.mode,
         model_dir=args.model_dir,
