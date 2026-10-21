@@ -368,12 +368,6 @@ ENTITY_COLOR_MAP = {
 }
 
 CUSTOM_CSS = """
-<<<<<<< Updated upstream
-.gradio-container { max-width: 1250px !important; }
-.badge-banner { background-color: #f0fdf4; border: 1px solid #bbf7d0; padding: 10px 14px; border-radius: 8px; margin-bottom: 12px; }
-.hero-box { background: linear-gradient(135deg, #064e3b 0%, #047857 100%); color: white; padding: 20px 24px; border-radius: 12px; margin-bottom: 16px; }
-.hero-box h1, .hero-box p { color: white !important; margin: 0; }
-=======
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap');
 
 /* Global Font & Ultra-Smooth Antialiasing */
@@ -658,7 +652,6 @@ button.primary:hover {
     box-shadow: 0 6px 20px rgba(127, 85, 57, 0.5) !important;
     background: linear-gradient(135deg, #6f4529 0%, #8b5536 100%) !important;
 }
->>>>>>> Stashed changes
 """
 
 def load_live_eval_metrics():
@@ -690,21 +683,7 @@ def load_live_eval_metrics():
 # GRADIO APPLICATION BUILDER
 # ==============================================================================
 def build_gradio_app():
-<<<<<<< Updated upstream
     metrics = load_live_eval_metrics()
-    with gr.Blocks(title="Pakistani-Context NER System") as demo:
-        gr.HTML(
-            f"""
-            <div class="hero-box">
-                <h1 style="font-size: 26px; font-weight: 700; margin-bottom: 6px;">🇵🇰 Pakistani-Context Named Entity Recognition (NER)</h1>
-                <p style="font-size: 15px; opacity: 0.95;">TechFest NER Challenge — Dory's Data Dive (Round 2) | Unified Multilingual & Hybrid Architecture</p>
-                <div style="margin-top: 10px; font-size: 13px; opacity: 0.9;">
-                    <b>Dev Real Hybrid Micro F1: {metrics['dev_hybrid_f1']}</b> &nbsp;|&nbsp; 
-                    <b>Dev Real Model Micro F1: {metrics['dev_model_f1']} (Macro: {metrics['dev_model_macro']})</b> &nbsp;|&nbsp; 
-                    <b>Internal Silver Benchmark F1: {metrics['bench_hybrid_f1']} (0 human-gold)</b> &nbsp;|&nbsp; 
-                    <b>Real Text Only (v4)</b> &nbsp;|&nbsp; 
-                    <b>Exact 20 Classes</b>
-=======
     custom_theme = gr.themes.Soft(
         primary_hue="amber",
         secondary_hue="stone",
@@ -735,7 +714,7 @@ def build_gradio_app():
 
     with gr.Blocks(title="PK-NER Studio | Pakistani-Context NLP", css=CUSTOM_CSS, theme=custom_theme) as demo:
         gr.HTML(
-            """
+            f"""
             <div class="hero-card">
                 <div class="hero-title">
                     <span>🇵🇰</span> PK-NER Studio: Pakistani-Context Named Entity Recognition
@@ -746,12 +725,12 @@ def build_gradio_app():
                     Industrial-grade hybrid bilingual NER engine supporting <strong>20 strict competition classes</strong> across English, Urdu Script, and Roman Urdu.
                 </div>
                 <div class="stats-bar">
-                    <span class="stat-chip highlight">🎯 Strict Micro F1: 94.31%</span>
-                    <span class="stat-chip highlight">⚡ Latency: ~2.1 ms</span>
+                    <span class="stat-chip highlight">🎯 Dev Hybrid F1: {metrics['dev_hybrid_f1']}</span>
+                    <span class="stat-chip highlight">⚡ Benchmark F1: {metrics['bench_hybrid_f1']}</span>
+                    <span class="stat-chip">🤖 Model F1: {metrics['dev_model_f1']} (Macro: {metrics['dev_model_macro']})</span>
                     <span class="stat-chip">🌐 Bilingual: English + Urdu Script</span>
                     <span class="stat-chip">🛡️ Rule 3 Compliant (100% Synthetic IDs)</span>
                     <span class="stat-chip">🏷️ Exact 20 Classes</span>
->>>>>>> Stashed changes
                 </div>
             </div>
             """
